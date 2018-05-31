@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.adf.owlcarouselapp.owlcarouselui.view" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/com/dm/adf/owlcarouselapp/owlcarouselui/view/pages/Home.jsf" usageId="com_dm_commonuicompapp_owlcarouselui_view_HomePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_commonuicompapp_owlcarouselui_view_HomePageDef"
+          path="com.dm.adf.owlcarouselapp.owlcarouselui.view.pages.pages.HomePageDef"/>
+  </pageDefinitionUsages>
+</Application>

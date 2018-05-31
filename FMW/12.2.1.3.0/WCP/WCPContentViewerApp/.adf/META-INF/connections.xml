@@ -1,0 +1,14 @@
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+  <Reference name="WccAdfServerConnection" className="oracle.adf.mbean.share.connection.wcc.WccConnection"
+             partial="false" manageInOracleEnterpriseManager="true" deployable="true" xmlns="">
+    <Factory className="oracle.adf.mbean.share.connection.wcc.WccConnectionFactory"/>
+    <RefAddresses>
+      <StringRefAddr addrType="oracle.wcc.ridc.credential.username">
+        <Contents>wccadmin</Contents>
+      </StringRefAddr>
+      <StringRefAddr addrType="oracle.wcc.ridc.connection.url">
+        <Contents>idc://localhost:4444</Contents>
+      </StringRefAddr>
+    </RefAddresses>
+  </Reference>
+</References>

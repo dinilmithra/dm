@@ -1,0 +1,1456 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (c) 2011, 2017, Oracle and/or its affiliates. All rights reserved. -->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:wccel="http://xmlns.oracle.com/wcc/adf/el"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:vwr="http://xmlns.oracle.com/imaging/viewer">
+  <c:set var="diBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.DocInfoBundle']}"/>
+  <c:set var="docBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.DocumentsBundle']}"/>
+  <c:set var="mainBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.MainBundle']}"/>
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.UploadBundle']}"/>
+  <c:set var="libBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.LibrariesBundle']}"/>
+  <c:set var="wfBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.WorkflowBundle']}"/>
+  <c:set var="pb"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.PreferencesBundle']}"/>
+  <c:set var="compactMode"
+         value="#{not empty pageFlowScope.taskFlowContext and not empty pageFlowScope.compactMode and pageFlowScope.compactMode}"/>
+  <c:set var="inplaceNavigation"
+         value="#{(not empty pageFlowScope.taskFlowContext) and pageFlowScope.inplaceNavigation}"/>
+  <af:resource type="javascript" source="#{wccel:getVersionedResource('/resources/wcc/js/wcc.js')}" />
+  <af:resource type="javascript" source="#{wccel:getVersionedResource('/resources/wcc/js/wcchelp.js')}" />
+  <af:resource type="javascript">
+    //<![CDATA[
+      var ___docPropsIsInAccssMode =  "#{(requestContext.accessibilityMode eq 'SCREEN_READER') ? 'true' : 'false'}";
+      oracle.wcc.adf.docProperties.hideDocRevHints();
+    //]]>
+  </af:resource>
+  <af:group id="gDocInfo">
+    <af:panelStretchLayout id="psl1" topHeight="auto"
+                           styleClass="AFStretchWidth WccDocPropsPage #{empty pageFlowScope.taskFlowContext ? '' : ' WccTaskflow'}#{compactMode ? ' WccCompactMode' : ''}"
+                           inlineStyle="#{(not empty pageFlowScope.taskFlowContext) ? 'min-height:600px;' : ''}"
+                           dimensionsFrom="parent">
+      <f:facet name="top">
+      
+        <af:panelGroupLayout id="pgl16" layout="vertical" styleClass="WccDpHeader">
+          
+          <af:panelBorderLayout id="pbl1" styleClass="WccDpBrandingBar" rendered="#{empty pageFlowScope.taskFlowContext}">
+            <f:facet name="start">
+              <c:if test="#{empty pageFlowScope.taskFlowContext}">
+                <af:panelGroupLayout id="pgl3" layout="horizontal" valign="bottom" halign="start">
+                  <af:panelGroupLayout id="pgl5" layout="horizontal">
+                    <af:commandImageLink id="cil1" styleClass="WccBrandingBarLogo"
+                                         shortDesc="#{mainBundle.BRANDING_LOGO_LINK_DESCRIPTION}"
+                                         partialSubmit="true" action="wccmain"
+                                         rendered="#{wccel:getCustomBrandingLogo() == null}"/>
+                    <af:commandImageLink id="cil2"
+                                         icon="#{wccel:getCustomBrandingLogo()}"
+                                         shortDesc="#{mainBundle.BRANDING_LOGO_LINK_DESCRIPTION}"
+                                         partialSubmit="true" action="wccmain"
+                                         rendered="#{wccel:getCustomBrandingLogo() != null}"/>
+                    <af:outputText id="ot1" styleClass="WccBrandingBarTitle"
+                                   value="#{wccel:getCustomBrandingTitle() == null
+                                          ? mainBundle.WEBCENTERCONTENT : wccel:getCustomBrandingTitle()}"/>
+                  </af:panelGroupLayout>
+                </af:panelGroupLayout>
+              </c:if>
+            </f:facet>
+            
+            <f:facet name="end">
+              <af:panelGroupLayout id="pglEn1" halign="end" layout="horizontal"
+                                   inlineStyle="padding-top:2px;">
+                <af:menuBar id="mbDpUsr" clientComponent="true" visible="true"
+                            rendered="#{empty pageFlowScope.taskFlowContext}">
+                  <af:menu text="#{wccSessionData.user.displayName}" id="mnDp1"
+                           clientComponent="true">
+                    <af:group id="gmDp1">
+                      <af:commandMenuItem text="#{mainBundle.ABOUT}"
+                                          id="cmiDp1">
+                        <af:showPopupBehavior popupId="aboutPopup"
+                                              triggerType="action"
+                                              align="afterEnd"
+                                              alignId="mbDpUsr"/>
+                      </af:commandMenuItem>
+                    </af:group>
+                    <af:group id="g1">
+                      <af:menu text="#{mainBundle.HELP}" id="mHelp">
+                        <af:commandMenuItem text="#{mainBundle.DOCUMENT_LIBRARY}" id="cmi5">
+                          <af:clientAttribute name="helpTopicUrl" value="#{wccel:getDocumentLibraryUrl()}"/>
+                          <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                        </af:commandMenuItem>
+                        <af:commandMenuItem text="#{mainBundle.HELP_CONTENTS}" id="cmi8">
+                          <af:clientAttribute name="helpTopicUrl" value="#{wccel:getHelpContentsUrl()}"/>
+                          <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                        </af:commandMenuItem>
+                        <af:commandMenuItem text="#{mainBundle.HELP_FOR_THIS_PAGE}" id="cmi4">
+                          <af:clientAttribute name="helpTopicUrl" value="#{wccel:getHelpTopicUrl('DOCUMENT_PROPERTIES_PAGE')}"/>
+                          <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                        </af:commandMenuItem>
+                        <af:commandMenuItem text="#{mainBundle.HOW_DO_I}" id="cmi6">
+                          <af:clientAttribute name="helpTopicUrl" value="#{wccel:getHdiTopicUrl('DOCUMENT_PROPERTIES_PAGE')}"/>
+                          <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                        </af:commandMenuItem>
+                      </af:menu>
+                    </af:group>
+                    <af:group id="gmDp2">
+                      <af:goMenuItem text="#{mainBundle.LOGOUT}" id="gmiDp1"
+                                     destination="/adfAuthentication?logout=true&amp;end_url=/faces/wccmain"/>
+                    </af:group>
+                  </af:menu>
+                </af:menuBar>
+                <af:popup childCreation="deferred" autoCancel="enabled"
+                          id="aboutPopup" animate="false"
+                          contentDelivery="lazy">
+                  <af:panelWindow id="pw1" title="#{mainBundle.ABOUT}"
+                                  modal="false" closeIconVisible="true"
+                                  contentWidth="410">
+                    <ui:include src="/wcc/about.jsff"/>
+                  </af:panelWindow>
+                </af:popup>
+              </af:panelGroupLayout>
+            </f:facet>
+          </af:panelBorderLayout>
+          
+            <af:panelGroupLayout id="pgl13" styleClass="WccDpBreadcrumbBar"
+                                 rendered="#{empty pageFlowScope.taskFlowContext}">
+              <c:if test="${wccDocInfoBean.revision != null and not wccDocInfoBean.isFiled}">
+                <af:outputText value="#{wccel:getCustomBrandingTitle() == null
+                                        ? diBundle.ORACLE_WEBCENTER_CONTENT
+                                        : wccel:getLabelWithColon(wccel:getCustomBrandingTitle())}"
+                               id="s444" styleClass="WccFolderPathText"
+                               rendered="#{empty pageFlowScope.taskFlowContext}"/>
+                <af:spacer width="5" id="pg1345"/>
+                <af:outputText value="#{diBundle.UNFILED_DOCUMENT}" id="pg153"
+                               styleClass="WccFolderPathText"/>
+                <af:spacer width="15" id="pg154"/>
+                <af:goLink text="#{diBundle.ADD_TO_LIBRARY}" id="gl21"
+                           shortDesc="#{diBundle.ADD_TO_LIBRARY}"
+                           styleClass="WccFolderPathLinkText"
+                           rendered="#{wccDocInfoBean.capabilities['FILE_DOCUMENT'] and not wccDocInfoBean.workflowInitialContribution}"
+                           clientComponent="true">
+                  <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                  <af:clientAttribute name="clickMethod" value="docProperties.handleUnsavedChanges"/>
+                  <af:clientListener type="click" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                  <af:serverListener method="#{wccDocInfoBean.showAddToLibraryPopup}"
+                                     type="showAddToLibraryPopup"/>
+                  <af:clientAttribute name="serverListener"
+                                      value="showAddToLibraryPopup"/>
+                </af:goLink>
+              </c:if>
+              <c:if test="${wccDocInfoBean.revision != null and wccDocInfoBean.isFiled}">
+                <af:outputText value="#{wccel:getCustomBrandingTitle() == null
+                                        ? diBundle.ORACLE_WEBCENTER_CONTENT
+                                        : wccel:getLabelWithColon(wccel:getCustomBrandingTitle())}"
+                               id="ot4" styleClass="WccFolderPathText"
+                               rendered="#{empty pageFlowScope.taskFlowContext}"/>
+                <af:spacer width="5" id="s9"/>
+                <af:switcher facetName="#{wccDocInfoBean.parsedPath.pathType}">
+                  <f:facet name="ENTERPRISE_LIBRARY">
+                    <af:outputText value="#{mainBundle.ENTERPRISE_LIBRARIES}"
+                                   id="otEL" styleClass="WccFolderPathText"/>
+                  </f:facet>
+                  <f:facet name="SYSTEM_LIBRARY">
+                    <af:outputText value="#{mainBundle.SYSTEM_LIBRARIES}"
+                                   id="otSL" styleClass="WccFolderPathText"/>
+                  </f:facet>
+                </af:switcher>
+                <af:iterator value="#{wccDocInfoBean.parsedPath.breadcrumbs}"
+                             var="pathToken" id="i12" rows="0">
+                  <af:outputText value="#{pathToken.delimiter}" id="otde"
+                                 styleClass="WccFolderPathText"
+                                 rendered="#{not pathToken.lastItem}"/>
+                  <af:goLink id="l1" text="#{wccel:truncateAt(pathToken.itemName, 18)}"
+                             styleClass="WccFolderPathLinkText"
+                             shortDesc="#{pathToken.itemName}"
+                             rendered="#{not pathToken.lastItem}"
+                             destination="#{wccel:getFolderUrlByPath(pathToken.itemPath)}"
+                             clientComponent="true">
+                    <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                    <af:clientAttribute name="clickMethod" value="docProperties.handleUnsavedChanges"/>
+                    <af:clientListener type="click" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                  </af:goLink>
+                </af:iterator>
+              </c:if>
+            </af:panelGroupLayout>
+
+          <af:panelGroupLayout id="pgl20" layout="horizontal"
+                               valign="middle"
+                               inlineStyle="padding:0 12px;"
+                               rendered="#{inplaceNavigation}">
+            <af:link id="l2" partialSubmit="true"
+                     icon="#{adfFacesContext.rightToLeft ? '/resources/wcc/images/back_caret_rtl_act.png' : '/resources/wcc/images/back_caret_act.png'}"
+                     disabledIcon="#{adfFacesContext.rightToLeft ? '/resources/wcc/images/back_caret_rtl_dis.png' : '/resources/wcc/images/back_caret_dis.png'}"
+                     hoverIcon="#{adfFacesContext.rightToLeft ? '/resources/wcc/images/back_caret_rtl_ovr.png' : '/resources/wcc/images/back_caret_ovr.png'}"
+                     text="#{diBundle.BACK_LINK}"
+                     action="#{wccDocInfoBean.getMainViewOutcome}">
+              <af:clientAttribute name="backLink" value="#{true}"/>
+              <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+              <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+              <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+            </af:link>
+          </af:panelGroupLayout>
+          
+          <c:if test="#{wccDocInfoBean.revision != null}">
+          <af:panelBorderLayout id="pbl2" styleClass="WccDpTitleBar">
+            <af:panelGroupLayout id="pgl15" layout="default"
+                                 styleClass="WccDpTitleGroup" valign="#{empty pageFlowScope.taskFlowContext ? 'middle' : 'middle'}"
+                                 inlineStyle="display:inline-block;">
+              <af:outputText value="#{wccel:truncateAt(wccDocInfoBean.revisionDisplayName, 37)}"
+                             id="cil0" styleClass="WccTitleGroupNameText"
+                             shortDesc="#{fn:length(wccDocInfoBean.revisionDisplayName) gt 37 ? wccDocInfoBean.revisionDisplayName : ' '}"/>
+              <af:outputText value="#{wccDocInfoBean.revision.DDocTitle}"
+                             id="ot13" styleClass="WccDocTitleText"
+                             rendered="#{wccDocInfoBean.showTitle and not compactMode}"/>
+              <af:commandImageLink id="cil3"
+                                   actionListener="#{wccDocInfoBean.setToggleFavourite}"
+                                   icon="#{wccDocInfoBean.toggleFavourite ?
+                                           '/resources/wcc/images/favorite_on_ena.png' : '/resources/wcc/images/favorite_off_ena.png'}"
+                                   hoverIcon="#{wccDocInfoBean.toggleFavourite ?
+                                                '/resources/wcc/images/favorite_on_ovr.png' : '/resources/wcc/images/favorite_off_ovr.png'}"
+                                   partialSubmit="true"
+                                   partialTriggers="cil3 fav"
+                                   shortDesc="#{wccDocInfoBean.revision.DStatus eq 'EXPIRED'
+                                                          ? ''
+                                                          : (wccDocInfoBean.toggleFavourite ?
+                                                            diBundle.DESC_UNFAVORITE : docBundle.MARK_AS_FAVORITE)}"
+                                   disabled="#{wccDocInfoBean.revision.DStatus eq 'EXPIRED'}"
+                                   rendered="#{securityContext.authenticated}"/>
+              <af:commandImageLink icon="/resources/wcc/images/link_ena.png"
+                                   id="cil6"
+                                   shortDesc="#{diBundle.ACTION_GET_LINKS}"
+                                   disabledIcon="/resources/wcc/images/link_dis.png"
+                                   hoverIcon="/resources/wcc/images/link_ovr.png"
+                                   depressedIcon="/resources/wcc/images/link_dwn.png">
+                <af:clientAttribute name="dID"
+                                    value="#{wccDocInfoBean.revision.DID}"/>
+                <af:clientAttribute name="dDocName"
+                                    value="#{wccDocInfoBean.revision.DDocName}"/>
+                <af:showPopupBehavior popupId="docPaths"/>
+              </af:commandImageLink>
+              <af:commandImageLink icon="/resources/wcc/images/refresh_ena.png"
+                                   id="clDpRef1" partialSubmit="true"
+                                   shortDesc="#{docBundle.REFRESH}"
+                                   disabledIcon="/resources/wcc/images/refresh_dis.png"
+                                   hoverIcon="/resources/wcc/images/refresh_ovr.png"
+                                   depressedIcon="/resources/wcc/images/refresh_dwn.png">
+                <af:serverListener method="#{wccDocInfoBean.doRefreshDocPropertiesPage}"
+                                   type="doRefreshDocPropertiesPage"/>
+                <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                <af:clientAttribute name="serverListener"
+                                    value="doRefreshDocPropertiesPage"/>
+              </af:commandImageLink>
+            </af:panelGroupLayout>
+            <f:facet name="end">
+              <af:panelGroupLayout id="pgl9" styleClass="WccDpToolbar"
+                                   rendered="#{wccDocInfoBean.revision != null}"
+                                   partialTriggers="chkout cancelchkout"
+                                   layout="horizontal">
+                <c:if test="${wccDocInfoBean.checkedOut}">
+                  <c:if test="${not wccDocInfoBean.contentCheckedOutByCurrentUser}">
+                    <af:image id="ctb12"
+                              source="/resources/wcc/images/checked_out_by_other.png"
+                              shortDesc="#{af:formatString(diBundle.CHECKED_OUT_BY_TOOLTIP,
+                                            wccel:getDisplayNameForUser(wccDocInfoBean.checkOutByUserName))}"/>
+                  </c:if>
+                  <c:if test="${wccDocInfoBean.contentCheckedOutByCurrentUser}">
+                    <af:image id="ctb121"
+                              source="/resources/wcc/images/checked_out_by_me.png"
+                              shortDesc="#{diBundle.CHECKED_OUT_BY_CURRENT_USER_TOOLTIP}"/>
+                  </c:if>
+                  <af:spacer width="20" height="10" id="s10"/>
+                </c:if>
+                  <af:button text="#{diBundle.BUTTON_CHECK_IN}"
+                                           id="ciBtnLh" clientComponent="true"
+                                           icon="/resources/wcc/images/upload_ena.png"
+                                           hoverIcon="/resources/wcc/images/upload_ovr.png"
+                                           depressedIcon="/resources/wcc/images/upload_dwn.png"
+                                           disabledIcon="/resources/wcc/images/upload_dis.png"
+                                           partialSubmit="true"
+                                           shortDesc="#{diBundle.BUTTON_CHECK_IN}"
+                                           disabled="#{not wccDocInfoBean.capabilities['CHECK_IN']}"
+                             rendered="#{securityContext.authenticated}">
+                    <af:setActionListener from="#{wccDocInfoBean.revision}"
+                                          to="#{wccCheckInUploadBean.revision}"/>
+                    <af:setActionListener from=""
+                                          to="#{wccCheckInUploadBean.docProfile}"/>
+                    <af:setActionListener from="CheckInNewRevision"
+                                          to="#{wccCheckInUploadBean.uploadType}"/>
+                    <af:setActionListener from="true"
+                                          to="#{wccCheckInUploadBean.docPropContext}"/>
+                    <af:clientAttribute name="docPropContext" value="true"/>
+                    <af:clientAttribute name="uploadType"
+                                        value="CheckInNewRevision"/>
+                    <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                    <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                    <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                    <af:clientAttribute name="serverListener"
+                                        value="showCheckinPopupFromBtn"/>
+                    <af:serverListener method="#{wccDocInfoBean.launchCheckinDialog}"
+                                       type="showCheckinPopupFromBtn"/>
+                  </af:button>
+                <af:menuBar id="mb1"
+                            rendered="#{securityContext.authenticated}">
+                  <af:menu text="#{diBundle.MORE_ACTIONS}" id="m2"
+                           shortDesc="#{diBundle.MORE_ACTIONS}"
+                           styleClass="WccMenuItemButton" inlineStyle="padding-left:3px; padding-right:3px;">
+                    <af:group id="g3"
+                              rendered="#{wccDocInfoBean.revision.inWorkflow}">
+                      <af:commandMenuItem id="cmi3" partialSubmit="true"
+                                          text="#{wfBundle.APPROVE}"
+                                          shortDesc="#{wfBundle.APPROVE}"
+                                          rendered="#{wccDocInfoBean.capabilities['APPROVE']
+                                                      or wccDocInfoBean.capabilities['SIGN_AND_APPROVE']}"
+                                          actionListener="#{wccDocInfoBean.approveDocActionListener}"/>
+                      <af:commandMenuItem id="cmi2" partialSubmit="true"
+                                          text="#{wfBundle.REJECT}"
+                                          rendered="#{wccDocInfoBean.capabilities['REJECT']}"
+                                          shortDesc="#{wfBundle.REJECT}">
+                        <af:showPopupBehavior popupId="popupRejectDocument"/>
+                      </af:commandMenuItem>
+                    </af:group>
+                    <af:group id="gp1">
+                      <af:commandMenuItem text="#{wccDocInfoBean.workflowCheckInEdit or wccDocInfoBean.workflowInitialContribution ? diBundle.ACTION_WORKFLOW_CHECK_IN_EDIT : diBundle.ACTION_CHECK_IN_NEW_REVISION}"
+                                          shortDesc="#{wccDocInfoBean.workflowCheckInEdit or wccDocInfoBean.workflowInitialContribution ? diBundle.ACTION_WORKFLOW_CHECK_IN_EDIT : diBundle.ACTION_CHECK_IN_NEW_REVISION}"
+                                          id="ciMnuRh" partialSubmit="true"
+                                          disabled="#{!wccDocInfoBean.capabilities['CHECK_IN']}">
+                        <af:setActionListener from="#{wccDocInfoBean.revision}"
+                                              to="#{wccCheckInUploadBean.revision}"/>
+                        <af:setActionListener from=""
+                                              to="#{wccCheckInUploadBean.docProfile}"/>
+                        <af:setActionListener from="CheckInNewRevision"
+                                              to="#{wccCheckInUploadBean.uploadType}"/>
+                        <af:setActionListener from="true"
+                                              to="#{wccCheckInUploadBean.docPropContext}"/>
+                        <af:clientAttribute name="docPropContext" value="true"/>
+                        <af:clientAttribute name="uploadType"
+                                            value="CheckInNewRevision"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showCheckinPopupFromMenu"/>
+                        <af:serverListener method="#{wccDocInfoBean.launchCheckinDialog}"
+                                           type="showCheckinPopupFromMenu"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_CHECK_OUT}"
+                                          shortDesc="#{diBundle.ACTION_CHECK_OUT}"
+                                          id="chkout"
+                                          disabled="#{!wccDocInfoBean.capabilities['CHECK_OUT']}"
+                                          rendered="#{!wccDocInfoBean.capabilities['CANCEL_CHECK_OUT']}"
+                                          partialTriggers="chkout cancelchkout DOCTAB:editbtn"
+                                          partialSubmit="true">
+                        <af:serverListener method="#{wccDocInfoBean.doCheckout}"
+                                           type="doCheckout"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="doCheckout"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_CANCEL_CHECK_OUT}"
+                                          shortDesc="#{diBundle.ACTION_CANCEL_CHECK_OUT}"
+                                          id="cancelchkout"
+                                          rendered="#{wccDocInfoBean.capabilities['CANCEL_CHECK_OUT']}"
+                                          partialTriggers="chkout cancelchkout DOCTAB:editbtn"
+                                          partialSubmit="true">
+                        <af:serverListener method="#{wccDocInfoBean.undoCheckout}"
+                                           type="undoCheckout"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="undoCheckout"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_CHECK_OUT_EDIT}"
+                                          id="chkoutedit"
+                                          shortDesc="#{diBundle.ACTION_CHECK_OUT_EDIT}"
+                                          disabled="#{!wccDocInfoBean.capabilities['CHECK_OUT']}"
+                                          rendered="#{wccDocInfoBean.coaoValidExtn 
+                                                      and not wccDocInfoBean.workflowInitialContribution
+                                                      and wccel:isAppletSupportedClient()}"
+                                          partialTriggers="chkout cancelchkout"
+                                          partialSubmit="true">
+                        <f:attribute value="#{wccDocInfoBean.revision}"
+                                     name="currentRevision"/>
+                        <af:clientAttribute value="#{wccDocInfoBean.revision.DDocName}"
+                                            name="dDocName"/>
+                        <af:clientAttribute value="#{wccDocInfoBean.revision.DDocTitle}"
+                                            name="dDocTitle"/>
+                        <af:clientAttribute value="#{wccDocInfoBean.revision.DExtension}"
+                                            name="dExtension"/>
+                        <af:clientAttribute value="#{wccDocInfoBean.revision.DOriginalName}"
+                                            name="dOriginalName"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleCheckOutAndOpen"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:serverListener method="#{wccDocInfoBean.checkOutAndEditCallback}"
+                                           type="coaoCallback"/>     
+                      </af:commandMenuItem>
+                    </af:group>
+                    <af:group id="gp3">
+                      <af:commandMenuItem text="#{diBundle.ACTION_GET_LINKS}"
+                                          id="getlinks"
+                                          shortDesc="#{diBundle.ACTION_GET_LINKS}"
+                                          clientComponent="true">
+                        <af:clientAttribute name="dID"
+                                            value="#{wccDocInfoBean.revision.DID}"/>
+                        <af:clientAttribute name="dDocName"
+                                            value="#{wccDocInfoBean.revision.DDocName}"/>
+                        <af:showPopupBehavior popupId="docPaths"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_FAVORITE}
+                                                    #{((requestContext.accessibilityMode eq 'SCREEN_READER') and
+                                                    (wccDocInfoBean.toggleFavourite)) ? docBundle.SELECTED_OPTION : ''}"
+                                          id="fav"
+                                          icon="#{wccDocInfoBean.toggleFavourite ?
+                                                 '/resources/wcc/images/menu_check.png': ''}"
+                                          partialTriggers="fav cil3"
+                                          shortDesc="#{wccDocInfoBean.revision.DStatus eq 'EXPIRED'
+                                                       ? ''
+                                                       : (wccDocInfoBean.toggleFavourite ?
+                                                         diBundle.DESC_UNFAVORITE : docBundle.MARK_AS_FAVORITE)}"
+                                          partialSubmit="true"
+                                          disabled="#{wccDocInfoBean.revision.DStatus eq 'EXPIRED'}"
+                                          actionListener="#{wccDocInfoBean.setToggleFavourite}"></af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_FOLLOW}"
+                                          id="follow"
+                                          disabled="#{!wccDocInfoBean.capabilities['FOLLOW']}"
+                                          rendered="#{!wccDocInfoBean.capabilities['UNFOLLOW']}"
+                                          shortDesc="#{diBundle.ACTION_FOLLOW}"
+                                          partialTriggers="follow unfollow">
+                        <af:serverListener method="#{wccDocInfoBean.followDocument}"
+                                           type="followDocument"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="followDocument"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_FOLLOW}
+                                                    #{requestContext.accessibilityMode eq 'SCREEN_READER'
+                                                    ? docBundle.SELECTED_OPTION : ''}"
+                                          id="unfollow"
+                                          shortDesc="#{diBundle.DESC_UNFOLLOW}"
+                                          rendered="#{wccDocInfoBean.capabilities['UNFOLLOW']
+                                                        and !wccDocInfoBean.capabilities['FOLLOW']}"
+                                          icon="/resources/wcc/images/menu_check.png"
+                                          partialTriggers="follow unfollow">
+                        <af:serverListener method="#{wccDocInfoBean.unfollowDocument}"
+                                           type="unfollowDocument"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="unfollowDocument"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_CREATE_SHORTCUT}"
+                                          shortDesc="#{diBundle.ACTION_CREATE_SHORTCUT}"
+                                          id="cmi1" partialSubmit="true">
+                        <af:serverListener method="#{wccDocInfoBean.showCreateDocumentShortcutPopup}"
+                                           type="showCreateDocumentShortcutPopup"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showCreateDocumentShortcutPopup"/>
+                      </af:commandMenuItem>
+                    </af:group>
+                    <af:group id="gp2">
+                      <af:commandMenuItem text="#{diBundle.ACTION_MANAGE_REVISION}"
+                                          id="managerev"
+                                          shortDesc="#{diBundle.ACTION_MANAGE_REVISION}">
+                        <af:serverListener method="#{wccDocInfoBean.showManageRevisionsPopup}"
+                                           type="showManageRevisionsPopup"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showManageRevisionsPopup"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_VIEW_SHORTCUTS}"
+                                          id="viewshort"
+                                          shortDesc="#{diBundle.ACTION_VIEW_SHORTCUTS}">
+                        <af:showPopupBehavior popupId="docpath"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem id="cmiwf1" partialSubmit="true"
+                                          text="#{diBundle.VIEW_WORKFLOW_DETAILS_MENU}"
+                                          shortDesc="#{diBundle.VIEW_WORKFLOW_DETAILS_MENU}"
+                                          rendered="#{wccDocInfoBean.revision.inWorkflow}">
+                        <af:showPopupBehavior popupId="#{requestContext.accessibilityMode eq 'SCREEN_READER' ? 'DOCTAB:srPopupWfDetails' : 'DOCTAB:popupWfDetails'}"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem id="cmiwf2" partialSubmit="true"
+                                          text="#{diBundle.VIEW_WORKFLOW_HISTORY_MENU}"
+                                          shortDesc="#{diBundle.VIEW_WORKFLOW_HISTORY_MENU}"
+                                          rendered="#{!wccDocInfoBean.revision.inWorkflow}">
+                        <af:showPopupBehavior popupId="#{requestContext.accessibilityMode eq 'SCREEN_READER' ? 'DOCTAB:srPopupWfHistory' : 'DOCTAB:popupWfHistory'}"/>
+                      </af:commandMenuItem>
+                    </af:group>
+                    <af:group id="gp4">
+                      <af:commandMenuItem text="#{docBundle.DELETE}" id="cmi44"
+                                          shortDesc="#{docBundle.DELETE}"
+                                          disabled="#{!wccDocInfoBean.capabilities['DELETE']}">
+                        <af:serverListener method="#{wccDocInfoBean.showDeleteDocumentPopup}"
+                                           type="showDeleteDocumentPopup"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showDeleteDocumentPopup"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_ADD_TO_LIBRARY}"
+                                          id="addlib"
+                                          shortDesc="#{diBundle.ACTION_ADD_TO_LIBRARY}"
+                                          disabled="#{!wccDocInfoBean.capabilities['FILE_DOCUMENT']}"
+                                          rendered="#{wccDocInfoBean.revision != null
+                                                      and not wccDocInfoBean.isFiled}">
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:serverListener method="#{wccDocInfoBean.showAddToLibraryPopup}"
+                                           type="showAddToLibraryPopup"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showAddToLibraryPopup"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_REMOVE_FROM_LIBRARY}"
+                                          id="rmvlib"
+                                          shortDesc="#{diBundle.ACTION_REMOVE_FROM_LIBRARY}"
+                                          disabled="#{!wccDocInfoBean.capabilities['UNFILE_DOCUMENT']
+                                                      or wccDocInfoBean.revision.inWorkflow
+                                                      or wccel:isUnfiledDocumentProhibited()}"
+                                          rendered="#{not (wccDocInfoBean.revision != null) or wccDocInfoBean.isFiled}">
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:serverListener method="#{wccDocInfoBean.showRemoveFromLibraryPopup}"
+                                           type="showRemoveFromLibraryPopup"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showRemoveFromLibraryPopup"/>
+                      </af:commandMenuItem>
+                      <af:commandMenuItem text="#{diBundle.ACTION_UPLOAD_SIMILAR_DOC}"
+                                          id="uploaddoc"
+                                          shortDesc="#{diBundle.ACTION_UPLOAD_SIMILAR_DOC}"
+                                          disabled="#{wccel:isUnfiledDocumentProhibited() and !wccDocInfoBean.isFiled}">
+                        <af:setActionListener from="#{wccDocInfoBean.revision}"
+                                              to="#{wccCheckInUploadBean.revision}"/>
+                        <af:setActionListener from=""
+                                              to="#{wccCheckInUploadBean.docProfile}"/>
+                        <af:setActionListener from="UploadSimilarDocument"
+                                              to="#{wccCheckInUploadBean.uploadType}"/>
+                        <af:setActionListener from="true"
+                                              to="#{wccCheckInUploadBean.docPropContext}"/>
+                        <af:clientAttribute name="docPropContext" value="true"/>
+                        <af:clientAttribute name="uploadType"
+                                            value="UploadSimilarDocument"/>
+                        <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                        <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                        <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        <af:clientAttribute name="serverListener"
+                                            value="showCheckinPopupUpldSmlr"/>
+                        <af:serverListener method="#{wccDocInfoBean.launchCheckinDialog}"
+                                           type="showCheckinPopupUpldSmlr"/>
+                      </af:commandMenuItem>
+                    </af:group>
+                  </af:menu>
+                </af:menuBar>
+              </af:panelGroupLayout>
+            </f:facet>
+          </af:panelBorderLayout>
+          </c:if>
+          <c:if test="#{not (requestContext.accessibilityMode eq 'SCREEN_READER')}">
+            <ui:include src="/wcc/globalMessage.jsff"/>
+          </c:if>
+        </af:panelGroupLayout>
+      </f:facet>
+      <c:if test="#{wccDocInfoBean.revision != null}">
+      <f:facet name="center">
+        <af:panelStretchLayout id="psl2" topHeight="auto"
+                               partialTriggers="i2:cl2 i3:cl5">
+          <f:facet name="top">
+            <af:panelGroupLayout layout="scroll" id="pgl4">
+              <af:panelGroupLayout layout="horizontal" id="revstln"
+                                   styleClass="AFStretchWidth WccDpTabBar XXXWccTabBar" rendered="#{not compactMode}">
+                <af:panelGroupLayout layout="horizontal" id="pgl10"
+                                     inlineStyle="padding-left:15px;">
+                  <af:panelGroupLayout id="pgl18" layout="vertical"
+                                       halign="start"
+                                       styleClass="WccDpMoreLink">
+                    <af:commandLink text="#{diBundle.REV_TABS_MORELINK_LEFT}"
+                                    partialSubmit="true"
+                                    rendered="#{wccDocInfoBean.revisionTabViewer.oldRevisionsStartTabIndex gt 0}"
+                                    shortDesc="#{diBundle.REV_PREVIOUS_LEFT}" id="cl3">
+                      <af:serverListener method="#{wccDocInfoBean.showManageRevisionsPopup}"
+                                         type="showManageRevisionsPopup"/>
+                      <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                      <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                      <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                      <af:clientAttribute name="serverListener"
+                                          value="showManageRevisionsPopup"/>
+                    </af:commandLink>
+                  </af:panelGroupLayout>
+                  <af:panelGroupLayout layout="horizontal" id="pgl11"
+                                       rendered="#{wccDocInfoBean.revisionTabViewer.currentTabIndex gt 1}">
+                    <af:iterator value="#{wccDocInfoBean.revTimelineItemsList}"
+                                 first="#{wccDocInfoBean.revisionTabViewer.oldRevisionsStartTabIndex}"
+                                 rows="#{wccDocInfoBean.revisionTabViewer.oldTabsCount}"
+                                 var="revItemOld" id="i2">
+                      <af:panelGroupLayout layout="vertical" halign="center"
+                                           styleClass="WccDpRevisionLink"
+                                           id="pgl7">
+                        <af:commandLink text="#{revItemOld.revLabel}" id="cl2"
+                                        partialSubmit="true" windowWidth="20"
+                                        clientComponent="true">
+                          <f:attribute name="dID" value="#{revItemOld.DID}"/>
+                          <af:clientAttribute name="dRevLabel"
+                                              value="#{revItemOld.formattedRevLabel}"/>
+                          <af:clientAttribute name="dRevLabelAcc"
+                                              value="#{revItemOld.formattedRevLabelAcc}"/>
+                          <af:clientAttribute name="dRevAuthor"
+                                              value="#{revItemOld.revAuthor}"/>
+                          <af:clientAttribute name="dModifiedDate"
+                                              value="#{revItemOld.formattedModifiedDate}"/>
+                          <af:clientAttribute name="serverListener"
+                                              value="selectRevisionToView"/>
+                          <af:clientAttribute name="actionMsgAcc"
+                                              value="#{revItemOld.actionMessageAcc}"/>
+                          <af:serverListener method="#{wccDocInfoBean.selectRevisionToView}"
+                                             type="selectRevisionToView"/>
+                          <af:clientListener method="oracle.wcc.adf.docProperties.showDocRevHints"
+                                             type="mouseMove"/>
+                          <af:clientListener method="oracle.wcc.adf.docProperties.hideDocRevHints"
+                                             type="mouseOut"/>
+                          <af:clientListener method="oracle.wcc.adf.docProperties.hideDocRevHints"
+                                             type="mouseDown"/>
+                          <af:clientListener method="oracle.wcc.adf.docProperties.hideDocRevHints"
+                                             type="blur"/>
+                          <af:clientListener method="oracle.wcc.adf.docProperties.showDocRevHints"
+                                             type="focus"/>
+                          <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                          <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                          <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                        </af:commandLink>
+                      </af:panelGroupLayout>
+                    </af:iterator>
+                    <f:facet name="separator">
+                      <af:outputText value="#{diBundle.REV_TABS_SEPARATOR}"
+                                     id="ot7" styleClass="WccRevSeparator"/>
+                    </f:facet>
+                  </af:panelGroupLayout>
+                  <af:panelGroupLayout valign="top" halign="center"
+                                       styleClass="WccDocRevisionsActiveTab"
+                                       id="pgl14">
+                    <af:outputText value="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                              ? af:formatString(diBundle.REV_TABS_CURRENT_TAB_ACC,
+                                                       wccDocInfoBean.revision.DRevLabel)
+                                              : af:formatString(diBundle.REV_TABS_CURRENT_TAB,
+                                                       wccDocInfoBean.revision.DRevLabel)}"
+                                   inlineStyle="white-space: nowrap;"
+                                   noWrap="true" id="ot9"/>
+                  </af:panelGroupLayout>
+                  <af:switcher facetName="#{wccDocInfoBean.revisionTabViewer.newRevisionsExist}"
+                               id="s13">
+                    <f:facet name="false">
+                      <af:panelGroupLayout id="pgl19" layout="vertical"
+                                           styleClass="WccDocRevisionsTab"
+                                           inlineStyle="padding-top:6px;"
+                                           halign="start" valign="bottom" rendered="false">
+                        <af:button id="ciNrPlu" clientComponent="true"
+                                          text="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                ? diBundle.BUTTON_CHECK_IN :
+                                                  diBundle.REV_TABS_CHECKIN_NEW_REV_LABEL}"
+                                          shortDesc="#{diBundle.BUTTON_CHECK_IN}"
+                                          styleClass="WccAddRevButton"
+                                          inlineStyle="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                       ? 'width:10em' : 'width:1.6em'}"
+                                          visible="#{wccDocInfoBean.capabilities['CHECK_IN'] 
+                                          and not wccDocInfoBean.workflowCheckInEdit and not wccDocInfoBean.workflowInitialContribution}"
+                                          partialSubmit="true">
+                          <af:setActionListener from="#{wccDocInfoBean.revision}"
+                                                to="#{wccCheckInUploadBean.revision}"/>
+                          <af:setActionListener from=""
+                                                to="#{wccCheckInUploadBean.docProfile}"/>
+                          <af:setActionListener from="CheckInNewRevision"
+                                                to="#{wccCheckInUploadBean.uploadType}"/>
+                          <af:setActionListener from="true"
+                                                to="#{wccCheckInUploadBean.docPropContext}"/>
+                          <af:clientAttribute name="docPropContext"
+                                              value="true"/>
+                          <af:clientAttribute name="uploadType"
+                                              value="CheckInNewRevision"/>
+                          <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                          <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                          <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                          <af:clientAttribute name="serverListener"
+                                              value="showCheckinPopupFromPlus"/>
+                          <af:serverListener method="#{wccDocInfoBean.launchCheckinDialog}"
+                                             type="showCheckinPopupFromPlus"/>
+                        </af:button>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                    <f:facet name="true">
+                      <af:panelGroupLayout layout="horizontal" id="pgl12">
+                        <af:iterator value="#{wccDocInfoBean.revTimelineItemsList}"
+                                     first="#{wccDocInfoBean.revisionTabViewer.currentTabIndex}"
+                                     rows="#{wccDocInfoBean.revisionTabViewer.newTabsCount}"
+                                     var="revItemNew" id="i3">
+                          <af:panelGroupLayout styleClass="WccDpRevisionLink"
+                                               halign="center" layout="vertical"
+                                               id="pgl8">
+                            <af:commandLink text="#{revItemNew.revLabel}"
+                                            partialSubmit="true" id="cl5"
+                                            clientComponent="true">
+                              <f:attribute name="dID"
+                                           value="#{revItemNew.DID}"/>
+                              <af:clientAttribute name="dRevLabel"
+                                                  value="#{revItemNew.formattedRevLabel}"/>
+                              <af:clientAttribute name="dRevLabelAcc"
+                                                  value="#{revItemNew.formattedRevLabelAcc}"/>
+                              <af:clientAttribute name="dRevAuthor"
+                                                  value="#{revItemNew.revAuthor}"/>
+                              <af:clientAttribute name="dModifiedDate"
+                                                  value="#{revItemNew.formattedModifiedDate}"/>
+                              <af:clientAttribute name="serverListener"
+                                                  value="selectRevisionToView"/>
+                              <af:clientAttribute name="actionMsgAcc"
+                                                  value="#{revItemNew.actionMessageAcc}"/>
+                              <af:serverListener method="#{wccDocInfoBean.selectRevisionToView}"
+                                                 type="selectRevisionToView"/>
+                              <af:clientListener method="oracle.wcc.adf.docProperties.showDocRevHints"
+                                                 type="mouseMove"/>
+                              <af:clientListener method="oracle.wcc.adf.docProperties.hideDocRevHints"
+                                                 type="mouseOut"/>
+                              <af:clientListener method="oracle.wcc.adf.docProperties.hideDocRevHints"
+                                                 type="mouseDown"/>
+                              <af:clientListener method="oracle.wcc.adf.docProperties.hideDocRevHints"
+                                                 type="blur"/>
+                              <af:clientListener method="oracle.wcc.adf.docProperties.showDocRevHints"
+                                                 type="focus"/>
+                              <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                              <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                              <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                            </af:commandLink>
+                          </af:panelGroupLayout>
+                        </af:iterator>
+                        <f:facet name="separator">
+                          <af:outputText value="#{diBundle.REV_TABS_SEPARATOR}"
+                                         id="ot8"/>
+                        </f:facet>
+                      </af:panelGroupLayout>
+                    </f:facet>
+                  </af:switcher>
+                  <af:commandLink text="#{diBundle.REV_TABS_MORELINK_RIGHT}"
+                                  partialSubmit="true"
+                                  rendered="#{wccDocInfoBean.revisionTabViewer.totalNewTabsCount
+                                                    gt wccDocInfoBean.revisionTabViewer.maxNewTabs}"
+                                  shortDesc="#{diBundle.REV_NEXT_RIGHT}" id="cl4">
+                    <af:serverListener method="#{wccDocInfoBean.showManageRevisionsPopup}"
+                                       type="showManageRevisionsPopup"/>
+                    <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                    <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                    <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                    <af:clientAttribute name="serverListener"
+                                        value="showManageRevisionsPopup"/>
+                  </af:commandLink>
+                </af:panelGroupLayout>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="center">
+           <c:if test="#{wccDocInfoBean.revision != null}">
+              <af:panelSplitter id="ps1"
+                                splitterPosition="#{requestContext.accessibilityProfile.largeFonts ? 575 : 535}"
+                                positionedFromEnd="true"
+                                styleClass="WccDpContentSplitter" inlineStyle="bottom:15px; left:15px; right:15px;"
+                                dimensionsFrom="parent">
+                <f:facet name="first">
+                  <c:if test="#{not (compactMode) and (wccDocInfoBean.previewDocument)}">
+                    <c:if test="#{wccDocInfoBean.previewMode eq 'DOCUMENT_VIEWER'}">
+                      <vwr:DocumentViewer id="dv1" splitterCollapsed="true"
+                                  documentId="#{wccDocInfoBean.revision.DID}"
+                                  documentTitle="#{wccDocInfoBean.revision.DDocTitle}"
+                                  horizontalSplitterCollapsed="true"
+                                  horizontalSplitterPosition="150"
+                                  pageFitMode="FIT_WIDTH"
+                                  thumbnailFitMode="FIT_WIDTH"
+                                  createdOn="#{wccDocInfoBean.revision.DCreateDate.time}"
+                                  OnlyCreatorCanModifyAnnotation="#{wccel:isAnnotationModifiableByCreatorOnly()}"/>
+                    </c:if>
+                    <c:if test="#{wccDocInfoBean.previewMode eq 'WEB_VIEWABLE'}">
+                      <af:inlineFrame id="if1" 
+                           shortDesc="#{diBundle.PREVIEW_WEB_VIEWABLE}"
+                           source="#{wccel:getRevisionWebViewableUrl(wccDocInfoBean.revision)}"
+			   styleClass="WccViewer"
+			   rendered="#{not (wccel:isDAMEnabled() and wccDocInfoBean.revision.videoAsset)}"/>
+                    </c:if>
+                  </c:if>
+                </f:facet>
+                <f:facet name="second">
+                  <ui:include src="/wcc/docInfoTabs.jsff"/>
+                </f:facet>
+              </af:panelSplitter>
+           </c:if>
+          </f:facet>
+        </af:panelStretchLayout>
+      </f:facet>
+      </c:if>
+    </af:panelStretchLayout>
+    <af:popup id="docpath" childCreation="deferred" autoCancel="disabled"
+              animate="false" contentDelivery="lazyUncached">
+      <af:dialog type="none" title="#{diBundle.SHORTCUTS}" resize="off"
+                 contentWidth="440" contentHeight="250" id="d13">
+        <af:panelBorderLayout id="pb1l3">
+          <f:facet name="start">
+            <af:spacer width="20" id="se5"/>
+          </f:facet>
+          <f:facet name="bottom">
+            <af:spacer height="10" id="se7"/>
+          </f:facet>
+          <f:facet name="end">
+            <af:spacer width="10" id="se20"/>
+          </f:facet>
+          <f:facet name="top">
+            <af:spacer height="10" id="se18"/>
+          </f:facet>
+          <af:panelGroupLayout id="pgl33" layout="vertical"
+                               inlineStyle="height:215px;">
+            <af:panelHeader text="#{diBundle.SHORTCUTS_TO_THIS_DOCUMENT}"
+                            id="ph8" size="0"/>
+            <af:spacer height="10" id="s15"/>
+            <af:outputText value="#{wccDocInfoBean.shortcutsCount == 0 ? diBundle.SHORTCUTS_REFERENCE_NONE :
+                                    wccDocInfoBean.shortcutsCount == 1 ? diBundle.SHORTCUTS_REFERENCE_ONE :
+                                    wccDocInfoBean.shortcutsCount lt 51 ? af:formatString(diBundle.SHORTCUTS_REFERENCE,wccDocInfoBean.shortcutsCount) :
+                                    af:formatString(diBundle.SHORTCUTS_REFERENCE_MORE_THAN_FIFTY,wccDocInfoBean.shortcutsCount)}"
+                           id="ot43"/>
+            <af:spacer height="20" id="s16"/>
+            <af:iterator value="#{wccDocInfoBean.docShortcuts}"
+                         var="docStortcut" id="i6" rows="0">
+              <af:spacer height="10" id="s47"/>
+              <af:panelStretchLayout id="psl6" dimensionsFrom="auto"
+                                     startWidth="15px">
+                <f:facet name="start">
+                  <af:image source="/resources/wcc/images/#{adfFacesContext.rightToLeft ? 'shortcut_status_rtl.png' : 'shortcut_status.png'}"
+                            shortDesc="#{docBundle.SHORTCUT_INDICATION}" id="i4"
+                            inlineStyle="margin-top:4px;"/>
+                </f:facet>
+                <f:facet name="center">
+                  <af:panelGroupLayout layout="default" id="pgl37"
+                                       styleClass="WccBreadcrumbs"
+                                       inlineStyle="line-height: 150%;">
+                    <af:outputText value="#{docStortcut.pathType == 'ENTERPRISE_LIBRARY' ?
+                                        libBundle.ENTERPRISE_LIBRARIES :
+                                        docStortcut.pathType == 'SYSTEM_LIBRARY' ?
+                                        libBundle.SYSTEM_LIBRARIES : '/'}"
+                                   rendered="#{docStortcut.pathType != 'UNFILED' and
+                                               docStortcut.pathType != 'NON_LIBRARY'}"
+                                   id="ot401" styleClass="WccFolderPathText"/>
+                    <af:outputText value="#{docStortcut.breadcrumbs[0].delimiter}"
+                                   styleClass="WccFolderPathText"
+                                   rendered="#{docStortcut.pathType != 'UNFILED' and
+                                              docStortcut.pathType != 'NON_LIBRARY'}"
+                                   id="ot5"/>
+                    <af:iterator id="i5" value="#{docStortcut.breadcrumbs}"
+                                 var="pathItem" rows="0" varStatus="itemStatus">
+                      <af:outputText value="#{pathItem.delimiter}" id="ot11"
+                                     styleClass="WccFolderPathText"
+                                     rendered="#{itemStatus.index > 0 and
+                                                docStortcut.pathType != 'UNFILED'}"/>
+                      <af:switcher id="s18" facetName="#{pathItem.lastItem
+                                                         or (not empty pageFlowScope.taskFlowContext)}">
+                        <f:facet name="true">
+                          <af:outputText value="#{fn:replace(pathItem.itemName,' ','??')}"
+                                         id="ot12"
+                                         styleClass="WccFolderPathText"/>
+                        </f:facet>
+                        <f:facet name="false">
+                          <af:group id="g2">
+                            <af:goLink text="#{fn:replace(pathItem.itemName,' ','??')}"
+                                       id="cl101"
+                                       styleClass="WccFolderPathLinkText"
+                                       destination="#{wccel:getFolderUrlByPath(pathItem.itemPath)}"/>
+                            <af:outputText value="??" id="ot1011"
+                                           styleClass="WccFolderPathText"
+                                           rendered="#{itemStatus.index eq 0 and
+                                                  (docStortcut.pathType eq 'UNFILED'
+                                                  or docStortcut.pathType eq 'NON_LIBRARY')}"/>
+                          </af:group>
+                        </f:facet>
+                      </af:switcher>
+                    </af:iterator>
+                    <af:spacer width="5" height="10" id="s191"/>
+                  </af:panelGroupLayout>
+                </f:facet>
+              </af:panelStretchLayout>
+            </af:iterator>
+          </af:panelGroupLayout>
+        </af:panelBorderLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="revhist" childCreation="deferred" autoCancel="disabled"
+              animate="false" contentDelivery="lazyUncached">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog type="none" title="#{diBundle.TITLE_MANAGE_REVISIONS}"
+                 resize="off" contentWidth="525" contentHeight="255" id="d11"
+                 helpTopicId="#{wccel:getHelpTopicId('DOCUMENT_PROPERTIES_MANAGE_REVISIONS')}">
+        <af:message id="m3" for="it197" styleClass="WccMessageBackground"/>
+        <af:inputText id="it197" label="#{mainBundle.MESSAGE_PLACEHOLDER}"
+                      visible="false"/>
+        <af:toolbar id="pl1" inlineStyle="margin-bottom:7px;"
+                      partialTriggers="vmrTab1:sbc1">
+          <af:outputText value="#{diBundle.TOOLBAR_PLACEHOLDER}" id="ot2"
+                         styleClass="WccTextLight"
+                         rendered="#{not wccDocInfoBean.selected}"
+                         inlineStyle="line-height:25px;"/>
+          <af:button id="dnldbtn" partialTriggers="vmrTab1:sbc1"
+                       shortDesc="#{diBundle.TIP_DOWNLOAD_REVISION}"
+                       destination="#{wccDocInfoBean.selectedRevisionFileUrl}"
+                       icon="/resources/wcc/images/download_ena.png"
+                       hoverIcon="/resources/wcc/images/download_ovr.png"
+                       depressedIcon="/resources/wcc/images/download_dwn.png"
+                       disabledIcon="/resources/wcc/images/download_dis.png"
+                       text="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                ? diBundle.TIP_DOWNLOAD_REVISION : ''}"
+                       rendered="#{wccDocInfoBean.singleSelected and not wccDocInfoBean.wfInitialContributionForSelectedRev}"/>
+          <af:button id="resbtn" icon="/resources/wcc/images/restore_rev_ena.png"
+                                 hoverIcon="/resources/wcc/images/restore_rev_ovr.png"
+                                 depressedIcon="/resources/wcc/images/restore_rev_onb.png"
+                                 disabledIcon="/resources/wcc/images/restore_rev_dis.png"
+                                 shortDesc="#{diBundle.TIP_RESTORE_REVISION}"
+                                 actionListener="#{wccDocInfoBean.restoreRevision}"
+                                 partialSubmit="true"
+                                 rendered="#{wccDocInfoBean.restoreRevisionAllowedSelection and wccDocInfoBean.singleSelected}"/>
+          <af:button id="delbtn" icon="/resources/wcc/images/delete_rev_ena.png"
+                                 hoverIcon="/resources/wcc/images/delete_rev_ovr.png"
+                                 depressedIcon="/resources/wcc/images/delete_rev_onb.png"
+                                 disabledIcon="/resources/wcc/images/delete_rev_dis.png"
+                                 shortDesc="#{diBundle.TIP_DELETE_REVISION}"
+                                 partialSubmit="true"
+                                 rendered="#{wccDocInfoBean.singleSelected and wccDocInfoBean.deleteRevisionAllowedSelection}">
+            <af:clientAttribute name="dID"
+                                value="#{wccDocInfoBean.selectedRevisionItem.DID}"/>
+            <af:clientAttribute name="dRevLabel"
+                                value="#{wccDocInfoBean.selectedRevisionItem.DRevLabel}"/>
+            <af:showPopupBehavior popupId="popupDeleteRevision"/>
+          </af:button>
+        </af:toolbar>
+        <af:panelGroupLayout id="pgtbl1" layout="vertical" valign="top"
+                             partialTriggers="vmrTab1:sbc1"
+                             inlineStyle="margin-top:3px;min-height:250px">
+          <af:table id="vmrTab1" summary="#{diBundle.DESC_REVISIONS}"
+                    verticalGridVisible="false"
+                    value="#{wccDocInfoBean.filteredRevisionHistory}" var="fltRevHistory"
+                    varStatus="row" columnStretching="column:clm5"
+                    columnResizing="disabled" contentDelivery="immediate"
+                    columnSelection="none" rowSelection="none"
+                    disableColumnReordering="true" rowBandingInterval="0"
+                    styleClass="AFStretchWidth WccDocPropsTable WccDocPropsTableRow"
+                    width="#{(requestContext.accessibilityMode eq 'SCREEN_READER')
+                                   ? '555px' : '550px'}"
+                    autoHeightRows="#{(wccDocInfoBean.totalNumRevisionsManaged lt 11)? wccDocInfoBean.totalNumRevisionsManaged:11 }"
+                    fetchSize="#{wccDocInfoBean.totalNumRevisionsManaged}"
+                    partialTriggers="::cmi22 ::cmi7 sbc1"
+                    clientComponent="true">
+            <af:clientListener type="contextMenu"
+                               method="oracle.wcc.adf.docProperties.cancelContextMenu"/>
+            <af:column id="clm1" width="#{(requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                ? '35px' : '30px'}"
+                       styleClass="WccDocRevisionListViewColumn"
+                       inlineStyle="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                         ? 'width:30px' : 'padding:0px'}">
+              <f:facet name="header">
+                <af:outputText id="otdum1" value="#{diBundle.SELECT_MENU}"
+                               styleClass="WccDocRevisionListViewColumn"
+                               inlineStyle="#{(requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                                        ? '' : 'display:none;visibility:hidden;' }"/>
+              </f:facet>
+              <af:panelGroupLayout id="pgcl1" layout="vertical"
+                                   styleClass="WccDocRevisionListViewDataCell">
+                <af:selectBooleanCheckbox value="#{fltRevHistory.selected}"
+                                          id="sbc1" autoSubmit="true"
+                                          immediate="true" simple="true"
+                                          label="#{af:formatString(diBundle.SELECT_REVISION_ID, fltRevHistory.revision.DRevLabel)}"/>
+              </af:panelGroupLayout>
+            </af:column>
+            <af:column id="clm2" width="70px" align="center"
+                       rowHeader="#{requestContext.accessibilityMode eq 'SCREEN_READER' ? 'true' : 'unstyled'}"
+                       inlineStyle="#{( requestContext.accessibilityMode eq 'SCREEN_READER') ? 'width:70px' : 'padding:0px'}"
+                       styleClass="WccDocRevisionListViewColumn">
+              <f:facet name="header">
+                <af:outputText id="oth2" value="#{wccel:getFieldLabel('dRevLabel')}"
+                               styleClass="WccDocRevisionListViewHeaderCell"/>
+              </f:facet>
+              <af:panelGroupLayout id="pgcl2" layout="vertical"
+                                   styleClass="WccDocRevisionListViewDataCell">
+                <af:switcher id="curRev1" facetName="#{wccDocInfoBean.revision.DID
+                                               eq fltRevHistory.revision.DID}">
+                  <f:facet name="true">
+                    <af:outputText value="[#{fltRevHistory.revision.DRevLabel}]"
+                                   id="ot3" inlineStyle="font-weight: bold;"
+                                   shortDesc="#{af:formatString(diBundle.CURR_ACTIVE_REVISION, fltRevHistory.revision.DRevLabel)}"/>
+                  </f:facet>
+                  <f:facet name="false">
+                    <af:commandLink text="#{fltRevHistory.revision.DRevLabel}"
+                                    shortDesc="#{af:formatString(diBundle.CURR_INACTIVE_REVISION, fltRevHistory.revision.DRevLabel)}"
+                                    id="cl1" partialSubmit="true">
+                      <f:attribute name="dID"
+                                   value="#{fltRevHistory.revision.DID}"/>
+                      <af:serverListener method="#{wccDocInfoBean.selectRevisionToView}"
+                                         type="selectRevisionToView"/>
+                      <af:clientAttribute name="instanceKey" value="#{wccInstanceBean.instanceKey}"/>
+                      <af:clientAttribute name="actionMethod" value="docProperties.handleUnsavedChanges"/>
+                      <af:clientListener type="action" method="oracle.wcc.adf.instances.callInstanceHandler"/>
+                      <af:clientAttribute name="serverListener"
+                                          value="selectRevisionToView"/>
+                    </af:commandLink>
+                  </f:facet>
+                </af:switcher>
+              </af:panelGroupLayout>
+            </af:column>
+            <af:column id="clm3" width="150px" align="center"
+                       styleClass="WccDocRevisionListViewColumn"
+                       inlineStyle="#{( requestContext.accessibilityMode eq 'SCREEN_READER') ? 'width:100px;' : 'padding:0px'}">
+              <f:facet name="header">
+                <af:outputText id="oth3" value="#{wccel:getFieldLabel('dDocAuthor')}"
+                               styleClass="WccDocRevisionListViewHeaderCell"/>
+              </f:facet>
+              <af:panelGroupLayout id="pgcl3" layout="vertical"
+                                   styleClass="WccDocRevisionListViewDataCell">
+                <af:outputText value="#{wccel:getDisplayNameForUser(fltRevHistory.revision.DDocAuthor)}"
+                               id="ot25" truncateAt="25" noWrap="true"/>
+              </af:panelGroupLayout>
+            </af:column>
+            <af:column id="clm4" width="125px" align="center"
+                       styleClass="WccDocRevisionListViewColumn"
+                       inlineStyle="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                         ? 'width:130px;' : 'padding:0px;'}">
+              <f:facet name="header">
+                <af:outputText id="oth4" value="#{wccel:getFieldLabel('dInDate')}"
+                               styleClass="WccDocRevisionListViewHeaderCell"/>
+              </f:facet>
+              <af:panelGroupLayout id="pgcl4" layout="vertical"
+                                   styleClass="WccDocRevisionListViewDataCell">
+                <af:outputText value="#{fltRevHistory.checkinDate}" id="ot26">
+                  <af:convertDateTime type="both"
+                                      pattern="#{wccel:getDateTimeFormatPattern()}"/>
+                </af:outputText>
+              </af:panelGroupLayout>
+            </af:column>
+            <af:column id="clm5" styleClass="WccDocRevisionListViewColumn"
+                       width="120px" align="center"
+                       inlineStyle="#{( requestContext.accessibilityMode eq 'SCREEN_READER')
+                                                         ? 'width:100px' : 'padding:0px'}">
+              <f:facet name="header">
+                <af:outputText id="oth5" value="#{diBundle.HEADER_STATUS}"
+                               styleClass="WccDocRevisionListViewHeaderCell"/>
+              </f:facet>
+              <af:panelGroupLayout id="pgcl5" layout="vertical"
+                                   styleClass="WccDocRevisionListViewDataCell">
+                <af:outputText value="#{fltRevHistory.revision.localizedDStatus}"
+                               id="ot27"/>
+              </af:panelGroupLayout>
+            </af:column>
+            <f:facet name="contextMenu">
+              <af:popup childCreation="deferred" id="cxtmenu"
+                        eventContext="launcher" contentDelivery="lazyUncached"
+                        launcherVar="source"
+                        popupFetchListener="#{wccDocInfoBean.popupMenuFetchListener}"
+                        animate="false">
+                <af:menu id="m1">
+                  <af:goMenuItem text="#{diBundle.DOWNLOAD_REVISION}" id="cmi23"
+                                 shortDesc="#{diBundle.DOWNLOAD_REVISION}" destination="#{wccel:getRevisionNativeFileUrl
+                                      (wccDocInfoBean.chosenRevisionItem)}"/>
+                  <af:commandMenuItem id="cmi22"
+                                      text="#{diBundle.DELETE_REVISION}"
+                                      shortDesc="#{diBundle.DELETE_REVISION}"
+                                      disabled="#{not (wccDocInfoBean.deleteRevisionAllowedCxtMenu)}">
+                    <af:clientAttribute name="dID"
+                                        value="#{wccDocInfoBean.chosenRevisionItem.DID}"/>
+                    <af:clientAttribute name="dRevLabel"
+                                        value="#{wccDocInfoBean.chosenRevisionItem.DRevLabel}"/>
+                    <af:showPopupBehavior popupId="popupDeleteRevision"/>
+                  </af:commandMenuItem>
+                  <af:commandMenuItem id="cmi7"
+                                      text="#{diBundle.RESTORE_REVISION}"
+                                      shortDesc="#{diBundle.RESTORE_REVISION}"
+                                      disabled="#{not (wccDocInfoBean.restoreRevisionAllowedCxtMenu)}"
+                                      actionListener="#{wccDocInfoBean.restoreRevision}"/>
+                </af:menu>
+              </af:popup>
+            </f:facet>
+          </af:table>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="popupDeleteRevision" launcherVar="source"
+              contentDelivery="lazyUncached" eventContext="launcher"
+              autoCancel="disabled" childCreation="deferred"
+              popupFetchListener="#{wccDocInfoBean.deleteRevPopupFetchListener}">
+      <af:dialog id="d4"
+                 title="#{af:formatString(diBundle.DELETE_REVISION_TITLE,wccDocInfoBean.selectedRevision.DRevLabel)}"
+                 closeIconVisible="false" type="yesNo"
+                 dialogListener="#{wccDocInfoBean.deleteRevision}">
+        <af:panelGroupLayout id="pgl2" layout="horizontal" valign="top"
+                             inlineStyle="margin-top:5px;">
+           <c:if test="#{!(wccel:isTrashEnabled() and wccDocInfoBean.isFiled)}">                 
+            <af:spacer width="10" height="10" id="s62"/>
+            <af:icon id="i9" name="warning"/>
+            <af:spacer width="10" height="10" id="s63"/>
+          </c:if>
+          <af:panelGroupLayout id="pgl21" layout="vertical" valign="top">
+            <af:outputText id="ot10"
+                           value="#{(wccel:isTrashEnabled() and wccDocInfoBean.isFiled) ? diBundle.DELETE_TRASH_REVISION_CONFIRM_MESSAGE : 
+                           diBundle.DELETE_REVISION_CONFIRM_MESSAGE}"/>
+            <af:spacer width="10" height="10" id="s65"/>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="popupDeleteDocument" launcherVar="source"
+              contentDelivery="lazyUncached" eventContext="launcher"
+              autoCancel="disabled" childCreation="deferred">
+      <af:dialog id="deldialog" title="#{diBundle.DELETE_DOCUMENT_TITLE}"
+                 closeIconVisible="false" type="yesNo"
+                 dialogListener="#{wccDocInfoBean.deleteDocument}">
+        <af:panelGroupLayout id="pgl6" layout="horizontal" valign="top"
+                             inlineStyle="margin-top:5px;">
+          <c:if test="#{!(wccel:isTrashEnabled() and wccDocInfoBean.isFiled)}">                   
+            <af:spacer width="10" height="10" id="s1"/>
+            <af:icon id="i10" name="warning"/>
+            <af:spacer width="10" height="10" id="s2"/>
+           </c:if>
+          <af:panelGroupLayout id="pgl17" layout="vertical" valign="top">
+            <c:if test="#{!(wccel:isTrashEnabled() and wccDocInfoBean.isFiled)}"> 
+              <af:outputFormatted id="ot81"
+                                  value="#{docBundle.DELETE_DOCUMENT_INFO_MESSAGE}"/>
+              <af:spacer width="10" height="10" id="s64"/>
+            </c:if>
+            <af:outputText id="ot6"
+                           value="#{(wccel:isTrashEnabled() and wccDocInfoBean.isFiled) ? docBundle.DELETE_TRASH_DOCUMENT_CONFIRM_MESSAGE : 
+                           docBundle.DELETE_DOCUMENT_CONFIRM_MESSAGE}"/>
+            <af:spacer width="10" height="10" id="s4"/>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="docPaths" childCreation="deferred" autoCancel="disabled"
+              animate="false" eventContext="launcher"
+              contentDelivery="lazyUncached"
+              popupFetchListener="#{wccDocInfoBean.linksPopupFetchListener}"
+              launcherVar="source">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog type="none" title="#{diBundle.GET_LINKS_DIALOG_TITLE}"
+                 resize="off" id="linksdialog" inlineStyle="border:thin solid"
+                 helpTopicId="#{wccel:getHelpTopicId('DOCUMENT_LINKS')}"
+                 contentWidth="500">
+        <ui:include src="/wcc/documentLinksInfo.jsff"/>
+      </af:dialog>
+    </af:popup>
+    <af:popup contentDelivery="lazyUncached" id="checkInUploadPopup"
+              popupFetchListener="#{wccCheckInUploadBean.initialize}"
+              autoCancel="disabled" childCreation="deferred">
+      <af:dialog id="d3" title="#{wccCheckInUploadBean.dialogTitle}"
+                 contentWidth="655" type="none" resize="off"
+                 affirmativeTextAndAccessKey="#{viewcontrollerBundle.UPLOAD}"
+                 helpTopicId="#{wccel:getHelpTopicId(wccCheckInUploadBean.contextSensitiveHelpKey)}">
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl121" valign="bottom" halign="end"
+                               layout="horizontal"
+                               styleClass="WccDocUploadBtnBar AFStretchWidth">
+            <af:button text="#{wccCheckInUploadBean.uploadButtonTitle}"
+                              id="ciUpldBtn"
+                              actionListener="#{wccCheckInUploadBean.uploadClicked}"
+                              partialSubmit="true"
+                              disabled="true"/>
+            <af:button text="#{viewcontrollerBundle.CANCEL}" id="cancel"
+                              actionListener="#{wccCheckInUploadBean.cancelClicked}"
+                              partialSubmit="true" immediate="true"/>
+            <af:spacer width="5" height="10" id="s6"/>
+          </af:panelGroupLayout>
+        </f:facet>
+        <af:panelStretchLayout id="upldMainPl" dimensionsFrom="auto"
+                               startWidth="5"
+                               inlineStyle="#{wccLibraryInfoBean.disMode ? 'margin:10px 10px 5px;' : ''}"
+                               topHeight="auto" endWidth="10" bottomHeight="10"
+                               styleClass="AFStretchWidth">
+          <f:facet name="top">
+            <af:panelGroupLayout layout="scroll" id="pgl50">
+              <af:message id="m10" for="uploadErrorMsg"
+                          styleClass="WccMessageBackground"/>
+              <af:inputText id="uploadErrorMsg" visible="false"
+                            label="#{mainBundle.MESSAGE_PLACEHOLDER}"/>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="center">
+            <af:region value="#{bindings.CheckInUploadPFFlow1.regionModel}"
+                       id="r1"/>
+          </f:facet>
+        </af:panelStretchLayout>
+      </af:dialog>
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:clientListener method="checkInUploadPopupClosed" type="popupClosed"/>
+      <af:serverListener type="checkInUploadPopupClosed"
+                         method="#{wccCheckInUploadBean.checkInUploadPopupClosed}"/>
+    </af:popup>
+    <af:popup id="popupChooseDestinationProfile" contentDelivery="lazyUncached"
+              autoCancel="disabled" childCreation="deferred"
+              popupFetchListener="#{wccMainBean.chooseDestProfilePopupFetchListener}"
+              popupCanceledListener="#{wccMainBean.chooseDestProfilePopupCancelListener}">
+      <af:clientListener method="oracle.wcc.adf.lov.fp.setActivePopup" type="popupOpening"/>
+      <af:clientListener method="oracle.wcc.adf.lov.fp.initDialogFocus" type="popupOpened"/>
+      <af:clientAttribute name="fpNamespaceId" value="chooseDestinationProfile"/>
+      <af:dialog id="ud11" type="none" contentWidth="450"
+                 title="#{mainBundle.CHOOSE_DESTINATION_PROFILE_TITLE}"
+                 helpTopicId="#{wccel:getHelpTopicId('PLACEHOLDER_CONTEXT')}">
+        <ui:include src="/wcc/chooseDestinationProfile.jsff"/>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout layout="horizontal" id="upgl41" halign="end"
+                               valign="bottom" styleClass="AFStretchWidth">
+            <af:button text="#{pb.BUTTON_CONTINUE}" id="cb91"
+                              actionListener="#{wccMainBean.chooseDestProfileActionListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId"
+                           value="popupChooseDestinationProfile"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb110"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccMainBean.closeChooseDestProfilePopup}">
+              <f:attribute name="popupId"
+                           value="popupChooseDestinationProfile"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="popupAddToLibrary" launcherVar="source"
+              contentDelivery="lazyUncached" eventContext="launcher"
+              autoCancel="disabled" childCreation="deferred"
+              popupFetchListener="#{wccDocInfoBean.handleAddToLibraryPopupFetch}">
+      <af:clientListener method="oracle.wcc.adf.lov.fp.setActivePopup" type="popupOpening"/>
+      <af:clientListener method="oracle.wcc.adf.lov.fp.initDialogFocus" type="popupOpened"/>
+      <af:clientAttribute name="fpNamespaceId" value="flov2"/>
+      <af:dialog id="d0" type="none" title="#{docBundle.FILE_DOC_DIALOG_TITLE}"
+                 helpTopicId="#{wccel:getHelpTopicId('DOCUMENT_ADD_TO_LIBRARY')}"
+                 contentWidth="450">
+        <af:panelGroupLayout id="pgl41" layout="vertical">
+          <af:message id="m5" for="docAddtoLibErr"
+                      styleClass="WccMessageBackground"/>
+          <af:spacer id="s19" height="5"/>
+          <af:outputFormatted value="#{af:formatString(docBundle.FILE_DOC_DESCRIPTION,
+                                      wccDocInfoBean.revisionDisplayName)}"
+                              id="of2" styleClass="WccTextLightBreakLong"
+                              inlineStyle="display:block;"/>
+          <af:inputText simple="true" id="docAddtoLibErr"
+                        label="#{mainBundle.MESSAGE_PLACEHOLDER}"
+                        visible="false"/>
+          <af:spacer id="s7" height="15"/>
+          <ui:include src="/wcc/folderPicker.jsff">
+            <ui:param name="id" value="flov2"/>
+            <ui:param name="fpBean" value="#{wccDocInfoBean.folderLovBean}"/>
+            <ui:param name="finishButtonId" value="cb14"/>
+          </ui:include>
+        </af:panelGroupLayout>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout layout="horizontal" id="pgl32" halign="end"
+                               valign="bottom" styleClass="AFStretchWidth">
+            <af:button text="#{libBundle.SAVE_BUTTON}" id="cb14"
+                              actionListener="#{wccDocInfoBean.addDocumentToLibrary}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupAddToLibrary"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb15"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccDocInfoBean.closeAddToLibraryPopup}">
+              <f:attribute name="popupId" value="popupAddToLibrary"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="popupRemoveFromLibrary" launcherVar="source"
+              contentDelivery="lazyUncached" eventContext="launcher"
+              autoCancel="disabled" childCreation="deferred">
+      <af:dialog id="d51" title="#{docBundle.UNFILE_DOCUMENT}"
+                 closeIconVisible="false" type="yesNo" contentWidth="400"
+                 dialogListener="#{wccDocInfoBean.removeDocumentFromLibrary}">
+        <af:outputFormatted value="#{af:formatString(docBundle.UNFILE_DOCUMENT_DESC,
+                                    wccDocInfoBean.revisionDisplayName)}"
+                            id="of1" styleClass="WccTextLightBreakLong"
+                            inlineStyle="display:block; width:393px; margin-left:4px; padding:7px 0 13px 0;"/>
+        <af:panelGroupLayout id="pg213" layout="horizontal" valign="top">
+          <af:icon id="i11" name="warning" inlineStyle="margin-left:4px;"/>
+          <af:panelGroupLayout id="pgl39" layout="vertical" valign="top"
+                               inlineStyle="margin-left:5px; margin-top:-2px;">
+            <af:outputText id="ot51"
+                           value="#{docBundle.UNFILE_DOCUMENT_INFO_MESSAGE}"/>
+            <af:spacer width="10" height="10" id="s68"/>
+            <af:outputText id="ot52"
+                           value="#{docBundle.UNFILE_DOCUMENT_CONFIRM_MESSAGE}"/>
+            <af:spacer width="10" height="10" id="s69"/>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup id="popupDocCreateShortcut" launcherVar="source"
+              contentDelivery="lazyUncached" eventContext="launcher"
+              autoCancel="disabled" childCreation="deferred"
+              popupFetchListener="#{wccDocInfoBean.handleCreateDocumentShortcutPopupFetch}">
+      <af:clientListener method="oracle.wcc.adf.lov.fp.setActivePopup" type="popupOpening"/>
+      <af:clientListener method="oracle.wcc.adf.lov.fp.initDialogFocus" type="popupOpened"/>
+      <af:clientAttribute name="fpNamespaceId" value="flov1"/>
+      <af:dialog title="#{docBundle.CREATE_SHORTCUT_DIALOG_TITLE}" id="d197"
+                 type="none" contentWidth="450"
+                 helpTopicId="#{wccel:getHelpTopicId('DOCUMENT_ADD_SHORTCUT')}"
+                 styleClass="WccShortcutDialog">
+        <af:panelGroupLayout id="pgl31" layout="vertical">
+          <af:message for="docShrctErr" styleClass="WccMessageBackground"
+                      id="m4"/>
+          <af:inputText simple="true" id="docShrctErr"
+                        label="#{mainBundle.MESSAGE_PLACEHOLDER}"
+                        visible="false"/>
+          <af:panelFormLayout id="pfl5" labelAlignment="top"
+                              styleClass="WccLableOverInput">
+            <af:inputText label="#{docBundle.SHORTCUT_FOR_LABEL}" id="it2"
+                          value="#{wccDocInfoBean.shortcutName}"
+                          maximumLength="#{wccel:getFieldLength('fFileName')}"
+                          required="true"/>
+          </af:panelFormLayout>
+          <af:spacer id="s5" height="15"/>
+          <ui:include src="/wcc/folderPicker.jsff">
+            <ui:param name="id" value="flov1"/>
+            <ui:param name="fpBean" value="#{wccDocInfoBean.shortcutLovBean}"/>
+            <ui:param name="finishButtonId" value="cb1"/>
+          </ui:include>
+        </af:panelGroupLayout>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout layout="horizontal" id="pgl34" halign="end"
+                               valign="bottom" styleClass="AFStretchWidth">
+            <af:button text="#{libBundle.SAVE_BUTTON}" id="cb1"
+                              shortDesc="#{libBundle.SAVE_BUTTON}"
+                              actionListener="#{wccDocInfoBean.createShortcutDialogListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupDocCreateShortcut"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb2"
+                              shortDesc="#{libBundle.CANCEL_BUTTON}"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccDocInfoBean.closeDocShortcutPopup}">
+              <f:attribute name="popupId" value="popupDocCreateShortcut"/>
+              <f:attribute name="textFieldId" value="it2"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+    <c:if test="#{requestContext.accessibilityMode eq 'SCREEN_READER'}">
+      <af:popup childCreation="immediate" autoCancel="enabled" id="gmbPopup"
+                popupCanceledListener="#{wccGlobalMessageBean.messagePopupCanceled}">
+        <af:dialog id="d5" title="#{mainBundle.MESSAGE_POPUP_TITLE}"
+                   modal="true" stretchChildren="first" type="ok"
+                   closeIconVisible="false" contentWidth="400"
+                   dialogListener="#{wccGlobalMessageBean.messageDialogListener}">
+          <af:panelGroupLayout id="pgl38" layout="scroll">
+            <ui:include src="/wcc/globalMessage.jsff"/>
+          </af:panelGroupLayout>
+        </af:dialog>
+      </af:popup>
+    </c:if>
+    <af:popup childCreation="deferred" autoCancel="disabled"
+              id="popupApproveDocument" contentDelivery="lazyUncached">
+      <af:dialog id="d16" type="okCancel" title="#{wfBundle.APPROVE_TITLE}"
+                 contentWidth="340" closeIconVisible="false"
+                 dialogListener="#{wccDocInfoBean.workflowApproveDialogListener}"
+                 affirmativeTextAndAccessKey="#{wfBundle.APPROVE}">
+        <af:panelGroupLayout id="pgl61" layout="vertical">
+          <af:outputFormatted value="#{af:formatString2(wfBundle.APPROVE_INSTR,
+                              wccDocInfoBean.revision.displayName,
+                              wccDocInfoBean.revision.workflow.currentStep.DWfStepName)}"
+                              id="of8" styleClass="WccTextLightBreakLong"/>
+          <af:spacer id="s54" height="10"/>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup childCreation="deferred" autoCancel="disabled"
+              id="popupRejectDocument" contentDelivery="lazyUncached"
+              resetEditableValues="whenCanceled">
+      <af:dialog id="d17" type="none" title="#{wfBundle.REJECT_TITLE}"
+                 contentWidth="340">
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout layout="horizontal" id="pgl60" halign="end"
+                               valign="bottom" styleClass="AFStretchWidth">
+            <af:button text="#{wfBundle.REJECT}" id="cb16"
+                              actionListener="#{wccDocInfoBean.rejectDocumentActionListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupRejectDocument"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb17"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccDocInfoBean.closePopup}">
+              <f:attribute name="popupId" value="popupRejectDocument"/>
+              <af:resetListener type="action"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+        <af:panelGroupLayout id="pgl62" layout="vertical">
+          <af:outputFormatted value="#{af:formatString2(wfBundle.REJECT_INSTR,
+                              wccDocInfoBean.revision.displayName,
+                              wccDocInfoBean.revision.workflow.currentStep.DWfStepName)}"
+                              id="of9" styleClass="WccTextLightBreakLong"/>
+          <af:spacer height="10" id="s55"/>
+          <af:panelFormLayout id="pfl6" labelAlignment="top">
+            <af:inputText label="#{wfBundle.REJECT_REASON}" id="it4" rows="4"
+                          contentStyle="width:325.0px;resize:none;"
+                          value="#{wccDocInfoBean.workflowRejectReason}"/>
+          </af:panelFormLayout>
+        </af:panelGroupLayout>
+      </af:dialog>
+    </af:popup>
+    <af:popup childCreation="deferred" autoCancel="disabled" id="popupWfApproveDoc"
+              contentDelivery="lazyUncached" clientComponent="true" animate="false"
+              popupCanceledListener="#{wccWorkflowApprovalBean.popupCancelListener}"
+              popupFetchListener="#{wccWorkflowApprovalBean.popupFetchListener}">
+      <af:dialog id="d10" stretchChildren="first"
+                 clientComponent="true" contentWidth="500"
+                 contentHeight="#{fn:length(wccWorkflowApprovalBean.metadataForm.items) > 0 ? 250 : 160}"
+                 title="#{wfBundle.SIGN_AND_APPROVE_TITLE}" type="none"
+                 helpTopicId="#{wccel:getHelpTopicId('DOCUMENT_SIGN_AND_APPROVE')}">
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl1" halign="end" layout="horizontal"
+                               styleClass="AFStretchWidth">
+            <af:button text="#{wfBundle.SIGN_AND_APPROVE}" id="cb9"
+                              actionListener="#{wccWorkflowApprovalBean.approveActionListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupWfApproveDoc"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb10" 
+                              actionListener="#{wccWorkflowApprovalBean.cancelActionListener}"
+                              partialSubmit="true" immediate="true">
+              <f:attribute name="popupId" value="popupWfApproveDoc"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+        <ui:include src="/wcc/approve.jsff"/>
+      </af:dialog>
+    </af:popup>
+    
+    <af:resource type="javascript">
+      function checkInUploadPopupClosed(event)
+      {
+        AdfCustomEvent.queue(event.getSource(), "checkInUploadPopupClosed", 
+        {
+        },
+true);
+      }
+    </af:resource>
+    <c:if test="#{wccel:isCheckoutAndOpenInNativeEnabled()}">
+      <af:resource type="javascript" source="#{wccel:getCoaoJavaScript()}"/>
+    </c:if>
+  </af:group>
+</ui:composition>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:contentPresenterTemplate xmlns:ns0="http://xmlns.oracle.com/webcenter/assetpublishing/assetdef">
+   <name>ContentPresenterTemplate-FolderViewer</name>
+   <displayName>Content Presenter Template - Folder Viewer</displayName>
+   <sourcePath>/contentPresenterTemplate-FolderViewer</sourcePath>
+   <pagePath>ContentPresenterTemplate-FolderViewer.jsff</pagePath>
+   <viewId>contentPresenterTemplate-FolderViewer</viewId>
+   <categoryId>oracle.webcenter.content.templates.default.category</categoryId>
+   <categoryDescription>Default display templates for multiple content items.</categoryDescription>
+   <categoryDescriptionKey>DEFAULT_LIST_CATEGORY_DESC</categoryDescriptionKey>
+   <categoryName>Default Templates</categoryName>
+   <categoryNameKey>DEFAULT_LIST_CATEGORY_NAME</categoryNameKey>
+   <templateType>list</templateType>
+   <categoryIsDefault>true</categoryIsDefault>
+</ns0:contentPresenterTemplate>

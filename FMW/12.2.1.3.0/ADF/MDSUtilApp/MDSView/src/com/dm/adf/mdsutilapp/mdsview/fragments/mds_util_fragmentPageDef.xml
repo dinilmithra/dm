@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="mds_util_fragmentPageDef"
+                Package="com.dm.adf.mdsutilapp.mdsview.fragments">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables">
+            <variable Name="mdsPath" Type="java.lang.String"/>
+            <variable Name="mdsFileName" Type="java.lang.String"/>
+        </variableIterator>
+        <iterator Binds="root" RangeSize="25" DataControl="MDSActions" id="MDSActionsIterator"/>
+        <accessorIterator MasterBinding="MDSActionsIterator" Binds="mdsElements" RangeSize="25" DataControl="MDSActions"
+                          BeanClass="com.dm.adf.mdsutilapp.mdsmodel.types.MDSElement" id="mdsElementsIterator"/>
+        <searchRegion Binds="mdsElementsIterator" Criteria=""
+                      Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer" id="mdsElementsQuery"/>
+    </executables>
+    <bindings>
+        <attributeValues IterBinding="variables" id="mdsPathAttr">
+            <AttrNames>
+                <Item Value="mdsPath"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="variables" id="mdsFileNameAttr">
+            <AttrNames>
+                <Item Value="mdsFileName"/>
+            </AttrNames>
+        </attributeValues>
+        <attributeValues IterBinding="mdsElementsIterator" id="documentPath">
+            <AttrNames>
+                <Item Value="documentPath"/>
+            </AttrNames>
+        </attributeValues>
+        <tree IterBinding="mdsElementsIterator" id="mdsElements">
+            <nodeDefinition DefName="com.dm.adf.mdsutilapp.mdsmodel.types.MDSElement" Name="mdsElements0">
+                <AttrNames>
+                    <Item Value="documentName"/>
+                    <Item Value="documentPath"/>
+                    <Item Value="absolutePath"/>
+                    <Item Value="id"/>
+                    <Item Value="layerName"/>
+                    <Item Value="userName"/>
+                </AttrNames>
+            </nodeDefinition>
+        </tree>
+        <methodAction id="constructMDSElements" InstanceName="MDSActions.dataProvider" DataControl="MDSActions"
+                      RequiresUpdateModel="true" Action="invokeMethod" MethodName="constructMDSElements"
+                      IsViewObjectMethod="false">
+            <NamedData NDName="mdsPath" NDValue="#{bindings.mdsPathAttr.inputValue}" NDType="java.lang.String"/>
+            <NamedData NDName="mdsFileName" NDValue="#{bindings.mdsFileNameAttr.inputValue}" NDType="java.lang.String"/>
+        </methodAction>
+        <methodAction id="deleteMDSEntries" InstanceName="MDSActions.dataProvider" DataControl="MDSActions"
+                      RequiresUpdateModel="true" Action="invokeMethod" MethodName="deleteMDSEntries"
+                      IsViewObjectMethod="false">
+            <NamedData NDName="mdsEntries" NDType="java.util.ArrayList"/>
+        </methodAction>
+        <methodAction id="updateMDSXml" InstanceName="MDSActions.dataProvider" DataControl="MDSActions"
+                      RequiresUpdateModel="true" Action="invokeMethod" MethodName="updateMDSXml"
+                      IsViewObjectMethod="false">
+            <NamedData NDName="documentPath" NDType="java.lang.String"/>
+            <NamedData NDName="content" NDType="java.lang.String"/>
+        </methodAction>
+        <methodAction id="loadMDSXml" RequiresUpdateModel="true" Action="invokeMethod" MethodName="loadMDSXml"
+                      IsViewObjectMethod="false" DataControl="MDSActions"
+                      InstanceName="bindings.loadMDSXml.dataControl.dataProvider"
+                      ReturnName="data.MDSActions.methodResults.loadMDSXml_loadMDSXml_dataControl_dataProvider_loadMDSXml_result">
+            <NamedData NDName="documentPath" NDType="java.lang.String"/>
+        </methodAction>
+    </bindings>
+</pageDefinition>

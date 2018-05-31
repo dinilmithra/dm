@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="MDSUtilsPageDef"
+                Package="com.dm.adf.mdsutilapp.mdsview.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="com.dm.adf.mdsutilapp.mdsview.templates.MDSViewTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
+    <taskFlow id="mdsutilflow1"
+              taskFlowId="/WEB-INF/com/dm/adf/mdsutilapp/mdsview/pageflows/mds-util-flow.xml#mds-util-flow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+/** Bootstrap uses box-sizing: border-box, therefore reset it back to the initial value content-box here, 
+    because Alta specifies tab height using content box model */
+af|panelTabbed::tab-content,
+af|navigationPane-tabs::tab-content {
+  box-sizing: content-box;
+}

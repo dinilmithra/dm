@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="employee-details">
+    <default-activity>ExecuteWithParams</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__1">
+      <name>employeeID</name>
+      <value>#{pageFlowScope.employeeID}</value>
+    </input-parameter-definition>
+    <view id="employee-details-fragment">
+      <page>/com/dm/hrdemoapp/hrview/employee/fragments/employee-details-fragment.jsff</page>
+    </view>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome>
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <task-flow-call id="employee-search-flow">
+      <task-flow-reference>
+        <document>/WEB-INF/com/dm/hrdemoapp/hrview/employee/pageflows/employee-search-flow.xml</document>
+        <id>employee-search-flow</id>
+      </task-flow-reference>
+    </task-flow-call>
+    <control-flow-rule id="__2">
+      <from-activity-id>ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__3">
+        <from-outcome>ExecuteWithParams</from-outcome>
+        <to-activity-id>employee-details-fragment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__4">
+      <from-activity-id>employee-details-fragment</from-activity-id>
+      <control-flow-case id="__5">
+        <from-outcome>employee-search</from-outcome>
+        <to-activity-id>employee-search-flow</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

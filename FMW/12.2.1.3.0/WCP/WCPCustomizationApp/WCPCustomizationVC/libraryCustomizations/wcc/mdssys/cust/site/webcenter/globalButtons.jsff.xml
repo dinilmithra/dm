@@ -1,0 +1,5 @@
+<mds:customization version="12.2.1_20170820.0914" xmlns:mds="http://xmlns.oracle.com/mds">
+  <mds:modify element="ctb1">
+    <mds:attribute name="text" value="Cust 2 #{mainBundle.UPLOAD}"/>
+  </mds:modify>
+</mds:customization>

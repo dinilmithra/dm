@@ -1,0 +1,28 @@
+Admin
+http://127.0.0.1:7301/console
+
+cd C:\DinilMithra\install\oracle\webcenter\12.2.1.3.0\Middleware\Oracle_Home\user_projects\domains\wcs_domain\bin
+
+startNodeManager.cmd
+stopNodeManager.cmd
+
+startWebLogic.cmd
+stopWebLogic.cmd
+
+startManagedWebLogic.cmd WC_Portal localhost:8888
+startManagedWebLogic.cmd WCCADF_server1 localhost:16225
+startManagedWebLogic.cmd UCM_server1 localhost:16200
+
+stopManagedWebLogic.cmd WC_Portal localhost:8888
+stopManagedWebLogic.cmd WCCADF_server1 localhost:16225
+stopManagedWebLogic.cmd UCM_server1 localhost:16200
+
+http://127.0.0.1:7304/sites/sitesconfigsetup
+http://127.0.0.1:7308/sites/sitesconfigsetup
+System Administrator Account ContentServer/password
+Application Administrator Account fwadmin/xceladmin
+Satellite Server Account SatelliteServer/password
+
+http://127.0.0.1:7304/cas/
+
+

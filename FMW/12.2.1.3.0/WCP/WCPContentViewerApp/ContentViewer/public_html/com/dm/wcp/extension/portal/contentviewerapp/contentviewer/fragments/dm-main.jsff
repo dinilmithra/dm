@@ -1,0 +1,812 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (c) 2011, 2017, Oracle and/or its affiliates. All rights reserved. -->
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:wccel="http://xmlns.oracle.com/wcc/adf/el"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+  <c:set var="mainBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.MainBundle']}"/>
+  <c:set var="pb"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.PreferencesBundle']}"/>
+  <c:set var="viewcontrollerBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.UploadBundle']}"/>
+  <c:set var="libBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.LibrariesBundle']}"/>
+  <c:set var="fldBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.FoldersBundle']}"/>
+  <c:set var="wfBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.WorkflowBundle']}"/>
+  <c:set var="damBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.AssetsBundle']}"/>
+  <c:set var="pinBundle"
+         value="#{adfBundle['oracle.wcc.adf.vc.resource.PinningBundle']}"/>
+  <c:set var="overrideModeOff"
+         value="#{empty pageFlowScope.taskFlowContext or empty pageFlowScope.overrideMode or
+                  (pageFlowScope.overrideMode eq 'Off')}"/>
+  <c:set var="restrictNavigation"
+         value="#{not empty pageFlowScope.taskFlowContext and pageFlowScope.restrictNavigationMode and
+                  (pageFlowScope.startFolder != null)}"/>
+  <af:group id="gMain">
+  
+  <af:panelGroupLayout id="pgl17" layout="#{empty pageFlowScope.taskFlowContext ? 'vertical' : 'scroll'}"
+                       styleClass="#{empty pageFlowScope.taskFlowContext ? '' : 'WccTaskflow'}">
+
+    <af:panelGroupLayout id="pgl1" layout="horizontal" styleClass="AFStretchWidth">
+      <af:panelGroupLayout id="pgl16" layout="vertical" styleClass="#{empty pageFlowScope.taskFlowContext ? 'WccBrandingBarNoBorder' : 'WccTopBar'}"
+                           binding="#{wccMainBean.brandingBar}">
+        <af:panelGroupLayout id="pgl4" layout="horizontal" styleClass="WccMinWidth">
+          
+      <c:if test="#{empty pageFlowScope.taskFlowContext}">
+        <af:panelGroupLayout id="pgl3" layout="horizontal" valign="bottom" halign="start">
+          <af:panelGroupLayout id="pgl5" layout="horizontal">
+            <af:commandImageLink id="cil1" styleClass="WccBrandingBarLogo"
+                                 shortDesc="#{mainBundle.BRANDING_LOGO_LINK_DESCRIPTION}"
+                                 partialSubmit="true" action="wccmain"
+                                 rendered="#{wccel:getCustomBrandingLogo() == null}"/>
+            <af:commandImageLink id="cil2"
+                                 icon="#{wccel:getCustomBrandingLogo()}"
+                                 shortDesc="#{mainBundle.BRANDING_LOGO_LINK_DESCRIPTION}"
+                                 partialSubmit="true" action="wccmain"
+                                 rendered="#{wccel:getCustomBrandingLogo() != null}"/>
+                <af:outputText id="ot1" styleClass="WccBrandingBarTitle"
+                               value="#{wccel:getCustomBrandingTitle() == null
+                                      ? mainBundle.WEBCENTERCONTENT : wccel:getCustomBrandingTitle()}"/>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </c:if>
+          
+          <c:if test="#{not empty pageFlowScope.taskFlowContext}">
+            <ui:include src="/wcc/globalLinks.jsff"/>
+            
+            <af:button id="bWccAction"
+                       text="#{mainBundle.ACTION_BUTTON}"
+                       shortDesc="#{mainBundle.ACTION_BUTTON}"
+                       rendered="#{(pageFlowScope.overrideMode eq 'ContextPicker') and
+                                   (pageFlowScope.wccReturnValueBean != null)}"
+                       visible="false"
+                       actionListener="#{wccMainBean.actionButtonListener}"/>
+          </c:if>
+          
+          <af:panelGroupLayout layout="horizontal" halign="#{empty pageFlowScope.taskFlowContext ? 'center' : 'end'}" id="pgl23">
+            <ui:include src="/wcc/searchBar.jsff">
+              <ui:param name="searchBar" value="#{wccSearchBean.searchBarBean}"/>
+            </ui:include>
+          </af:panelGroupLayout>
+        </af:panelGroupLayout>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pgl2" layout="horizontal" styleClass="AFStretchWidth WccPersonalizationBar"
+                         rendered="#{empty pageFlowScope.taskFlowContext}"
+                         binding="#{wccMainBean.tabBar}">
+      <af:panelGroupLayout id="pglPin" styleClass="WccMinWidth"
+                           layout="horizontal" halign="end"
+                           rendered="#{empty pageFlowScope.taskFlowContext}"
+                           clientComponent="true" valign="#{requestContext.accessibilityMode eq 'SCREEN_READER' ? 'top' : 'middle'}">
+        <af:clientAttribute name="refresher" value="#{wccPinningBean.resizePinningBar}"/>
+        <c:if test="#{not (requestContext.accessibilityMode eq 'SCREEN_READER')}">
+          <af:toolbar id="tPinningBar" styleClass="WccPinningBar" stretchId="#{requestContext.accessibilityMode eq 'SCREEN_READER' ? '' : 's10'}"
+                      binding="#{wccMainBean.pinningBar}">
+            <af:spacer width="10" height="10" id="s10" clientComponent="true"/>
+            <af:panelGroupLayout id="cssRef" visible="false" clientComponent="true" styleClass="WccPin WccFocus"/>
+            <af:iterator id="i1" rows="0" value="#{wccPinningBean.userPins}" var="pin">
+              <af:panelGroupLayout id="pgl9" layout="horizontal" styleClass="WccPin" clientComponent="true">
+                <af:commandLink id="cl1" text="#{wccel:truncateAt(pin.label, 25)}"
+                                shortDesc="#{pin.label}" partialSubmit="true"
+                                actionListener="#{wccPinningBean.activatePin}">
+                  <f:attribute name="pinId" value="#{pin.ID}"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinMouseDown" type="mouseDown"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkFocus" type="focus"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkBlur" type="blur"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="mouseOver"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkAction" type="action"/>
+                </af:commandLink>
+                <af:commandImageLink id="cil4"
+                                     icon="/resources/wcc/images/delete_sm_ena.png"
+                                     hoverIcon="/resources/wcc/images/delete_sm_hover.png"
+                                     shortDesc="#{af:formatString(pinBundle.REMOVE_PIN, pin.label)}"
+                                     actionListener="#{wccPinningBean.removePin}"
+                                     partialSubmit="true">
+                  <f:attribute name="pinId" value="#{pin.ID}"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinMouseDown" type="mouseDown"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkFocus" type="focus"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkBlur" type="blur"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="mouseOver"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkAction" type="action"/>
+                </af:commandImageLink>
+              </af:panelGroupLayout>
+            </af:iterator>
+          </af:toolbar>
+        </c:if>
+        <c:if test="#{requestContext.accessibilityMode eq 'SCREEN_READER'}">
+          <af:panelGroupLayout id="pglPinningBar" styleClass="WccPinningBarAcc"
+                               binding="#{wccMainBean.accPinningBar}">
+            <af:panelGroupLayout id="cssRefAcc" visible="false" clientComponent="true" styleClass="WccPin WccFocus"/>
+            <af:iterator id="i3" rows="0" value="#{wccPinningBean.userPins}" var="pin">
+              <af:panelGroupLayout styleClass="WccPin" id="pgl36" layout="default" clientComponent="true">
+                <af:commandLink id="cl2" text="#{wccel:truncateAt(pin.label, 25)}"
+                                shortDesc="#{pin.label}" partialSubmit="true"
+                                actionListener="#{wccPinningBean.activatePin}">
+                  <f:attribute name="pinId" value="#{pin.ID}"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkFocus" type="focus"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkBlur" type="blur"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="mouseOver"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="action"/>
+                </af:commandLink>
+                <af:commandLink id="cl3" actionListener="#{wccPinningBean.removePin}" partialSubmit="true"
+                                inlineStyle="height:auto;">
+                  <af:image source="/resources/wcc/images/delete_sm_ena.png" id="i4"
+                            shortDesc="#{af:formatString(pinBundle.REMOVE_PIN, pin.label)}"/>
+                  <f:attribute name="pinId" value="#{pin.ID}"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkFocus" type="focus"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.handlePinLinkBlur" type="blur"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="mouseOver"/>
+                  <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="action"/>
+                </af:commandLink>
+                <af:clientListener method="oracle.wcc.adf.pinning.clearPinFocus" type="mouseOver"/>
+              </af:panelGroupLayout>
+            </af:iterator>
+          </af:panelGroupLayout>
+        </c:if>
+        <af:panelGroupLayout id="tUser" styleClass="WccUserToolbar" clientComponent="true"
+                    binding="#{wccMainBean.userToolbar}" layout="horizontal">
+          <af:commandImageLink id="pinIcon" icon="/resources/wcc/images/pin_ena.png" shortDesc="#{pinBundle.ADD_PIN}"
+                               hoverIcon="/resources/wcc/images/pin_ovr.png"
+                               depressedIcon="/resources/wcc/images/pin_dwn.png">
+            <af:showPopupBehavior popupId="pAddPin" triggerType="action" align="afterEnd" alignId="pinIcon"/>
+          </af:commandImageLink>
+          <af:spacer width="15" id="s100"/>
+          <af:commandImageLink id="clipboardFlag" icon="/resources/wcc/images/view_clipboard_ena.png"
+                               shortDesc="#{damBundle.CLIPBOARD}" partialSubmit="true"
+                               actionListener="#{wccMainBean.clipboardActionListener}"
+                               rendered="#{wccel:isDAMEnabled()}"
+                               hoverIcon="/resources/wcc/images/view_clipboard_ovr.png"
+                               depressedIcon="/resources/wcc/images/view_clipboard_dwn.png"/>
+          <c:if test="#{wccMainBean.myWorkflowAssignmentCount > 0}">
+            <af:spacer width="15" id="s101"/>
+          </c:if>
+          <af:commandImageLink id="workflowNotificationFlag" text="#{wccMainBean.myWorkflowAssignmentCount}"
+                               icon="/resources/wcc/images/notifications_ena.png"
+                               shortDesc="#{af:formatString(wfBundle.WF_ASSIGNMENT_FLAG_TOOLTIP, wccMainBean.myWorkflowAssignmentCount)}"
+                               actionListener="#{wccMainBean.navigateToContentInWorkflowLibraryActionListener}"
+                               rendered="#{wccMainBean.myWorkflowAssignmentCount > 0}"
+                               hoverIcon="/resources/wcc/images/notifications_ovr.png"
+                               depressedIcon="/resources/wcc/images/notifications_dwn.png"/>
+        </af:panelGroupLayout>
+        <af:menuBar id="mbUser" styleClass="WccUserMenuBar" clientComponent="true"
+                    binding="#{wccMainBean.userMenuBar}">
+          <af:menu text="#{wccSessionData.user.displayName}" id="m2">
+            <af:group id="g1">
+              <af:commandMenuItem text="#{mainBundle.PREFERENCES}" id="cmi1">
+                <af:showPopupBehavior popupId="prefPopup" triggerType="action"
+                                      align="afterEnd" alignId="mbUser"/>
+              </af:commandMenuItem>
+              <af:menu text="#{mainBundle.HELP}" id="m1">
+                <af:commandMenuItem text="#{mainBundle.DOCUMENT_LIBRARY}" id="cmi5">
+                  <af:clientAttribute name="helpTopicUrl" value="#{wccel:getDocumentLibraryUrl()}"/>
+                  <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                </af:commandMenuItem>
+                <af:commandMenuItem text="#{mainBundle.HELP_CONTENTS}" id="cmi7">
+                  <af:clientAttribute name="helpTopicUrl" value="#{wccel:getHelpContentsUrl()}"/>
+                  <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                </af:commandMenuItem>
+                <af:commandMenuItem text="#{mainBundle.HELP_FOR_THIS_PAGE}" id="cmi4">
+                  <af:clientAttribute name="helpTopicUrl" value="#{wccel:getHelpTopicUrl(wccMainBean.pageHelpContext)}"/>
+                  <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                </af:commandMenuItem>
+                <af:commandMenuItem text="#{mainBundle.HOW_DO_I}" id="cmi6">
+                  <af:clientAttribute name="helpTopicUrl" value="#{wccel:getHdiTopicUrl(wccMainBean.pageHelpContext)}"/>
+                  <af:clientListener method="oracle.wcc.adf.help.launchHelp" type="action"/>
+                </af:commandMenuItem>
+              </af:menu>
+              <af:commandMenuItem text="#{mainBundle.ADD_SERVER_TO_DIS}"
+                                  id="cmi2"
+                                  rendered="#{wccel:isCheckoutAndOpenInNativeEnabled() and wccel:isAppletSupportedClient()}">
+                <af:showPopupBehavior popupId="addServerPopup"
+                                      triggerType="action" align="afterEnd"
+                                      alignId="mbUser"/>
+              </af:commandMenuItem>
+            </af:group>
+            <af:group id="g2">
+              <af:commandMenuItem text="#{mainBundle.ABOUT}" id="cmi3">
+                <af:showPopupBehavior popupId="aboutPopup"
+                                      triggerType="action" align="afterEnd"
+                                      alignId="mbUser"/>
+              </af:commandMenuItem>
+            </af:group>
+            <af:group id="g3">
+              <af:goMenuItem text="#{mainBundle.LOGOUT}" id="gmi1"
+                             destination="/adfAuthentication?logout=true&amp;end_url=/faces/wccmain"/>
+            </af:group>
+          </af:menu>
+        </af:menuBar>
+      </af:panelGroupLayout>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pglMV" layout="vertical" styleClass="WccMinWidth"
+                         binding="#{wccMainBean.pglMainView}">
+      <c:if test="#{not (requestContext.accessibilityMode eq 'SCREEN_READER')}">
+        <ui:include src="/wcc/globalMessage.jsff"/>
+      </c:if>
+      <af:panelGroupLayout id="pgl7" layout="vertical"
+                           styleClass="WccMainContentArea">
+        <af:switcher id="s8"
+                     facetName="#{wccMainBean.pageType eq 'DOCUMENT_LIST_PAGE'
+                                  or wccMainBean.pageType eq 'TRASH_LIST_PAGE'
+                                  or wccMainBean.pageType eq 'PACKAGED_SEARCH_PAGE'}">
+          <f:facet name="true">
+            <f:subview id="DOCSV">
+              <ui:include src="/wcc/documents.jsff"/>
+            </f:subview>
+          </f:facet>
+        </af:switcher>
+        <c:if test="#{wccMainBean.pageType eq 'LIBRARY_LIST_PAGE'}">
+          <f:subview id="LIBSV">
+            <ui:include src="/wcc/libraries.jsff"/>
+          </f:subview>
+        </c:if>
+        <c:if test="#{wccMainBean.pageType eq 'FAVORITE_LIST_PAGE'}">
+          <f:subview id="FAVSV">
+            <ui:include src="/wcc/favorites.jsff"/>
+          </f:subview>
+        </c:if>
+        <c:if test="#{wccMainBean.pageType eq 'FOLDER_LIST_PAGE'}">
+          <f:subview id="FLDSV">
+            <ui:include src="/wcc/folders.jsff"/>
+          </f:subview>
+        </c:if>
+        <c:if test="#{wccMainBean.pageType eq 'ASSET_LIST_PAGE'}">
+          <f:subview id="ASTSV">
+            <ui:include src="/wcc/assets.jsff"/>
+          </f:subview>
+        </c:if>
+      </af:panelGroupLayout>
+      <af:spacer height="20" id="s2"/>
+    </af:panelGroupLayout>
+
+    <af:popup childCreation="deferred" autoCancel="disabled" id="prefPopup"
+              contentDelivery="lazyUncached" animate="false"
+              popupFetchListener="#{wccMainBean.fetchPreferencesPopup}">
+      <af:dialog id="d7" type="none" closeIconVisible="true" modal="true"
+                 resize="off" stretchChildren="first" title="#{pb.PREFERENCES}"
+                 contentWidth="560" contentHeight="300"
+                 helpTopicId="#{wccel:getHelpTopicId(wccMainBean.preferencesHelpContext)}">
+        <af:panelTabbed id="pt2" styleClass="WccPrefsTabs">
+          <af:showDetailItem text="#{pb.TAB_GENERAL}" id="sdiGen"
+                             disclosed="#{wccMainBean.preferencesTabId eq 'sdiGen'}"
+                             stretchChildren="first" disclosedTransient="true"
+                             disclosureListener="#{wccMainBean.preferencesDisclosureListener}">
+            <af:panelGroupLayout id="pgl25" layout="scroll"
+                                 styleClass="AFStretchWidth WccPreferencesTabContent">
+              <af:selectBooleanCheckbox text="#{pb.RESET_LOCALIZATION_PREFERENCES}"
+                                        id="sbc6" autoSubmit="true"
+                                        value="#{wccUserBean.systemDefaults}"/>
+              <af:panelFormLayout id="pfl2" inlineStyle="padding: 8px;"
+                                  styleClass="WccDlForm" partialTriggers="sbc6">
+                <af:panelLabelAndMessage label="#{pb.USER_FULL_NAME}" id="plam1"
+                                         for="it1"
+                                         labelStyle="white-space: nowrap;">
+                  <af:inputText id="it1" value="#{wccUserBean.user.DFullName}"
+                                simple="true" columns="50"
+                                autoComplete="off"
+                                shortDesc="#{wccUserBean.user.DFullName}"
+                                disabled="#{wccUserBean.systemDefaults}"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{pb.USER_EMAIL_ADDRESS}"
+                                         id="plam2" for="it2"
+                                         labelStyle="white-space: nowrap;">
+                  <af:inputText id="it2" value="#{wccUserBean.user.DEmail}"
+                                simple="true" columns="50"
+                                autoComplete="off"
+                                shortDesc="#{wccUserBean.user.DEmail}"
+                                disabled="#{wccUserBean.systemDefaults}"/>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{pb.USER_LOCALE}" id="plam3"
+                                         for="soc1"
+                                         labelStyle="white-space: nowrap;">
+                  <af:panelGroupLayout id="pgl11" layout="horizontal"
+                                       styleClass="WccDlSingleNoCombo">
+                    <af:panelGroupLayout id="pgl13" layout="vertical"
+                                         inlineStyle="overflow:hidden;"
+                                         partialTriggers="soc1"
+                                         styleClass="#{wccUserBean.systemDefaults ? 'WccDlFieldDisabled' : 'WccDlFieldNormal'}">
+                      <af:outputText value="#{wccUserBean.userLocaleLabel}"
+                                     id="ot2"
+                                     shortDesc="#{wccUserBean.userLocaleLabel}"
+                                     noWrap="true"/>
+                    </af:panelGroupLayout>
+                    <af:selectOneChoice id="soc1"
+                                        value="#{wccUserBean.user.DUserLocale}"
+                                        mode="compact" autoSubmit="true"
+                                        simple="true"
+                                        disabled="#{wccUserBean.systemDefaults}"
+                                        unselectedLabel="#{pb.NO_SELECTION}"
+                                        valueChangeListener="#{wccUserBean.localeChanged}">
+                      <f:selectItems value="#{wccUserBean.availableLocales}"
+                                     id="si1"/>
+                    </af:selectOneChoice>
+                  </af:panelGroupLayout>
+                </af:panelLabelAndMessage>
+                <af:panelLabelAndMessage label="#{pb.USER_TIME_ZONE}" id="plam4"
+                                         for="soc2"
+                                         labelStyle="white-space: nowrap;">
+                  <af:panelGroupLayout id="pgl15" layout="horizontal"
+                                       styleClass="WccDlSingleNoCombo">
+                    <af:panelGroupLayout id="pgl18" layout="vertical"
+                                         inlineStyle="width:375px; overflow:hidden;"
+                                         partialTriggers="soc2"
+                                         styleClass="#{wccUserBean.systemDefaults ? 'WccDlFieldDisabled' : 'WccDlFieldNormal'}">
+                      <af:outputText value="#{wccUserBean.userTimeZoneLabel}"
+                                     id="ot3"
+                                     shortDesc="#{wccUserBean.userTimeZoneLabel}"
+                                     noWrap="true"/>
+                    </af:panelGroupLayout>
+                    <af:selectOneChoice id="soc2"
+                                        value="#{wccUserBean.user.DUserTimeZone}"
+                                        mode="compact" autoSubmit="true"
+                                        simple="true"
+                                        disabled="#{wccUserBean.systemDefaults}"
+                                        unselectedLabel="#{pb.NO_SELECTION}"
+                                        valueChangeListener="#{wccUserBean.timeZoneChanged}">
+                      <f:selectItems value="#{wccUserBean.availableTimeZones}"
+                                     id="si2"/>
+                    </af:selectOneChoice>
+                  </af:panelGroupLayout>
+                </af:panelLabelAndMessage>
+              </af:panelFormLayout>
+              <af:outputFormatted value="#{pb.SHARE_CLOUD_FOLDER_EMAIL_NOTE}"
+                                  id="of2" styleClass="WccTextLight"
+                                  inlineStyle="display:block; margin:10px 10px 10px 10px;"
+                                  rendered="#{wccel:isDcsIntegrationEnabled()
+                                              and wccel:isCloudFolderShareAtAnytime()}"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{pb.TAB_PERSONALIZATION}" id="sdiPers"
+                             disclosed="#{wccMainBean.preferencesTabId eq 'sdiPers'}"
+                             stretchChildren="first" disclosedTransient="true"
+                             disclosureListener="#{wccMainBean.preferencesDisclosureListener}">
+            <af:panelGroupLayout id="pgl29" layout="scroll"
+                                 styleClass="AFStretchWidth WccPreferencesTabContent">
+              <af:panelFormLayout id="pfl3" inlineStyle="padding: 8px;"
+                                  styleClass="WccDlForm" >
+                <af:panelLabelAndMessage label="#{pb.HOME_PAGE}" id="plam5"
+                                         for="soc3"
+                                         labelStyle="white-space: nowrap;">
+                  <af:panelGroupLayout id="pgl30" layout="horizontal"
+                                       styleClass="WccDlSingleNoCombo">
+                    <af:panelGroupLayout id="pgl31" layout="vertical"
+                                         inlineStyle="overflow:hidden;"
+                                         partialTriggers="soc3"
+                                         styleClass="WccDlFieldNormal">
+                      <af:outputText value="#{wccAccPreferencesBean.homePageLabel}"
+                                     id="ot5"
+                                     shortDesc="#{wccAccPreferencesBean.homePageLabel}"
+                                     noWrap="true"/>
+                    </af:panelGroupLayout>
+                    <af:selectOneChoice id="soc3"
+                                        value="#{wccAccPreferencesBean.homePage}"
+                                        mode="compact" autoSubmit="true"
+                                        simple="true"
+                                        valueChangeListener="#{wccAccPreferencesBean.homePageChanged}">
+                      <f:selectItems value="#{wccAccPreferencesBean.availableHomePages}"
+                                     id="si3"/>
+                    </af:selectOneChoice>
+                  </af:panelGroupLayout>
+                </af:panelLabelAndMessage>
+              </af:panelFormLayout>
+              <af:selectBooleanCheckbox text="#{pb.USE_SCAN_UPLOAD}"
+                                        id="sbc7"
+                                        value="#{wccAccPreferencesBean.useScanUpload}"
+                                        disabled="#{not wccel:isAppletSupportedClient()}"/>
+              <c:if test="#{not wccel:isAppletSupportedClient()}">
+                <af:panelGroupLayout id="pgl20" layout="horizontal">
+                  <af:spacer width="27" id="s7"/>
+                  <af:outputText value="#{pb.SCAN_NOT_SUPPORTED}" id="ot4"
+                                 styleClass="WccMessageBackground"/>
+                </af:panelGroupLayout>
+              </c:if>
+              <af:separator id="s1"/>
+              <af:selectBooleanCheckbox text="#{pb.RESET_GUIDANCE_MESSAGES}"
+                                        id="sbc5"
+                                        value="#{wccAccPreferencesBean.resetGuidanceMessages}"/>
+              <af:selectBooleanCheckbox text="#{pb.CLEAR_LOV_RECENT_ITEMS}"
+                                        id="sbc8"
+                                        value="#{wccAccPreferencesBean.clearLovRecentItems}"/>
+              <af:selectBooleanCheckbox text="#{pinBundle.CLEAR_ALL_PINS_UPON_SAVE}"
+                                        id="sbc9"
+                                        value="#{wccAccPreferencesBean.clearUserPins}"/>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+          <af:showDetailItem text="#{pb.TAB_ACCESSIBILITY}" id="sdiAcc"
+                             disclosed="#{wccMainBean.preferencesTabId eq 'sdiAcc'}"
+                             stretchChildren="first"  disclosedTransient="true"
+                             disclosureListener="#{wccMainBean.preferencesDisclosureListener}">
+            <af:panelGroupLayout id="pgl22" layout="scroll"
+                                 styleClass="AFStretchWidth WccPreferencesTabContent">
+              <af:panelFormLayout id="pfl1">
+                <af:selectBooleanCheckbox text="#{pb.USE_SCREEN_READER}"
+                                          id="sbc1"
+                                          value="#{wccAccPreferencesBean.useScreenReader}"/>
+                <af:selectBooleanCheckbox text="#{pb.USE_HIGH_CONTRAST}"
+                                          id="sbc2"
+                                          value="#{wccAccPreferencesBean.useHighContrast}"/>
+                <af:selectBooleanCheckbox text="#{pb.USE_LARGE_FONTS}" id="sbc3"
+                                          value="#{wccAccPreferencesBean.useLargeFonts}"/>
+                <af:selectBooleanCheckbox text="#{pb.SHOW_AFTER_LOGIN}"
+                                          id="sbc4"
+                                          value="#{wccAccPreferencesBean.showAfterLogin}"/>
+              </af:panelFormLayout>
+            </af:panelGroupLayout>
+          </af:showDetailItem>
+        </af:panelTabbed>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl19" layout="horizontal" halign="end"
+                               styleClass="AFStretchWidth">
+            <af:button text="#{pb.BUTTON_SAVE}" id="cb5"
+                              partialSubmit="true"
+                              actionListener="#{wccMainBean.savePreferences}">
+              <f:attribute name="popupId" value="prefPopup"/>
+            </af:button>
+            <af:button text="#{pb.BUTTON_CANCEL}" id="cb8"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccMainBean.cancelPreferences}">
+              <af:resetListener type="action"/>
+              <f:attribute name="popupId" value="prefPopup"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+
+    <af:popup id="addServerPopup" contentDelivery="lazyUncached"
+              popupFetchListener="#{wccDisConfigBean.resetAddServerForm}"
+              autoCancel="disabled" childCreation="deferred"
+              resetEditableValues="whenCanceled">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog id="d2" type="none" title="#{mainBundle.ADD_SERVER_TO_DIS}"
+                 contentWidth="470" helpTopicId="#{wccel:getHelpTopicId('ADD_DIS_SERVER')}">
+        <af:panelGroupLayout id="pgl12">
+          <af:message id="m4" for="it4" styleClass="WccMessageBackground"/>
+          <af:inputText id="it4" visible="false" label="#{mainBundle.MESSAGE_PLACEHOLDER}"/>
+          <af:panelFormLayout id="pgl14" labelWidth="20%">
+            <af:inputText label="#{mainBundle.SERVER_NAME}"
+                          value="#{wccDisConfigBean.serverName}"
+                          id="server_name" clientComponent="true"
+                          autoComplete="off" required="true"
+                          validator="#{wccMainBean.validateDisServerName}"
+                          columns="60" labelStyle="white-space: nowrap;">
+            </af:inputText>
+            <af:inputText label="#{mainBundle.CGI_URL}" autoComplete="off"
+                          value="#{wccDisConfigBean.cgi_url}" id="cgi_url"
+                          clientComponent="true" readOnly="true"
+                          labelStyle="white-space: nowrap;"/>
+            <af:inputText label="#{mainBundle.WEBDAV_URL}" autoComplete="off"
+                          value="#{wccDisConfigBean.webdav_url}"
+                          id="webdav_url" clientComponent="true"
+                          readOnly="true" labelStyle="white-space: nowrap;"/>
+            <af:inputText label="#{mainBundle.UI_URL}" value="#{wccDisConfigBean.ui_url}"
+                          id="ui_url" clientComponent="true"
+                          autoComplete="off"
+                          readOnly="true" labelStyle="white-space: nowrap;"/>
+          </af:panelFormLayout>
+        </af:panelGroupLayout>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout layout="horizontal" id="pgl10" halign="end"
+                               valign="bottom" styleClass="AFStretchWidth">
+            <af:button text="#{mainBundle.OK_BUTTON}" id="addserver"
+                              partialSubmit="true"
+                              actionListener="#{wccDisConfigBean.addServer}">
+              <af:serverListener type="addServerCallback"
+                                 method="#{wccDisConfigBean.coaoAddServerCallback}"/>
+              <f:attribute name="popupId" value="addServerPopup"/>
+            </af:button>
+            <af:button text="#{mainBundle.CANCEL_BUTTON}" id="close"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccDisConfigBean.handleCancelButton}">
+              <af:clientListener method="oracle.wcc.adf.handleValidations.cancelPopup"
+                                 type="click"/>
+              <af:clientAttribute name="popupId" value="addServerPopup"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+
+    <af:popup contentDelivery="lazyUncached" id="checkInUploadPopup"
+              popupFetchListener="#{wccCheckInUploadBean.initialize}"
+              autoCancel="disabled" childCreation="deferred">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog id="d3" title="#{wccCheckInUploadBean.dialogTitle}"
+                 contentWidth="655"
+                 type="none"
+                 resize="off"
+                 affirmativeTextAndAccessKey="#{viewcontrollerBundle.UPLOAD}"
+                 helpTopicId="#{wccel:getHelpTopicId(wccCheckInUploadBean.contextSensitiveHelpKey)}">
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl121" valign="bottom" halign="end"
+                               layout="horizontal"
+                               styleClass="WccDocUploadBtnBar AFStretchWidth">
+            <af:button text="#{wccCheckInUploadBean.uploadButtonTitle}"
+                              id="ciUpldBtn"
+                              actionListener="#{wccCheckInUploadBean.uploadClicked}"
+                              partialSubmit="true"
+                              disabled="true"/>
+            <af:button text="#{viewcontrollerBundle.CANCEL}" id="cancel"
+                              actionListener="#{wccCheckInUploadBean.cancelClicked}"
+                              partialSubmit="true" immediate="true"/>
+            <af:spacer width="5" height="10" id="s4"/>
+          </af:panelGroupLayout>
+        </f:facet>
+        <af:panelStretchLayout id="upldMainPl" dimensionsFrom="auto"
+                               startWidth="5"
+                               inlineStyle="#{wccLibraryInfoBean.disMode ? 'margin:10px 10px 5px;' : ''}"
+                               topHeight="auto" endWidth="10" bottomHeight="10"
+                               styleClass="AFStretchWidth">
+          <f:facet name="top">
+            <af:panelGroupLayout layout="scroll" id="pgl8">
+              <af:message id="m3" for="uploadErrorMsg"
+                          styleClass="WccMessageBackground"/>
+              <af:inputText id="uploadErrorMsg" visible="false"
+                            label="#{mainBundle.MESSAGE_PLACEHOLDER}"/>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="center">
+            <af:region value="#{bindings.CheckInUploadPFFlow1.regionModel}"
+                       id="r1"/>
+          </f:facet>
+        </af:panelStretchLayout>
+      </af:dialog>
+      <af:clientListener method="checkInUploadPopupClosed" type="popupClosed"/>
+      <af:serverListener type="checkInUploadPopupClosed"
+                         method="#{wccCheckInUploadBean.checkInUploadPopupClosed}"/>
+    </af:popup>
+
+    <af:popup childCreation="deferred" autoCancel="disabled" id="popupPropagateMetadata"
+              contentDelivery="lazyUncached" clientComponent="true" animate="false"
+              popupCanceledListener="#{wccPropagateMetadataBean.popupCancelListener}">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog id="d16" clientComponent="true" styleClass="WccDialogFlushRight"
+                 title="#{fldBundle.PROPAGATE_METADATA_DIALOG_TITLE}" type="none"
+                 helpTopicId="#{wccel:getHelpTopicId('FOLDER_PROPAGATE_METADATA')}"
+                 stretchChildren="first" contentWidth="550" contentHeight="500">
+       <c:if test="#{wccPropagateMetadataBean.showPopup}">
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl27" halign="end" layout="horizontal"
+                               styleClass="AFStretchWidth">
+            <af:button text="#{libBundle.PROPAGATE_BUTTON}" id="cb6"
+                              actionListener="#{wccPropagateMetadataBean.propagateMetadataActionListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupPropagateMetadata"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb7"
+                              actionListener="#{wccPropagateMetadataBean.closePopup}"
+                              partialSubmit="true" immediate="true">
+              <f:attribute name="popupId" value="popupPropagateMetadata"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+        <af:panelStretchLayout id="psl1" dimensionsFrom="parent">
+          <f:facet name="center">
+            <af:panelGroupLayout id="pgl26" layout="scroll">
+              <ui:include src="/wcc/propagateMetadata.jsff"/>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:panelStretchLayout>
+       </c:if> 
+      </af:dialog>
+    </af:popup>
+
+    <af:popup childCreation="deferred" autoCancel="disabled" id="popupLibProperties"
+              contentDelivery="lazyUncached" clientComponent="true" animate="false"
+              resetEditableValues="whenCanceled"
+              popupCanceledListener="#{wccLibraryInfoBean.popupCancelListener}">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog id="d5" stretchChildren="first"
+                 clientComponent="true"
+                 contentWidth="#{wccLibraryInfoBean.docLibrary.library
+                                 and wccLibraryInfoBean.docLibrary.inEnterpriseLibrary ? 470 : 460}"
+                 contentHeight="#{wccLibraryInfoBean.docLibrary.library
+                                 and wccLibraryInfoBean.docLibrary.inEnterpriseLibrary ? 500 : 400}"
+                 title="#{libBundle.LIBRARY_PROPERTIES}" type="none"
+                 helpTopicId="#{wccel:getHelpTopicId(wccLibraryInfoBean.helpContext)}"
+                 resize="on">
+        <c:if test="#{wccLibraryInfoBean.showPopup}">
+          <f:facet name="buttonBar">
+            <af:panelGroupLayout id="pgl24" halign="end" layout="horizontal"
+                                 styleClass="AFStretchWidth">
+              <af:button text="#{libBundle.SAVE_BUTTON}" id="cb1"
+                                actionListener="#{wccLibraryInfoBean.libPropertiesActionListener}"
+                                disabled="#{not wccLibraryInfoBean.capabilities['UPDATE_METADATA']}"
+                                partialSubmit="true">
+                <f:attribute name="popupId" value="popupLibProperties"/>
+              </af:button>
+              <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb2"
+                                actionListener="#{wccLibraryInfoBean.closePopup}"
+                                partialSubmit="true" immediate="true">
+                <f:attribute name="popupId" value="popupLibProperties"/>
+              </af:button>
+            </af:panelGroupLayout>
+          </f:facet>
+          <ui:include src="/wcc/libraryInfo.jsff"/>
+        </c:if>
+      </af:dialog>
+    </af:popup>
+
+    <af:popup childCreation="deferred" autoCancel="disabled"
+              id="popupFldProperties" contentDelivery="lazyUncached" clientComponent="true"
+              animate="false" resetEditableValues="whenCanceled"
+              popupCanceledListener="#{wccFolderInfoBean.popupCancelListener}">
+      <af:clientListener method="oracle.wcc.adf.util.setAlertBoxAccPropertiesInPopup" type="popupOpening"/>
+      <af:dialog id="d6" stretchChildren="first" clientComponent="true"
+                 contentWidth="#{wccFolderInfoBean.selectedFolder.inEnterpriseLibrary or
+                                (wccFolderInfoBean.folderParsedPath.pathType == 'UNFILED' or
+                                wccFolderInfoBean.folderParsedPath.pathType == 'NON_LIBRARY') ? 470 : 460}"
+                 contentHeight="#{wccFolderInfoBean.selectedFolder.inEnterpriseLibrary or
+                                (wccFolderInfoBean.folderParsedPath.pathType == 'UNFILED' or
+                                wccFolderInfoBean.folderParsedPath.pathType == 'NON_LIBRARY') ? 500 : 410}"
+                 title="#{wccFolderInfoBean.selectedFolder.queryFolder ?
+                        fldBundle.SAVED_SEARCH_PROPERTIES :
+                        (wccFolderInfoBean.selectedFolder.retentionFolder ?
+                        fldBundle.RETENTION_FOLDER_PROPERTIES :
+                        fldBundle.FOLDER_PROPERTIES)}" type="none"
+                 helpTopicId="#{wccel:getHelpTopicId(wccFolderInfoBean.helpContext)}"
+                 resize="on">
+        <c:if test="#{wccFolderInfoBean.showPopup}">
+          <f:facet name="buttonBar">
+            <af:panelGroupLayout id="pgl28" halign="end" layout="horizontal"
+                                 styleClass="AFStretchWidth">
+              <af:button text="#{libBundle.SAVE_BUTTON}" id="cb3"
+                                actionListener="#{wccFolderInfoBean.fldPropertiesActionListener}"
+                                disabled="#{not wccFolderInfoBean.capabilities['UPDATE_METADATA']}"
+                                partialSubmit="true">
+                <f:attribute name="popupId" value="popupFldProperties"/>
+              </af:button>
+              <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb4"
+                                actionListener="#{wccFolderInfoBean.closePopup}"
+                                partialSubmit="true" immediate="true">
+                <f:attribute name="popupId" value="popupFldProperties"/>
+              </af:button>
+            </af:panelGroupLayout>
+          </f:facet>
+          <ui:include src="/wcc/folderInfo.jsff"/>
+        </c:if>
+      </af:dialog>
+    </af:popup>
+
+    <af:popup childCreation="deferred" autoCancel="enabled" id="aboutPopup"
+              animate="false" contentDelivery="lazy">
+      <af:panelWindow id="pw1" title="#{mainBundle.ABOUT}" modal="false" closeIconVisible="true"
+                      contentWidth="410">
+        <ui:include src="/wcc/about.jsff"/>
+      </af:panelWindow>
+    </af:popup>
+
+    <af:popup id="popupChooseDestinationProfile"
+              contentDelivery="lazyUncached"
+              autoCancel="disabled" childCreation="deferred"
+              popupFetchListener="#{wccMainBean.chooseDestProfilePopupFetchListener}"
+              popupCanceledListener="#{wccMainBean.chooseDestProfilePopupCancelListener}">
+      <af:clientListener method="oracle.wcc.adf.lov.fp.setActivePopup" type="popupOpening"/>
+      <af:clientListener method="oracle.wcc.adf.lov.fp.initDialogFocus" type="popupOpened"/>
+      <af:clientAttribute name="fpNamespaceId" value="chooseDestinationProfile"/>
+      <af:dialog id="d11" type="none" contentWidth="450"
+                 title="#{mainBundle.CHOOSE_DESTINATION_PROFILE_TITLE}"
+                 helpTopicId="#{wccel:getHelpTopicId('CHOOSE_DESTINATION_AND_PROFILE')}">
+        <ui:include src="/wcc/chooseDestinationProfile.jsff"/>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout layout="horizontal" id="pgl41" halign="end"
+                               valign="bottom" styleClass="AFStretchWidth">
+            <af:button text="#{pb.BUTTON_CONTINUE}" id="cb91"
+                              actionListener="#{wccMainBean.chooseDestProfileActionListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupChooseDestinationProfile"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb110"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccMainBean.closeChooseDestProfilePopup}">
+              <f:attribute name="popupId" value="popupChooseDestinationProfile"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+
+    <c:if test="#{requestContext.accessibilityMode eq 'SCREEN_READER'}">
+      <af:popup childCreation="immediate" autoCancel="enabled" id="gmbPopup"
+                popupCanceledListener="#{wccGlobalMessageBean.messagePopupCanceled}">
+        <af:dialog id="d4" title="#{mainBundle.MESSAGE_POPUP_TITLE}" modal="true"
+                   stretchChildren="first" type="ok" closeIconVisible="false"
+                   contentWidth="400"
+                   dialogListener="#{wccGlobalMessageBean.messageDialogListener}">
+          <af:panelGroupLayout id="pgl21" layout="scroll">
+            <ui:include src="/wcc/globalMessage.jsff"/>
+          </af:panelGroupLayout>
+        </af:dialog>
+      </af:popup>
+    </c:if>
+
+    <af:popup childCreation="deferred" autoCancel="disabled" id="popupWfApproveDoc"
+              contentDelivery="lazyUncached" clientComponent="true" animate="false"
+              popupCanceledListener="#{wccWorkflowApprovalBean.popupCancelListener}"
+              popupFetchListener="#{wccWorkflowApprovalBean.popupFetchListener}">
+      <af:dialog id="d10" stretchChildren="first"
+                 clientComponent="true" contentWidth="500"
+                 contentHeight="#{fn:length(wccWorkflowApprovalBean.metadataForm.items) > 0 ? 250 : 160}"
+                 title="#{wfBundle.SIGN_AND_APPROVE_TITLE}" type="none"
+                 helpTopicId="#{wccel:getHelpTopicId('DOCUMENT_SIGN_AND_APPROVE')}">
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl32" halign="end" layout="horizontal"
+                               styleClass="AFStretchWidth">
+            <af:button text="#{wfBundle.SIGN_AND_APPROVE}" id="cb9"
+                              actionListener="#{wccWorkflowApprovalBean.approveActionListener}"
+                              partialSubmit="true">
+              <f:attribute name="popupId" value="popupWfApproveDoc"/>
+            </af:button>
+            <af:button text="#{libBundle.CANCEL_BUTTON}" id="cb10"
+                              actionListener="#{wccWorkflowApprovalBean.cancelActionListener}"
+                              partialSubmit="true" immediate="true">
+              <f:attribute name="popupId" value="popupWfApproveDoc"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+        <ui:include src="/wcc/approve.jsff"/>
+      </af:dialog>
+    </af:popup>
+    
+    <af:popup childCreation="deferred" autoCancel="disabled" id="pAddPin"
+              contentDelivery="lazyUncached"
+              popupFetchListener="#{wccPinningBean.addPinPopupFetchListener}">
+      <af:dialog id="dAddPin" type="none" title="#{pinBundle.ADD_PIN}">
+        <af:panelGroupLayout id="pgl33" layout="vertical">
+          <af:spacer width="10" height="10" id="s6"/>
+          <af:inputText label="#{pinBundle.PIN_NAME}" id="it3"
+                        value="#{wccPinningBean.pinLabel}" required="true"
+                        autoComplete="off"/>
+          <af:spacer width="10" height="10" id="s9"/>
+        </af:panelGroupLayout>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl34" layout="horizontal" halign="end"
+                               styleClass="AFStretchWidth">
+            <af:button text="#{pinBundle.BUTTON_OK}" id="cb11"
+                              partialSubmit="true"
+                              actionListener="#{wccPinningBean.addPin}">
+              <f:attribute name="popupId" value="pAddPin"/>
+            </af:button>
+            <af:button text="#{pinBundle.BUTTON_CANCEL}" id="cb12"
+                              partialSubmit="true" immediate="true"
+                              actionListener="#{wccPinningBean.cancelPin}">
+              <f:attribute name="popupId" value="pAddPin"/>
+              <af:resetListener type="action"/>
+            </af:button>
+          </af:panelGroupLayout>
+        </f:facet>
+      </af:dialog>
+    </af:popup>
+    
+    <af:popup childCreation="deferred" autoCancel="disabled" id="pConfirm"
+              animate="false" contentDelivery="lazy">
+      <af:dialog id="dConfirm" type="yesNo" closeIconVisible="false"
+                 title="#{pinBundle.ADD_PIN}" contentWidth="300"
+                 dialogListener="#{wccPinningBean.overwritePin}">
+        <af:outputFormatted value="#{pinBundle.OVERWRITE_PIN_MESSAGE}" id="of1"/>
+      </af:dialog>
+    </af:popup>
+  </af:panelGroupLayout>
+
+  <af:panelGroupLayout id="WccListViewRowCss" styleClass="WccListViewRow" visible="false" clientComponent="true"
+                       binding="#{wccMainBean.wccListViewRowCss}"/>
+  <af:panelGroupLayout id="WccThumbnailViewBorderCss" styleClass="WccThumbnailViewBorder" visible="false" clientComponent="true"
+                       binding="#{wccMainBean.wccThumbnailViewBorderCss}"/>
+  <c:if test="#{wccel:isCheckoutAndOpenInNativeEnabled()}">
+    <af:resource type="javascript" source="#{wccel:getCoaoJavaScript()}"/>
+  </c:if>
+  <af:resource type="javascript" source="#{wccel:getVersionedResource('/resources/wcc/js/wcc.js')}"/>
+  <af:resource type="javascript" source="#{wccel:getVersionedResource('/resources/wcc/js/wcchelp.js')}"/>
+  <af:resource type="javascript">
+    function checkInUploadPopupClosed(event)
+    {
+      AdfCustomEvent.queue(event.getSource(), "checkInUploadPopupClosed", {}, true);
+    }
+  </af:resource>
+  </af:group>
+</ui:composition>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14"
+                id="employee_details_flow_employee_details_ExecuteWithParamsPageDef"
+                Package="com.dm.hrdemoapp.hrview.employee.pageflows" SkipValidation="true">
+  <parameters/>
+  <executables>
+    <iterator Binds="EmployeesDetailsView1" RangeSize="25" DataControl="HRServiceDataControl"
+              id="EmployeesDetailsView1Iterator" Refresh="never"/>
+  </executables>
+  <bindings>
+    <action IterBinding="EmployeesDetailsView1Iterator" id="ExecuteWithParams" RequiresUpdateModel="true"
+            Action="executeWithParams">
+      <NamedData NDName="pEmployeeID" NDValue="#{pageFlowScope.employeeID}" NDType="java.lang.Integer"/>
+    </action>
+  </bindings>
+</pageDefinition>

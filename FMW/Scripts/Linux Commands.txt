@@ -1,0 +1,13 @@
+JAVA_HOME=/usr/lang/JAVA/jdk1.8.0_121
+export JAVA_HOME
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+$ ORACLE_HOME/oracle_common/common/bin/wlst.sh
+
+sudo DISPLAY=:0
+sudo cat /etc/sudoers
+
+
+
+
+

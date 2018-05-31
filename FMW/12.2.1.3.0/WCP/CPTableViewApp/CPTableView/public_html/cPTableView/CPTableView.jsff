@@ -1,0 +1,51 @@
+<?xml version = '1.0'?>
+<!-- Copyright (c) 2009, 2010, Oracle and/or its affiliates. 
+All rights reserved. -->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dt="http://xmlns.oracle.com/webcenter/content/templates">
+    <dt:contentListTemplateDef var="nodes">
+        <af:panelGroupLayout layout="scroll" id="nodeListPanel" valign="middle">
+            <af:table value="#{nodes}" scrollPolicy="page" var="node" fetchSize="10" styleClass="AFStretchWidth"
+                      autoHeightRows="6">
+                <af:column id="c1" width="30%" headerText="Release Date">
+                    <!--<af:outputText id="dInDate" value="#{node.propertyMap['dInDate'].value.calendarValue}">
+                        <af:convertDateTime pattern="MMMM dd, yyyy"/>
+                    </af:outputText>-->
+                    <!--<af:outputText value="#{node.createdDate}" id="ot1"></af:outputText>-->
+                    <af:outputText value="#{node.propertyMap['dInDate']}" id="ot2"></af:outputText>
+                </af:column>
+                <af:column id="c2" width="70%" sortProperty="docTitle" sortable="true" headerText="Title">
+                    <af:goImageLink text="#{node.propertyMap['dDocTitle'].value.stringValue}" id="pugil1"
+                                    icon="#{node.primaryProperty.icon.smallIcon}"
+                                    destination="https://xxxxxxxxxxx/webcenter/portal/wccdoc?dDocName=#{node.propertyMap['dDocName'].value.stringValue}"
+                                    targetFrame="_blank" rendered="#{not node.isFolder}"
+                                    shortDesc="#{node.propertyMap['dDocTitle'].value.stringValue}"/>
+                    <af:goImageLink text="#{node.name}" id="gil1" disabledIcon="#{node.icon.smallIcon}" destination=""
+                                    disabled="true" targetFrame="_blank"
+                                    shortDesc="#{not empty node.propertyMap['xComments'].value.stringValue ? node.propertyMap['xComments'].value.stringValue : node.path}"
+                                    rendered="#{node.isFolder}"/>
+                </af:column>
+            </af:table>
+        </af:panelGroupLayout>
+        <!--<af:panelGroupLayout layout="scroll" id="nodeListPanel" valign="middle" rendered="#{not empty nodes}">
+            <af:popup id="cpPopup" eventContext="launcher" contentDelivery="lazyUncached" launcherVar="source">
+                <af:setPropertyListener type="popupFetch" from="#{node}" to="#{requestScope.oracleCPPopupCurrentNode}"/>
+                <af:noteWindow id="cpNw" rendered="#{not empty requestScope.oracleCPPopupCurrentNode}">
+                    <dt:contentTemplate node="#{requestScope.oracleCPPopupCurrentNode}"
+                                        view="oracle.webcenter.content.templates.default.document.details"
+                                        nodesHint="#{nodes}" id="ctmv1"/>
+                </af:noteWindow>
+            </af:popup>
+            <af:iterator rows="0" var="node" varStatus="iterator" value="#{nodes}" id="it0">
+                <dt:contentTemplate node="#{node}" view="oracle.webcenter.content.templates.default.list.item"
+                                    nodesHint="#{nodes}" id="ct0"/>
+            </af:iterator>
+        </af:panelGroupLayout>-->
+        <!--
+        **
+        ** Handling of missing nodes (deleted, user has no rights, etc.).
+        **
+        -->
+        <af:outputText id="emptyot" value="#{templateBundle.EMPTY_NODES}" rendered="#{empty nodes}"/>
+    </dt:contentListTemplateDef>
+</jsp:root>

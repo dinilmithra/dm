@@ -1,0 +1,22 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!---->
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+    <AppModuleConfigBag ApplicationName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule">
+        <AppModuleConfig name="HRModuleLocal" DeployPlatform="LOCAL"
+                         java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory"
+                         ApplicationName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule"
+                         jbo.project="com.dm.adf.tftransapp.tftmodel.TFTModel">
+            <AM-Pooling jbo.ampool.minavailablesize="2" jbo.recyclethreshold="3" jbo.ampool.maxpoolsize="5000"/>
+            <Database jbo.locking.mode="optimistic" jbo.TypeMapEntries="OracleApps" JDBCDataSource="jdbc/HRDS"/>
+            <Security AppModuleJndiName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule"/>
+        </AppModuleConfig>
+        <AppModuleConfig name="HRModuleShared" DeployPlatform="LOCAL"
+                         java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory"
+                         ApplicationName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule"
+                         jbo.project="com.dm.adf.tftransapp.tftmodel.TFTModel">
+            <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+            <Database jbo.locking.mode="optimistic" JDBCDataSource="jdbc/HRDS" jbo.TypeMapEntries="OracleApps"/>
+            <Security AppModuleJndiName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule"/>
+        </AppModuleConfig>
+    </AppModuleConfigBag>
+</BC4JConfig>

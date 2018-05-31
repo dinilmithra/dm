@@ -1,0 +1,28 @@
+<?xml version = '1.0'?>
+<!-- Copyright (c) 2009, 2010, Oracle and/or its affiliates. 
+All rights reserved. -->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dt="http://xmlns.oracle.com/webcenter/content/templates">
+    <dt:contentListTemplateDef var="nodes">
+        <af:panelGroupLayout layout="scroll" id="nodeListPanel" valign="middle" rendered="#{not empty nodes}">
+            <af:popup id="cpPopup" eventContext="launcher" contentDelivery="lazyUncached" launcherVar="source">
+                <af:setPropertyListener type="popupFetch" from="#{node}" to="#{requestScope.oracleCPPopupCurrentNode}"/>
+                <af:noteWindow id="cpNw" rendered="#{not empty requestScope.oracleCPPopupCurrentNode}">
+                    <dt:contentTemplate node="#{requestScope.oracleCPPopupCurrentNode}"
+                                        view="oracle.webcenter.content.templates.default.document.details"
+                                        nodesHint="#{nodes}" id="ctmv1"/>
+                </af:noteWindow>
+            </af:popup>
+            <af:iterator rows="0" var="node" varStatus="iterator" value="#{nodes}" id="it0">
+                <dt:contentTemplate node="#{node}" view="oracle.webcenter.content.templates.default.list.item"
+                                    nodesHint="#{nodes}" id="ct0"/>
+            </af:iterator>
+        </af:panelGroupLayout>
+        <!--
+        **
+        ** Handling of missing nodes (deleted, user has no rights, etc.).
+        **
+        -->
+        <af:outputText id="emptyot" value="#{templateBundle.EMPTY_NODES}" rendered="#{empty nodes}"/>
+    </dt:contentListTemplateDef>
+</jsp:root>

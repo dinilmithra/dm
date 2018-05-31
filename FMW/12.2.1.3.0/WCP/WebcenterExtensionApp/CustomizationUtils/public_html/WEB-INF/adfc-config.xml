@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="MDSAdmin">
+    <page>/com/dm/wcextapp/mds/admin/pages/MDSAdmin.jspx</page>
+  </view>
+  <view id="Employees">
+    <page>/com/dm/wcextapp/mds/hr/pages/Employees.jspx</page>
+  </view>
+  <managed-bean id="__1">
+    <managed-bean-name>mdsAdminBean</managed-bean-name>
+    <managed-bean-class>com.dm.wcextapp.customutils.mds.admin.beans.MDSAdminBean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>

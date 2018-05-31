@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="Customization Admin Options" id="pb2">
+        <f:facet name="toolbar"/>
+        <af:button text="Reset all to factory defaults" id="cb1" actionListener="#{mdsAdminBean.onResetToDefault}"
+                   partialSubmit="true"/>
+        <af:spacer width="10" height="10" id="s3" rendered="false"/>
+        <af:button text="Reset layout defaults to factory defaults" id="cb2"
+                   actionListener="#{mdsAdminBean.onResetPoweruserToDefault}" partialSubmit="true" rendered="false"/>
+        <af:spacer width="10" height="10" id="s2"/>
+        <af:button text="Reset all to layout user defaults" id="cb3"
+                   actionListener="#{mdsAdminBean.onResetAllToPoweruser}" partialSubmit="true"/>
+        <af:inputText label="Username" id="it1" value="#{mdsAdminBean.username}" inlineStyle="width:100px;"/>
+        <af:button text="Reset to layout user defaults" id="cb4"
+                   actionListener="#{mdsAdminBean.onResetSpecificUserToPoweruser}" partialSubmit="true"/>
+        <af:spacer width="10" height="10" id="s1" rendered="false"/>
+        <af:button text="Clear MDS Cache" id="cbcache" partialSubmit="true"
+                   actionListener="#{mdsAdminBean.onClearMDSCache}" rendered="false"/>
+        <af:spacer width="10" height="10" id="s4"/>
+        <af:button text="Debug MDS Info to stdout" id="cb5" partialSubmit="true"
+                   actionListener="#{mdsAdminBean.onDebugMDSInfo}"/>
+    </af:panelBox>
+</jsp:root>

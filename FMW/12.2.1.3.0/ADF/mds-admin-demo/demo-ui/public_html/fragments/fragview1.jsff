@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelCollection id="pc1">
+    <f:facet name="menus"/>
+    <f:facet name="toolbar"/>
+    <f:facet name="statusbar"/>
+    <af:table value="#{bindings.DepartmentsView1.collectionModel}" var="row"
+              rows="#{bindings.DepartmentsView1.rangeSize}"
+              emptyText="#{bindings.DepartmentsView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+              fetchSize="#{bindings.DepartmentsView1.rangeSize}"
+              rowBandingInterval="0"
+              filterModel="#{bindings.DepartmentsView1Query.queryDescriptor}"
+              queryListener="#{bindings.DepartmentsView1Query.processQuery}"
+              filterVisible="true" varStatus="vs"
+              selectedRowKeys="#{bindings.DepartmentsView1.collectionModel.selectedRow}"
+              selectionListener="#{bindings.DepartmentsView1.collectionModel.makeCurrent}"
+              rowSelection="single" id="t1">
+      <af:column sortProperty="DepartmentId" filterable="true" sortable="true"
+                 headerText="#{bindings.DepartmentsView1.hints.DepartmentId.label}"
+                 id="c4">
+        <af:outputText value="#{row.DepartmentId}" id="ot3">
+          <af:convertNumber groupingUsed="false"
+                            pattern="#{bindings.DepartmentsView1.hints.DepartmentId.format}"/>
+        </af:outputText>
+      </af:column>
+      <af:column sortProperty="DepartmentName" filterable="true" sortable="true"
+                 headerText="#{bindings.DepartmentsView1.hints.DepartmentName.label}"
+                 id="c1">
+        <af:outputText value="#{row.DepartmentName}" id="ot1"/>
+      </af:column>
+      <af:column sortProperty="ManagerId" filterable="true" sortable="true"
+                 headerText="#{bindings.DepartmentsView1.hints.ManagerId.label}"
+                 id="c2">
+        <af:outputText value="#{row.ManagerId}" id="ot2"/>
+      </af:column>
+      <af:column sortProperty="LocationId" filterable="true" sortable="true"
+                 headerText="#{bindings.DepartmentsView1.hints.LocationId.label}"
+                 id="c3">
+        <af:outputText value="#{row.LocationId}" id="ot4"/>
+      </af:column>
+    </af:table>
+  </af:panelCollection>
+</jsp:root>

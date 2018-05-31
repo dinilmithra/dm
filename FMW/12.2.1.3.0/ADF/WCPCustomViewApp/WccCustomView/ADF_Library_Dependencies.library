@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<library name="ADF Library Dependencies" id="" deployed="true" locked="true" xmlns="http://xmlns.oracle.com/jdeveloper/1013/manifest-libraries">
+  <description/>
+  <classpath>../../../WCC/libs/ViewController/lib/viewer/content-service-api.jar</classpath>
+  <classpath>../../../WCC/libs/ViewController/lib/viewer/jai_codec.jar</classpath>
+  <classpath>../../../WCC/libs/ViewController/lib/viewer/ViewerLib.jar</classpath>
+</library>

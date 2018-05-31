@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="owl-carousel-flow">
+    <default-activity>owl-carousel-fragment</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <view id="owl-carousel-fragment">
+      <page>/com/dm/adf/owlcarouselapp/owlcarouselui/view/fragments/owl-carousel-fragment.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

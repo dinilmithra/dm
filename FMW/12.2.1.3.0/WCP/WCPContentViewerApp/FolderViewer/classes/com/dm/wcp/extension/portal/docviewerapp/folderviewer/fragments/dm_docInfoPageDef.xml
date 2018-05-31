@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="dm_docInfoPageDef"
+                Package="com.dm.wcp.extension.portal.docviewerapp.folderviewer.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="CheckInUploadPFFlow1" taskFlowId="/WEB-INF/wcc/upload/CheckInUploadPFFlow.xml#CheckInUploadPFFlow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+      <parameters>
+        <parameter id="CheckInUploadBean" value="#{wccCheckInUploadBean}"/>
+        <parameter id="wccDocInfoBean" value="#{wccDocInfoBean}"/>
+      </parameters>
+    </taskFlow>
+    <taskFlow id="customTabRegion1" taskFlowId="${wccDocInfoBean.customTabDefinitions[0].taskFlowId}"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              parametersMap="#{wccDocInfoBean.customTabParametersMap}" Refresh="ifNeeded"/>
+    <taskFlow id="customTabRegion2" taskFlowId="${wccDocInfoBean.customTabDefinitions[1].taskFlowId}"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              parametersMap="#{wccDocInfoBean.customTabParametersMap}" Refresh="ifNeeded"/>
+    <taskFlow id="customTabRegion3" taskFlowId="${wccDocInfoBean.customTabDefinitions[2].taskFlowId}"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              parametersMap="#{wccDocInfoBean.customTabParametersMap}" Refresh="ifNeeded"/>
+    <taskFlow id="customTabRegion4" taskFlowId="${wccDocInfoBean.customTabDefinitions[3].taskFlowId}"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              parametersMap="#{wccDocInfoBean.customTabParametersMap}" Refresh="ifNeeded"/>
+    <taskFlow id="customTabRegion5" taskFlowId="${wccDocInfoBean.customTabDefinitions[4].taskFlowId}"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"
+              parametersMap="#{wccDocInfoBean.customTabParametersMap}" Refresh="ifNeeded"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

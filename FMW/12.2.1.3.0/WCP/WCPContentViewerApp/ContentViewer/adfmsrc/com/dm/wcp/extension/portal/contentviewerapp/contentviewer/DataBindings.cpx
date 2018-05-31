@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.wcp.extension.portal.contentviewerapp.contentviewer" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-alert.jsff"
+          usageId="com_dm_wcp_extension_portal_docviewerapp_folderviewer_dm-alertPageDef"/>
+    <page path="/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-content-manager.jsff"
+          usageId="com_dm_wcp_extension_portal_docviewerapp_folderviewer_dm-content-managerPageDef"/>
+    <page path="/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-main.jsff"
+          usageId="com_dm_wcp_extension_portal_contentviewerapp_contentviewer_dm_mainPageDef"/>
+    <page path="/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-docInfo.jsff"
+          usageId="com_dm_wcp_extension_portal_contentviewerapp_contentviewer_dm_docInfoPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_wcp_extension_portal_docviewerapp_folderviewer_dm-alertPageDef"
+          path="com.dm.wcp.extension.portal.contentviewerapp.contentviewer.fragments.dm-alertPageDef"/>
+    <page id="com_dm_wcp_extension_portal_docviewerapp_folderviewer_dm-content-managerPageDef"
+          path="com.dm.wcp.extension.portal.contentviewerapp.contentviewer.fragments.contentManagerPageDef"/>
+    <page id="com_dm_wcp_extension_portal_contentviewerapp_contentviewer_dm_mainPageDef"
+          path="com.dm.wcp.extension.portal.contentviewerapp.contentviewer.fragments.dm_mainPageDef"/>
+    <page id="com_dm_wcp_extension_portal_contentviewerapp_contentviewer_dm_docInfoPageDef"
+          path="com.dm.wcp.extension.portal.contentviewerapp.contentviewer.fragments.dm_docInfoPageDef"/>
+  </pageDefinitionUsages>
+</Application>

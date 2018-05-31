@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="x">99.35547</property>
+      <property
+         name="y">266.5</property>
+   </OverallProperties>
+   <View
+      id="View2">
+      <property
+         name="activityId">owl-carousel-fragment</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">99.35547</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>owl-carousel-fragment&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">98.79883</property>
+      <property
+         name="page">/com/dm/adf/owlcarouselapp/owlcarouselui/view/fragments/owl-carousel-fragment.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+</SDM>

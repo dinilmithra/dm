@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="DetailsPageDef"
+                Package="com.dm.hrdemoapp.hrview.employee.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="employeedetails1"
+              taskFlowId="/WEB-INF/com/dm/hrdemoapp/hrview/employee/pageflows/employee-details-flow.xml#employee-details"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+      <parameters>
+        <parameter id="employeeID" value="#{param.employeeID}"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

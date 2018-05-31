@@ -1,0 +1,6 @@
+<References xmlns="http://xmlns.oracle.com/adf/jndi">
+  <Reference name="dmskin" className="oracle.adf.share.connection.jmx.JMXConnection" partial="true"
+             manageInOracleEnterpriseManager="true" deployable="true" xmlns="">
+    <Factory className="oracle.adf.share.connection.jmx.JMXConnectionFactory"/>
+  </Reference>
+</References>

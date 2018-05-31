@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.2
+Created-By: Dinil Mithra
+Package: 
+Specification-Version: 12.2.1.3.0
+Implementation-Version: 1.0.0
+Implementation-Label: DM_SKINS_V1
+Implementation-Vendor: DM
+Implementation-Patch-Number: 
+Implementation-Patch-List: 
+Implementation-Title: DM Skins V1
+Extension-Name: com.dm.skins.dmskins
+

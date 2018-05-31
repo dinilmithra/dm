@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (c) 2014, 2016, Oracle and/or its affiliates. 
+All rights reserved.-->
+<!-- This view is used in wrapper taskflow to invoke wcc rui taskflow.
+     It also has the popup, which will be shown on click of configure option. -->
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelStretchLayout id="psl1" styleClass="AFStretchWidth" dimensionsFrom="#{pageFlowScope.contentManagerBean.dimensionsFrom}">
+    <f:facet name="center">
+        <af:region value="#{bindings.wccmainregion.regionModel}" id="mainregion"/>
+    </f:facet>
+    <f:facet name="top">
+      <af:popup id="confpopup" childCreation="deferred" autoCancel="disabled" popupCanceledListener="#{contentManagerConfigureBean.onCancelPopup}"
+                popupFetchListener="#{contentManagerConfigureBean.onFetchPopup}">
+        <af:resource type="javascript">
+        function generatePin(event) 
+        {
+            var source = event.getSource();
+            // configureregion is the id of the region where wcc taskflow is rendered during configure
+            // bWccAction is the id of the invisible button on wcc taskflow which will generate the pin on click
+            var pinButton = source.findComponent("::configureregion:bWccAction");
+            if (pinButton)
+            {
+                // Queue the event on the pin button
+                AdfActionEvent.queue(pinButton, true);
+            }
+        }
+        </af:resource>
+        <af:dialog id="d1" type="none" title="#{dlBndl.CONFIGURE_TITLE}" closeIconVisible="true" modal="true" stretchChildren="first"
+               contentWidth="700" contentHeight="400" resize="on" helpTopicId="content_cs_config_cm">
+        <af:panelStretchLayout id="psl2" styleClass="AFStretchWidth" dimensionsFrom="#{pageFlowScope.contentManagerBean.dimensionsFrom}">
+          <f:facet name="center">
+            <af:region value="#{bindings.wccconfigureregion.regionModel}" id="configureregion"/>
+          </f:facet>
+        </af:panelStretchLayout>
+        <f:facet name="buttonBar">
+          <af:panelGroupLayout id="pgl3" layout="horizontal" halign="right" styleClass="AFStretchWidth">
+            <af:button text="#{dlBndl.SAVE_BUTTON_TEXT}" id="b1" actionListener="#{contentManagerConfigureBean.saveButtonListener}">
+              <af:clientListener type="click" method="generatePin"/>
+            </af:button>
+            <af:button text="#{dlBndl.CANCEL_BUTTON_TEXT}" id="b2" immediate="true"
+                     actionListener="#{contentManagerConfigureBean.cancelButtonListener}"/>
+          </af:panelGroupLayout>
+        </f:facet>
+        </af:dialog>
+      </af:popup>
+    </f:facet>
+  </af:panelStretchLayout>  
+</jsp:root>

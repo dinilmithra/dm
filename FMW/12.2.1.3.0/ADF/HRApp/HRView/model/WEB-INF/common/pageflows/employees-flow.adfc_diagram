@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="x">88.01758</property>
+      <property
+         name="y">91.149414</property>
+   </OverallProperties>
+   <View
+      id="View2">
+      <property
+         name="activityId">employees-fragment</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">270.72656</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>employees-fragment&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">98.79883</property>
+      <property
+         name="page">/hr/fragments/employees-fragment.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+</SDM>

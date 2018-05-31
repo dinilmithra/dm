@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="Home.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl1">
+                <af:button text="button 1" id="b1">
+                    <af:showPopupBehavior popupId="p1"/>
+                </af:button>
+                <af:popup childCreation="deferred" autoCancel="disabled" id="p1">
+                    <af:dialog id="d2">
+                        <f:facet name="buttonBar"/>
+                        <af:outputText value="outputText1" id="ot1"/>
+                    </af:dialog>
+                </af:popup>
+                <af:button text="Next" id="cb1" styleClass="fancyArrowNext"/>
+                <af:button text="Previous" id="cb2" styleClass="fancyArrowPrev"/>
+                <af:button text="X" id="cb3" styleClass="fancyButtonClose"/>
+                <af:button text="ok" id="cb4" styleClass="fancyButtonOK"/>
+                <af:button text="top to right" id="cb5" styleClass="fancyDoubleArrowTop2Right"/>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>

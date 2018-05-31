@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="Search">
+    <page>/com/dm/hrdemoapp/hrview/employee/pages/Search.jspx</page>
+  </view>
+  <view id="Details">
+    <page>/com/dm/hrdemoapp/hrview/employee/pages/Details.jspx</page>
+  </view>
+</adfc-config>

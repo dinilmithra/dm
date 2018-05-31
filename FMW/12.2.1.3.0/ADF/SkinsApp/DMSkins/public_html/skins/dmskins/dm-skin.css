@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+af|goLink.tabLink {
+    Text-Decoration: Underline;
+    Font-Family: Arial;
+    Font-Size: 9pt;
+    Font-Weight: Bold;
+    font-family: 'openSans-Regular';
+    display: inline-block;
+    padding: 15px 20px;
+    background: #fff;
+    cursor: pointer;
+    color: Orange;
+    font-size: 13px;
+    text-decoration: none;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.;2s;
+    background-color: #e70000;
+}
+
+af|button.Stadium {
+    background: #3498db;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    background-image: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+af|button.Stadium:focus, af|button.Stadium:hover, af|button.Stadium:active, af|button.Stadium:focus:hover, af|button.Stadium:focus:hover:active {
+    background: royalblue;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    background-image: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+af|button.FancyArrowNext {
+    background: rgb(115, 115, 115) !important;
+    height: 20px;
+    position: relative;
+    width: 100px;
+    text-align: left;
+    font: 10pt bold;
+    color: white;
+    border: thin solid rgb(99, 99, 99);
+}
+
+af|button.FancyArrowNext:after {
+    content: ' ';
+    height: 0px;
+    width: 0px;
+    border: 10px solid rgb(82, 82, 82);
+    top: -1px;
+    left: 85%;
+    position: absolute;
+    border-left-color: transparent;
+    border-top-right-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+}
+
+af|button.FancyArrowPrev {
+    background: rgb(115, 115, 115) !important;
+    height: 20px;
+    position: relative;
+    width: 100px;
+    text-align: right;
+    font: 10pt bold;
+    color: white;
+    border: thin solid rgb(99, 99, 99);
+}
+
+af|button.FancyArrowPrev:after {
+    content: ' ';
+    height: 0px;
+    width: 0px;
+    border: 10px solid rgb(82, 82, 82);
+    top: -1px;
+    left: 0px;
+    position: absolute;
+    border-right-color: transparent;
+    border-top-left-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+}
+
+af|button.FancyButtonClose {
+    background: rgb(49, 49, 49) !important;
+    height: 40px;
+    position: relative;
+    width: 40px;
+    text-align: right;
+    font: 14pt bold Verdana, Arial, Helvetica, sans-serif;
+    color: white;
+    border: thin solid rgb(214, 214, 214);
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+}
+
+af|button.FancyButtonClose:hover {
+    background: rgb(255, 99, 99);
+    border: thick solid rgb(255, 181, 181);
+    color: Red;
+    font: 10pt bold Verdana, Arial, Helvetica, sans-serif;
+}
+
+af|button.FancyButtonOK {
+    background: rgb(181, 181, 181) !important;
+    height: 20px;
+    position: relative;
+    width: 100px;
+    text-align: right;
+    font: 10pt bold Verdana, Arial, Helvetica, sans-serif;
+    color: white;
+    border: thin solid rgb(214, 214, 214);
+    border-radius: 10px 10px 10px 10px;
+    text-align: center;
+}
+
+af|button.FancyDoubleArrowTop2Right {
+    background: rgb(115, 115, 115) !important;
+    height: 20px;
+    position: relative;
+    width: 100px;
+    text-align: left;
+    font: 10pt bold;
+    color: white;
+    border: thin solid rgb(99, 99, 99);
+}
+
+af|button.FancyDoubleArrowTop2Right:after {
+    content: ' ';
+    height: 0px;
+    width: 0px;
+    border: 10px solid transparent;
+    top: -1px;
+    left: 100%;
+    position: absolute;
+    border-left-color: rgb(115, 115, 115);
+}
+
+af|button.FancyDoubleArrowTop2Right:before {
+    content: ' ';
+    height: 0px;
+    width: 0px;
+    border: 10px solid transparent;
+    top: -20px;
+    left: 0px;
+    position: absolute;
+    border-bottom-color: rgb(115, 115, 115);
+}
+
+/*af|goLink {*/
+    /*font-size: 9px;
+    font-family: Arial;
+    font-weight: bold;
+    color: Blue;*/
+/*}
+
+a {*/
+    /*color: hotpink;
+    font-size: 9px;
+    font-family: Arial;
+    font-weight: bold;*/
+/*}*/
+
+af|button.Round {
+    text-align: center;
+    vertical-align: middle;
+    color: blue;
+    border: skyblue 2.0px solid;
+    font-style: italic;
+    font-family: cursive;
+    height: 50px;
+    width: 50px;
+    border-bottom-left-radius: 5em 5em;
+    border-bottom-right-radius: 5em 5em;
+    border-top-left-radius: 5em;
+    border-top-right-radius: 5em;
+}
+
+af|button.RButton::text {
+    padding-top: 12px;
+}
+
+af|button.RButton::link {
+    border: skyblue 2.0px solid;
+    background-color: #feffd5;
+    height: 43px;
+    border-bottom-left-radius: 5em 5em;
+    border-bottom-right-radius: 5em 5em;
+    border-top-left-radius: 5em;
+    border-top-right-radius: 5em;
+}

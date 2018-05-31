@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<af:pageTemplateDef xmlns:af="http://xmlns.oracle.com/adf/faces/rich" var="attrs"
+                    xmlns:afc="http://xmlns.oracle.com/adf/faces/rich/component">
+  <af:xmlContent>
+    <afc:component>
+      <afc:description/>
+      <afc:display-name>template_bootstrap</afc:display-name>
+      <afc:facet>
+        <afc:facet-name>target</afc:facet-name>
+      </afc:facet>
+    </afc:component>
+  </af:xmlContent>
+  <af:group id="pt_g1">
+    <af:resource type="javascript" source="https://code.jquery.com/jquery.js"/>
+    <af:resource type="css" source="/static/bootstrap/css/bootstrap.min.css"/>
+    <af:resource type="javascript" source="/static/bootstrap/js/bootstrap.min.js"/>
+    <af:panelGroupLayout id="pt_pgl1" layout="vertical" inlineStyle="padding:10px">
+      <af:panelFormLayout id="pt_pfl1">
+        <af:selectOneRadio id="pt_sor1" label="Select Skin" autoSubmit="true"
+                           valueChangeListener="#{skinSelectorBean.skinFamilyValueChanged}"
+                           value="#{skinSelectorBean.skinFamily}">
+          <af:selectItem id="pt_si1" label="Base Alta UI skin" value="alta"/>
+          <af:selectItem id="pt_si2" label="Bootstrap skin extended from Alta UI skin" value="bootstrap"/>
+        </af:selectOneRadio>
+      </af:panelFormLayout>
+    </af:panelGroupLayout>
+    <af:panelGroupLayout id="pt_pgl2" layout="vertical" inlineStyle="padding:10px">
+      <af:facetRef facetName="target"/>
+    </af:panelGroupLayout>
+  </af:group>
+</af:pageTemplateDef>

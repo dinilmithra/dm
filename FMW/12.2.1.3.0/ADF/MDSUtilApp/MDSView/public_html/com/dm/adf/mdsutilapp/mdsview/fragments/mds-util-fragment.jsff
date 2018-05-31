@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelBox text="Manage MDS" id="pb1" showDisclosure="false">
+        <f:facet name="toolbar"/>
+        <af:panelSplitter id="ps1" orientation="vertical" dimensionsFrom="children" splitterPosition="160"
+                          disabled="true">
+            <f:facet name="first">
+                <af:panelBox text="Search" id="pb2" showDisclosure="false">
+                    <f:facet name="toolbar"/>
+                    <af:subform id="s1" defaultCommand="cb1">
+                        <af:panelFormLayout id="pfl1">
+                            <f:facet name="footer">
+                                <af:button text="Search" id="cb1" partialSubmit="true"
+                                           actionListener="#{backingBeanScope.MDSUtilBean.mdsSearchActionListener}"/>
+                            </f:facet>
+                            <af:inputText label="Package Name" id="it1" value="#{bindings.mdsPathAttr.inputValue}"
+                                          shortDesc="Example: /fragments/mdssys/cust/user/redsam/. Case sensitive."/>
+                            <af:inputText label="Document Name" id="it2" value="#{bindings.mdsFileNameAttr.inputValue}"
+                                          shortDesc="Example: employeesView.jsff.xml. Use % as wildcard for %empl%. Case sensitive."/>
+                        </af:panelFormLayout>
+                    </af:subform>
+                </af:panelBox>
+            </f:facet>
+            <f:facet name="second">
+                <af:panelBox text="Results - MDS Entries" id="pb3" showDisclosure="false">
+                    <f:facet name="toolbar"/>
+                    <af:panelCollection id="pc1" styleClass="AFStretchWidth" partialTriggers="d1 ::s1:cb1">
+                        <af:table value="#{bindings.mdsElements.collectionModel}" var="row"
+                                  rows="#{bindings.mdsElements.rangeSize}"
+                                  emptyText="#{bindings.mdsElements.viewable ? 'No data to display.' : 'Access Denied.'}"
+                                  rowBandingInterval="0"
+                                  selectedRowKeys="#{bindings.mdsElements.collectionModel.selectedRow}"
+                                  rowSelection="multiple" fetchSize="#{bindings.mdsElements.rangeSize}"
+                                  filterModel="#{bindings.mdsElementsQuery.queryDescriptor}" filterVisible="true"
+                                  queryListener="#{bindings.mdsElementsQuery.processQuery}" varStatus="vs" id="t1"
+                                  binding="#{backingBeanScope.MDSUtilBean.mdsElements}" columnStretching="last">
+                            <af:column sortProperty="#{bindings.mdsElements.hints.documentName.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.mdsElements.hints.documentName.label}"
+                                       id="c1" width="150">
+                                <af:outputText value="#{row.documentName}"
+                                               shortDesc="#{bindings.mdsElements.hints.documentName.tooltip}" id="ot1"/>
+                            </af:column>
+                            <af:column sortProperty="#{bindings.mdsElements.hints.documentPath.name}" filterable="true"
+                                       sortable="true" headerText="#{bindings.mdsElements.hints.documentPath.label}"
+                                       id="c2">
+                                <af:outputText value="#{row.documentPath}"
+                                               shortDesc="#{bindings.mdsElements.hints.documentPath.tooltip}" id="ot2"/>
+                            </af:column>
+                        </af:table>
+                        <f:facet name="menus"/>
+                        <f:facet name="toolbar">
+                            <af:toolbar id="t2">
+                                <af:button text="Edit Source XML" id="cb3"
+                                           disabled="#{bindings.documentPath.inputValue == null}" partialSubmit="true">
+                                    <af:showPopupBehavior popupId="p2"/>
+                                </af:button>
+                                <af:button text="Delete" id="cb2" partialSubmit="true"
+                                           disabled="#{bindings.documentPath.inputValue == null}">
+                                    <af:showPopupBehavior popupId="p1"/>
+                                </af:button>
+                                <af:popup id="p1">
+                                    <af:dialog id="d1" title="Confirm Delete?"
+                                               dialogListener="#{backingBeanScope.MDSUtilBean.mdsDeleteDocDialogListener}"/>
+                                </af:popup>
+                                <af:popup id="p2" contentDelivery="lazyUncached"
+                                          popupFetchListener="#{backingBeanScope.MDSUtilBean.loadXmlPopUpFetchListener}">
+                                    <af:dialog id="d2" title="#{requestScope.sourceXMLTitle}" resize="on"
+                                               affirmativeTextAndAccessKey="Save"
+                                               dialogListener="#{backingBeanScope.MDSUtilBean.updateXmlDialogListener}"
+                                               contentWidth="750">
+                                        <af:inputText id="it3" simple="true" rows="30"
+                                                      binding="#{backingBeanScope.MDSUtilBean.sourceXml}"
+                                                      dimensionsFrom="parent" label="SourceXml"/>
+                                    </af:dialog>
+                                </af:popup>
+                            </af:toolbar>
+                        </f:facet>
+                        <f:facet name="statusbar"/>
+                    </af:panelCollection>
+                </af:panelBox>
+            </f:facet>
+        </af:panelSplitter>
+    </af:panelBox>
+</jsp:root>

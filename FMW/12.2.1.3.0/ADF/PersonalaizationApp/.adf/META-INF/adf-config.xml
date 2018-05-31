@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adf-config xmlns="http://xmlns.oracle.com/adf/config" xmlns:config="http://xmlns.oracle.com/bc4j/configuration"
+            xmlns:adf="http://xmlns.oracle.com/adf/config/properties">
+    <adf-adfm-config xmlns="http://xmlns.oracle.com/adfm/config">
+        <defaults changeEventPolicy="ppr" useBindVarsForViewCriteriaLiterals="true" useBindValuesInFindByKey="true"
+                  mapNegativeScaleToIntegerTypes="true" executeEmptyOnException="true"
+                  iteratorRowValidationFlag="false"/>
+        <startup>
+            <amconfig-overrides>
+                <config:Database jbo.locking.mode="optimistic"/>
+            </amconfig-overrides>
+        </startup>
+    </adf-adfm-config>
+    <adf:adf-properties-child xmlns="http://xmlns.oracle.com/adf/config/properties">
+        <adf-property name="adfAppUID" value="PersonalApp.com.dm.adf.prsapp"/>
+    </adf:adf-properties-child>
+    <adf-security-child xmlns="http://xmlns.oracle.com/adf/security/config">
+        <JaasSecurityContext initialContextFactoryClass="oracle.adf.share.security.JAASInitialContextFactory"
+                             jaasProviderClass="oracle.adf.share.security.providers.jps.JpsSecurityContext"
+                             authorizationEnforce="true" authenticationRequire="true"/>
+    </adf-security-child>
+    <adf-faces-config xmlns="http://xmlns.oracle.com/adf/faces/config">
+        <persistent-change-manager>
+            <persistent-change-manager-class>oracle.adf.view.rich.change.MDSDocumentChangeManager</persistent-change-manager-class>
+        </persistent-change-manager>
+        <taglib-config>
+            <taglib uri="http://xmlns.oracle.com/adf/faces/rich">
+                <tag name="table">
+                    <attribute name="filterVisible">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="showDetail">
+                    <attribute name="disclosed">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="column">
+                    <attribute name="displayIndex">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="frozen">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="noWrap">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="selected">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="visible">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="width">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="panelBox">
+                    <attribute name="disclosed">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="showDetailItem">
+                    <attribute name="disclosed">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="showDetailHeader">
+                    <attribute name="disclosed">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="panelSplitter">
+                    <attribute name="collapsed">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="splitterPosition">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="panelSpringboard">
+                    <attribute name="displayMode">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="link">
+                    <attribute name="windowHeight">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="windowWidth">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="dialog">
+                    <attribute name="contentHeight">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="contentWidth">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+                <tag name="panelWindow">
+                    <attribute name="contentHeight">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                    <attribute name="contentWidth">
+                        <persist-changes>true</persist-changes>
+                    </attribute>
+                </tag>
+            </taglib>
+        </taglib-config>
+    </adf-faces-config>
+    <adf-mds-config xmlns="http://xmlns.oracle.com/adf/mds/config">
+        <mds-config xmlns="http://xmlns.oracle.com/mds/config" version="11.1.1.000">
+            <cust-config>
+                <match path="/">
+                    <customization-class name="oracle.adf.share.config.UserCC"/>
+                </match>
+            </cust-config>
+        </mds-config>
+    </adf-mds-config>
+</adf-config>

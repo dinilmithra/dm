@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!---->
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="de.team.demo.model.services.HRAppModule">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="de.team.demo.model.demoModel" name="HRAppModuleLocal" ApplicationName="de.team.demo.model.services.HRAppModule">
+         <Security AppModuleJndiName="de.team.demo.model.services.HRAppModule"/>
+         <Custom JDBCDataSource="jdbc/hrDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="HRAppModuleShared" ApplicationName="de.team.demo.model.services.HRAppModule" DeployPlatform="LOCAL" jbo.project="de.team.demo.model.demoModel">
+         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+         <Database JDBCDataSource="java:comp/env/jdbc/hrconnDS"/>
+         <Security AppModuleJndiName="de.team.demo.model.services.HRAppModule"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

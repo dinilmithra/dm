@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="x">91.5</property>
+      <property
+         name="y">266.5</property>
+   </OverallProperties>
+   <ParentAction
+      id="ParentAction2">
+      <property
+         name="activityId">parentAction1</property>
+      <property
+         name="x">260.0254</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>parentAction1&lt;/b>&lt;/p>&lt;p>Activity Type:  Parent Action&lt;/p></property>
+      <property
+         name="y">91.149414</property>
+      <property
+         name="exceptionHandler">false</property>
+   </ParentAction>
+   <View
+      id="View3">
+      <property
+         name="activityId">CheckInUploadPF</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">91.5</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>CheckInUploadPF&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">98.79883</property>
+      <property
+         name="page">/wcc/upload/CheckInUploadPF.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View3"
+      to="ParentAction2">
+      <property
+         name="tosrcid">__8</property>
+      <property
+         name="fromOutcome">to-wccerror</property>
+      <property
+         name="fromsrcid">__6</property>
+      <property
+         name="sdm:polyPoints">R50,132.5,98.44824,219.02539,90.79883,L50</property>
+   </ControlFlowCase>
+</SDM>

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.2
+Created-By: Dinil Mithra
+Extension-List: dm-skins
+Package: 
+Specification-Version: 2.0
+Implementation-Version: 12.2.4
+Implementation-Label: dm-skins_GENERIC_170801.0842.S
+Implementation-Vendor: Dinil
+Implementation-Patch-Number: 
+Implementation-Patch-List: 
+Implementation-Title: DM Skins V1
+Extension-Name: dm.adf.skins.dmskins
+

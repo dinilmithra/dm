@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="x">88.01758</property>
+      <property
+         name="y">91.149414</property>
+   </OverallProperties>
+   <View
+      id="View3">
+      <property
+         name="activityId">employee-search-fragment</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">287.7334</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>employee-search-fragment&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">98.44824</property>
+      <property
+         name="page">/com/dm/hrdemoapp/hrview/employee/fragments/employee-search-fragment.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <TaskFlowCall
+      id="TaskFlowCall3">
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>employee-details&lt;/b>&lt;/p>&lt;p>Activity Type:  Task Flow Call&lt;/p></property>
+      <property
+         name="activityId">employee-details</property>
+      <property
+         name="x">287.7334</property>
+      <property
+         name="y">266.5</property>
+      <property
+         name="documentReference">/WEB-INF/com/dm/hrdemoapp/hrview/employee/pageflows/employee-details-flow.xml</property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="taskFlowId">employee-details</property>
+   </TaskFlowCall>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View3"
+      to="TaskFlowCall3">
+      <property
+         name="fromOutcome">employee-details</property>
+      <property
+         name="sdm:polyPoints">B50,T50</property>
+   </ControlFlowCase>
+</SDM>

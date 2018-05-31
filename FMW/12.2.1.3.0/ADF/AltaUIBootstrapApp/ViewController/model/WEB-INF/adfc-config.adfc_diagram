@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="x">88.01758</property>
+      <property
+         name="y">83.5</property>
+   </OverallProperties>
+   <View
+      id="View3">
+      <property
+         name="activityId">panelTabbed-bootstrap</property>
+      <property
+         name="x">278.08008</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>panelTabbed-bootstrap&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="page">/panelTabbed-bootstrap.jsf</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <View
+      id="View4">
+      <property
+         name="activityId">panelTabbed</property>
+      <property
+         name="x">455.15527</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>panelTabbed&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="page">/panelTabbed.jsf</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+</SDM>

@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <h2>MDS Admin Demo</h2>
+    Available user logins
+    <pre>
+        bob/welcome1   (normal user)
+        alice/welcome1 (normal user)
+        layout/welcome1   (power user)
+    </pre>
+    <form method="POST" action="j_security_check">
+      <table cellspacing="2" cellpadding="3" border="1">
+        <tr>
+          <th>Username:</th>
+          <td>
+            <input type="text" name="j_username" value="bob"/>
+          </td>
+        </tr>
+         
+        <tr>
+          <th>Password:</th>
+          <td>
+            <input type="password" name="j_password" value="welcome1"/>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <input type="submit" name="submit" value="Submit"/>
+      </p>
+    </form>
+  </body>
+</html>

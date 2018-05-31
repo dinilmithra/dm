@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+ <af:panelGroupLayout id="pgl2">
+        <af:resource type="css" source="/owlcarousel/assets/owl.carousel.min.css"/>
+        <af:resource type="css" source="/owlcarousel/assets/owl.theme.default.min.css"/>
+        <af:resource type="javascript" source="/resources/js/jquery.min.js"/>
+        <af:resource type="javascript" source="/owlcarousel/owl.carousel.min.js"/>
+        <af:resource type="javascript" source="/owlcarousel/owl.implementation.js"/>
+        <af:panelGroupLayout id="pgl1">
+            <div class="owl-carousel owl-theme">
+                <div class="item logoimage container">
+                    <h4>1</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>2</h4>
+                </div>
+                <div class="item logoimage">
+                    <h4>3</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>4</h4>
+                </div>
+                <div class="item logoimage">
+                    <h4>5</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>6</h4>
+                </div>
+                <div class="item logoimage">
+                    <h4>7</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>8</h4>
+                </div>
+                <div class="item logoimage">
+                    <h4>9</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>10</h4>
+                </div>
+                <div class="item logoimage">
+                    <h4>11</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>12</h4>
+                </div>
+                <div class="item logoimage">
+                    <h4>13</h4>
+                </div>
+                <div class="item titleimage">
+                    <h4>14</h4>
+                </div>
+            </div>
+        </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</ui:composition>

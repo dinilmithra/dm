@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HRModule"
+  Version="12.2.1.9.14"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true">
+  <ViewUsage
+    Name="DepartmentsView1"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.DepartmentsView"/>
+  <ViewUsage
+    Name="EmpDetailsViewView1"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.EmpDetailsViewView"/>
+  <ViewUsage
+    Name="EmployeesView1"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.EmployeesView"/>
+  <ViewUsage
+    Name="EmpDetailsViewView2"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.rvo.EmpDetailsViewView"/>
+  <ViewUsage
+    Name="DepartmentsView2"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.DepartmentsView"/>
+  <ViewUsage
+    Name="EmployeesView2"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.EmployeesView"/>
+  <ViewUsage
+    Name="EmployeesView3"
+    ViewObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.EmployeesView"/>
+  <ViewLinkUsage
+    Name="DeptMgrFkLink1"
+    ViewLinkObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.DeptMgrFkLink"
+    SrcViewUsageName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule.EmployeesView1"
+    DstViewUsageName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule.DepartmentsView2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="EmpManagerFkLink1"
+    ViewLinkObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.EmpManagerFkLink"
+    SrcViewUsageName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule.EmployeesView1"
+    DstViewUsageName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule.EmployeesView2"
+    Reversed="false"/>
+  <ViewLinkUsage
+    Name="EmpDeptFkLink1"
+    ViewLinkObjectName="com.dm.adf.tftransapp.tftmodel.hr.evo.EmpDeptFkLink"
+    SrcViewUsageName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule.DepartmentsView1"
+    DstViewUsageName="com.dm.adf.tftransapp.tftmodel.hr.am.HRModule.EmployeesView3"
+    Reversed="false"/>
+</AppModule>

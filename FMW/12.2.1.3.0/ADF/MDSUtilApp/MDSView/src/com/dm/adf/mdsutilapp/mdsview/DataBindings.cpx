@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.adf.mdsutilapp.mdsview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/com/dm/adf/mdsutilapp/mdsview/fragments/mds-util-fragment.jsff"
+          usageId="com_dm_adf_mdsutilapp_mdsview_mds_util_fragmentPageDef"/>
+    <page path="/com/dm/adf/mdsutilapp/mdsview/templates/MDSViewTemplate.jspx"
+          usageId="com_dm_adf_mdsutilapp_mdsview_MDSViewTemplatePageDef"/>
+    <page path="/com/dm/adf/mdsutilapp/mdsview/pages/MDSHome.jspx"
+          usageId="com_dm_adf_mdsutilapp_mdsview_MDSHomePageDef"/>
+    <page path="/com/dm/adf/mdsutilapp/mdsview/pages/MDSUtils.jspx"
+          usageId="com_dm_adf_mdsutilapp_mdsview_MDSUtilsPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_adf_mdsutilapp_mdsview_mds_util_fragmentPageDef"
+          path="com.dm.adf.mdsutilapp.mdsview.fragments.mds_util_fragmentPageDef"/>
+    <page id="com_dm_adf_mdsutilapp_mdsview_MDSViewTemplatePageDef"
+          path="com.dm.adf.mdsutilapp.mdsview.templates.MDSViewTemplatePageDef"/>
+    <page id="com_dm_adf_mdsutilapp_mdsview_MDSHomePageDef" path="com.dm.adf.mdsutilapp.mdsview.pages.MDSHomePageDef"/>
+    <page id="com_dm_adf_mdsutilapp_mdsview_MDSUtilsPageDef"
+          path="com.dm.adf.mdsutilapp.mdsview.pages.MDSUtilsPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="MDSActions" path="com.dm.adf.mdsutilapp.mdsmodel.MDSActions"/>
+  </dataControlUsages>
+</Application>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="dm-wcmain">
+    <display-name>DM WC Main</display-name>
+    <default-activity>validateInputParams</default-activity>
+    <input-parameter-definition id="__1">
+      <name>fFolderGUID</name>
+      <value>#{pageFlowScope.fFolderGUID}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__5">
+      <name>documentPropertiesMethodExp</name>
+      <value>#{pageFlowScope.documentPropertiesMethodExp}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__12">
+      <name>path</name>
+      <value>#{pageFlowScope.path}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__13">
+      <name>preferredLanguage</name>
+      <value>#{pageFlowScope.preferredLanguage}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__14">
+      <name>formattingLocale</name>
+      <value>#{pageFlowScope.formattingLocale}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__15">
+      <name>timeZone</name>
+      <value>#{pageFlowScope.timeZone}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__16">
+      <name>pin</name>
+      <value>#{pageFlowScope.pin}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__20">
+      <name>wccReturnValueBean</name>
+      <value>#{pageFlowScope.wccReturnValueBean}</value>
+      <class>oracle.wcc.adf.vc.intg.ReturnValueBean</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__24">
+      <name>dateTimeFormatPattern</name>
+      <value>#{pageFlowScope.dateTimeFormatPattern}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__25">
+      <name>overrideMode</name>
+      <value>#{pageFlowScope.overrideMode}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__29">
+      <name>disableMultiSelect</name>
+      <value>#{pageFlowScope.disableMultiSelect}</value>
+      <class>java.lang.Boolean</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__36">
+      <name>restrictNavigationMode</name>
+      <value>#{pageFlowScope.restrictNavigationMode}</value>
+      <class>java.lang.Boolean</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__40">
+      <name>inplaceNavigation</name>
+      <value>#{pageFlowScope.inplaceNavigation}</value>
+      <class>java.lang.Boolean</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__33">
+      <name>compactMode</name>
+      <value>#{pageFlowScope.compactMode}</value>
+      <class>java.lang.Boolean</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__37">
+      <name>wccRuiConfiguration</name>
+      <value>#{pageFlowScope.wccRuiConfiguration}</value>
+      <class>oracle.wcc.adf.vc.intg.RuiConfiguration</class>
+    </input-parameter-definition>
+    <return-value-definition id="__17">
+      <name>outputPin</name>
+      <value>#{pageFlowScope.outputPin}</value>
+      <class>java.lang.String</class>
+    </return-value-definition>
+    <managed-bean id="__2">
+      <managed-bean-name>wccTaskFlowBean</managed-bean-name>
+      <managed-bean-class>oracle.wcc.adf.vc.TaskFlowBean</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__4">
+      <managed-bean-name>wccMainBean</managed-bean-name>
+      <managed-bean-class>oracle.wcc.adf.vc.MainBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__43">
+      <managed-bean-name>wccDocInfoBean</managed-bean-name>
+      <managed-bean-class>oracle.wcc.adf.vc.DocInfoBean</managed-bean-class>
+      <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <initializer>#{pageFlowScope.wccTaskFlowBean.taskFlowInitializer}</initializer>
+    <finalizer>#{pageFlowScope.wccTaskFlowBean.taskFlowFinalizer}</finalizer>
+    <method-call id="validateInputParams">
+      <method>#{pageFlowScope.wccTaskFlowBean.checkFolderGUIDOrPath}</method>
+      <outcome>
+        <to-string/>
+      </outcome>
+    </method-call>
+    <task-flow-return id="wccmainReturn">
+      <outcome>
+        <name>wccmainReturn</name>
+      </outcome>
+    </task-flow-return>
+    <method-call id="generatePin">
+      <method>#{pageFlowScope.wccTaskFlowBean.generatePin}</method>
+      <outcome>
+        <to-string/>
+      </outcome>
+    </method-call>
+    <method-call id="selectDocuments">
+      <method>#{pageFlowScope.wccTaskFlowBean.selectDocuments}</method>
+      <outcome>
+        <to-string/>
+      </outcome>
+    </method-call>
+    <method-call id="selectFolders">
+      <method>#{pageFlowScope.wccTaskFlowBean.selectFolders}</method>
+      <outcome>
+        <to-string/>
+      </outcome>
+    </method-call>
+    <method-call id="selectItems">
+      <method>#{pageFlowScope.wccTaskFlowBean.selectItems}</method>
+      <outcome>
+        <to-string/>
+      </outcome>
+    </method-call>
+    <method-call id="validateDocInfoParams">
+      <method>#{pageFlowScope.wccTaskFlowBean.checkDocIDOrName}</method>
+      <outcome>
+        <to-string/>
+      </outcome>
+    </method-call>
+    <view id="dm-main">
+      <page>/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-main.jsff</page>
+      <input-page-parameter id="____1">
+        <from-value>#{pageFlowScope.fFolderGUID}</from-value>
+        <to-value>#{viewScope.wccMainBean.urlFFolderGUID}</to-value>
+      </input-page-parameter>
+    </view>
+    <view id="dm-docInfo">
+      <page>/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-docInfo.jsff</page>
+      <input-page-parameter id="____2">
+        <from-value>#{pageFlowScope.revision}</from-value>
+        <to-value>#{viewScope.wccDocInfoBean.revision}</to-value>
+      </input-page-parameter>
+    </view>
+    <view id="dm-taskflow-error">
+      <page>/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-taskflow-error.jsff</page>
+    </view>
+    <view id="dm-taskflow-message">
+      <page>/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-taskflow-message.jsff</page>
+    </view>
+    <control-flow-rule id="__7">
+      <from-activity-id>validateInputParams</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>true</from-outcome>
+        <to-activity-id>dm-main</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__9">
+        <from-outcome>false</from-outcome>
+        <to-activity-id>dm-taskflow-error</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__6">
+      <from-activity-id>*</from-activity-id>
+      <control-flow-case id="__10">
+        <from-outcome>to-wccerror</from-outcome>
+        <to-activity-id>dm-taskflow-error</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__19">
+        <from-outcome>generate-pin</from-outcome>
+        <to-activity-id>generatePin</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__21">
+        <from-outcome>select-documents</from-outcome>
+        <to-activity-id>selectDocuments</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__26">
+        <from-outcome>select-folders</from-outcome>
+        <to-activity-id>selectFolders</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__30">
+        <from-outcome>select-items</from-outcome>
+        <to-activity-id>selectItems</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__22">
+      <from-activity-id>generatePin</from-activity-id>
+      <control-flow-case id="__23">
+        <from-outcome>to-return</from-outcome>
+        <to-activity-id>wccmainReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__27">
+      <from-activity-id>selectDocuments</from-activity-id>
+      <control-flow-case id="__28">
+        <from-outcome>to-return</from-outcome>
+        <to-activity-id>wccmainReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__31">
+      <from-activity-id>selectFolders</from-activity-id>
+      <control-flow-case id="__32">
+        <from-outcome>to-return</from-outcome>
+        <to-activity-id>wccmainReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__34">
+      <from-activity-id>selectItems</from-activity-id>
+      <control-flow-case id="__35">
+        <from-outcome>to-return</from-outcome>
+        <to-activity-id>wccmainReturn</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__44">
+      <from-activity-id>validateDocInfoParams</from-activity-id>
+      <control-flow-case id="__45">
+        <from-outcome>true</from-outcome>
+        <to-activity-id>dm-docInfo</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__46">
+        <from-outcome>false</from-outcome>
+        <to-activity-id>dm-taskflow-error</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>dm-main</from-activity-id>
+      <control-flow-case id="__11">
+        <from-outcome>to-doc-viewer</from-outcome>
+        <to-activity-id>validateDocInfoParams</to-activity-id>
+      </control-flow-case>
+      <control-flow-case id="__38">
+        <from-outcome>ack-pin</from-outcome>
+        <to-activity-id>dm-taskflow-message</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__39">
+      <from-activity-id>dm-docInfo</from-activity-id>
+      <control-flow-case id="__41">
+        <from-outcome>to-main-view</from-outcome>
+        <to-activity-id>dm-main</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

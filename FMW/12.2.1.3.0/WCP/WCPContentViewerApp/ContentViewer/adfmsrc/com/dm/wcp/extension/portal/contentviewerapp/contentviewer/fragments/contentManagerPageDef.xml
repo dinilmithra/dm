@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="contentManagerPageDef"
+                Package="com.dm.wcp.extension.portal.contentviewerapp.contentviewer.fragments">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="wccmainregion" taskFlowId="/WEB-INF/wcc/wccmain.xml#wccmain" activation="deferred"
+                  xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+            <parameters>
+                <parameter id="wccReturnValueBean" value="#{wccReturnValueBean}"/>
+                <parameter id="path" value="#{pageFlowScope.contentManagerBean.startFolderPath}"/>
+                <parameter id="pin" value="#{pageFlowScope.contentManagerBean.pin}"/>
+                <!-- To enable in place navigation following parameters needs to be set in the task flow -->
+                <parameter id="inplaceNavigation" value="#{true}"/>
+                <parameter id="compactMode" value="#{true}"/>
+                <parameter id="preferredLanguage" value="#{pageFlowScope.contentManagerBean.preferredLanguage}"/>
+                <parameter id="timeZone" value="#{pageFlowScope.contentManagerBean.timeZone}"/>
+                <parameter id="dateTimeFormatPattern"
+                           value="#{pageFlowScope.contentManagerBean.dateTimeFormatPattern}"/>
+                <parameter id="wccRuiConfiguration" value="#{wccRuiConfiguration}"/>
+            </parameters>
+        </taskFlow>
+        <taskFlow id="wccconfigureregion" taskFlowId="${contentManagerConfigureBean.dynamicTaskFlowId}"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+            <parameters>
+                <parameter id="wccReturnValueBean" value="#{wccReturnValueBean}"/>
+                <parameter id="path" value="#{pageFlowScope.contentManagerBean.startFolderPath}"/>
+                <parameter id="pin" value="#{pageFlowScope.contentManagerBean.pin}"/>
+                <parameter id="overrideMode" value="#{'ContextPicker'}"/>
+                <parameter id="preferredLanguage" value="#{pageFlowScope.contentManagerBean.preferredLanguage}"/>
+                <parameter id="timeZone" value="#{pageFlowScope.contentManagerBean.timeZone}"/>
+                <parameter id="dateTimeFormatPattern"
+                           value="#{pageFlowScope.contentManagerBean.dateTimeFormatPattern}"/>
+                <parameter id="wccRuiConfiguration" value="#{wccRuiConfiguration}"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings/>
+</pageDefinition>

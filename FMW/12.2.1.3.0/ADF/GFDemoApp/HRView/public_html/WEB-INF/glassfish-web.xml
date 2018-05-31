@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<glassfish-web-app>
+    <context-root>gfdemo</context-root>
+    <!--resource-ref> 
+        <res-ref-name>jdbc/Connection1DS</res-ref-name> 
+        <jndi-name>jdbc/NewConnection1DS</jndi-name> 
+    </resource-ref -->
+    <class-loader delegate="false"/>
+    <property value="true" name="useBundledJsf"/>
+    <security-role-mapping>
+        <role-name>USERS</role-name>
+        <group-name>USERS</group-name>
+    </security-role-mapping>
+    <welcome-file-list>
+        <welcome-file>faces/EmployeeSearch</welcome-file>
+    </welcome-file-list>
+</glassfish-web-app>

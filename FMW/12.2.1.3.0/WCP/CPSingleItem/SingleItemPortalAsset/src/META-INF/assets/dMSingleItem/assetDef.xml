@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:contentPresenterTemplate xmlns:ns0="http://xmlns.oracle.com/webcenter/assetpublishing/assetdef">
+   <name>DMSingleItem</name>
+   <displayName>DM Single Item</displayName>
+   <sourcePath>/dMSingleItem</sourcePath>
+   <pagePath>DMSingleItem.jsff</pagePath>
+   <viewId>dMSingleItem</viewId>
+   <categoryId>oracle.webcenter.content.templates.default.detail</categoryId>
+   <categoryDescription>Displays a single content item.  Image and HTML content items are displayed directly in the browser.  For other item types, details are displayed, along with a link to download the associated file.</categoryDescription>
+   <categoryDescriptionKey>DEFAULT_DETAIL_TEMPLATE_DESC</categoryDescriptionKey>
+   <categoryName>Default View</categoryName>
+   <categoryNameKey>DEFAULT_DETAIL_TEMPLATE_NAME</categoryNameKey>
+   <templateType>single</templateType>
+   <categoryIsDefault>true</categoryIsDefault>
+</ns0:contentPresenterTemplate>

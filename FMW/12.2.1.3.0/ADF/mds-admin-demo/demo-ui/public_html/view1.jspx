@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1"
+                 partialTriggers="pt1:cbcache pt1:cb1 pt1:cb2 pt1:cb3 pt1:cb4">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <af:pageTemplate viewId="/oracle/templates/threeColumnTemplate.jspx"
+                         id="pt1">
+          <f:facet name="center">
+            <af:panelGroupLayout id="g1" layout="vertical">
+              <af:panelBox text="Employees" id="pb1">
+                <f:facet name="toolbar"/>
+                <af:panelCollection id="pc1" styleClass="AFStretchWidth">
+                  <f:facet name="menus"/>
+                  <f:facet name="toolbar"/>
+                  <f:facet name="statusbar"/>
+                  <af:table value="#{bindings.EmployeesView1.collectionModel}"
+                            var="row"
+                            rows="#{bindings.EmployeesView1.rangeSize}"
+                            emptyText="#{bindings.EmployeesView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                            fetchSize="#{bindings.EmployeesView1.rangeSize}"
+                            rowBandingInterval="0"
+                            filterModel="#{bindings.EmployeesView1Query.queryDescriptor}"
+                            queryListener="#{bindings.EmployeesView1Query.processQuery}"
+                            filterVisible="true" varStatus="vs"
+                            selectedRowKeys="#{bindings.EmployeesView1.collectionModel.selectedRow}"
+                            selectionListener="#{bindings.EmployeesView1.collectionModel.makeCurrent}"
+                            rowSelection="single" id="t1">
+                    <af:column sortProperty="EmployeeId" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.EmployeeId.label}"
+                               id="c4">
+                      <af:outputText value="#{row.EmployeeId}" id="ot9">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.EmployeesView1.hints.EmployeeId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="FirstName" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.FirstName.label}"
+                               id="c1">
+                      <af:outputText value="#{row.FirstName}" id="ot11"/>
+                    </af:column>
+                    <af:column sortProperty="LastName" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.LastName.label}"
+                               id="c10">
+                      <af:outputText value="#{row.LastName}" id="ot13"/>
+                    </af:column>
+                    <af:column sortProperty="Email" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.Email.label}"
+                               id="c5">
+                      <af:outputText value="#{row.Email}" id="ot7"/>
+                    </af:column>
+                    <af:column sortProperty="PhoneNumber" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.PhoneNumber.label}"
+                               id="c7">
+                      <af:outputText value="#{row.PhoneNumber}" id="ot4"/>
+                    </af:column>
+                    <af:column sortProperty="HireDate" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.HireDate.label}"
+                               id="c11">
+                      <f:facet name="filter">
+                        <af:inputDate value="#{vs.filterCriteria.HireDate}"
+                                      id="id1"/>
+                      </f:facet>
+                      <af:outputText value="#{row.HireDate}" id="ot5">
+                        <af:convertDateTime pattern="#{bindings.EmployeesView1.hints.HireDate.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="JobId" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.JobId.label}"
+                               id="c8">
+                      <af:outputText value="#{row.JobId}" id="ot3"/>
+                    </af:column>
+                    <af:column sortProperty="Salary" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.Salary.label}"
+                               id="c2">
+                      <af:outputText value="#{row.Salary}" id="ot10">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.EmployeesView1.hints.Salary.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="CommissionPct" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.CommissionPct.label}"
+                               id="c3">
+                      <af:outputText value="#{row.CommissionPct}" id="ot8">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.EmployeesView1.hints.CommissionPct.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="ManagerId" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.ManagerId.label}"
+                               id="c6">
+                      <af:outputText value="#{row.ManagerId}" id="ot6">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.EmployeesView1.hints.ManagerId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                    <af:column sortProperty="DepartmentId" filterable="true"
+                               sortable="true"
+                               headerText="#{bindings.EmployeesView1.hints.DepartmentId.label}"
+                               id="c9">
+                      <af:outputText value="#{row.DepartmentId}" id="ot12">
+                        <af:convertNumber groupingUsed="false"
+                                          pattern="#{bindings.EmployeesView1.hints.DepartmentId.format}"/>
+                      </af:outputText>
+                    </af:column>
+                  </af:table>
+                </af:panelCollection>
+              </af:panelBox>
+              <af:panelBox text="Departments (region, BTF)" id="pb3">
+                <f:facet name="toolbar"/>
+                <af:region value="#{bindings.taskflowdefinition1.regionModel}"
+                           id="r1"/>
+              </af:panelBox>
+            </af:panelGroupLayout>
+          </f:facet>
+          <f:facet name="header">
+            <af:outputText value="Test MDS Default Layout user layer" id="ot1"/>
+          </f:facet>
+          <f:facet name="end">
+            <af:panelAccordion id="pa1">
+              <af:showDetailItem text="Help" id="sdi2"/>
+              <af:showDetailItem text="Worklist" id="sdi1">
+                <af:outputText value="Brew fresh coffee" id="ot2"
+                               inlineStyle="font-weight:bold;"/>
+              </af:showDetailItem>
+            </af:panelAccordion>
+          </f:facet>
+          <f:facet name="start">
+            <af:panelBox text="Customization Admin Options" id="pb2">
+              <f:facet name="toolbar"/>
+              <af:commandButton text="Reset all to factory defaults" id="cb1"
+                                actionListener="#{mdsAdminBean.onResetToDefault}"
+                                partialSubmit="true"
+                                disabled="#{!mdsAdminBean.MDSAdmin}"/>
+              <af:commandButton text="Reset layout defaults to factory defaults"
+                                id="cb2"
+                                actionListener="#{mdsAdminBean.onResetPoweruserToDefault}"
+                                partialSubmit="true" rendered="false"
+                                disabled="#{!mdsAdminBean.MDSAdmin}"/>
+              <af:commandButton text="Reset all to layout user defaults"
+                                id="cb3"
+                                actionListener="#{mdsAdminBean.onResetAllToPoweruser}"
+                                partialSubmit="true"
+                                disabled="#{!mdsAdminBean.MDSAdmin}"/>
+              <af:inputText label="Username" id="it1"
+                            value="#{mdsAdminBean.username}"
+                            inlineStyle="width:100px;"
+                            disabled="#{!mdsAdminBean.MDSAdmin}"/>
+              <af:commandButton text="Reset to layout user defaults" id="cb4"
+                                actionListener="#{mdsAdminBean.onResetSpecificUserToPoweruser}"
+                                partialSubmit="true"
+                                disabled="#{!mdsAdminBean.MDSAdmin}"/>
+              <af:spacer width="10" height="10" id="s1"/>
+              <af:commandButton text="Clear MDS Cache" id="cbcache"
+                                partialSubmit="true"
+                                actionListener="#{mdsAdminBean.onClearMDSCache}"
+                                rendered="false"
+                                disabled="#{!mdsAdminBean.MDSAdmin}"/>
+              <af:commandButton text="Debug MDS Info to stdout" id="cb5"
+                                partialSubmit="true"
+                                actionListener="#{mdsAdminBean.onDebugMDSInfo}"/>
+            </af:panelBox>
+          </f:facet>
+          <f:facet name="branding"/>
+          <f:facet name="copyright"/>
+          <f:facet name="status">
+            <af:panelGroupLayout id="pgl1" layout="horizontal">
+              <af:outputLabel value="Logged in as #{securityContext.userName}"
+                              id="ol1" inlineStyle="font-weight:bold;"/>
+              <af:goLink text="Logout" id="gl1"
+                         destination="/adfAuthentication?logout=true&amp;end_url=/faces/view1.jspx"/>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
+      </af:form>
+    </af:document>
+  </f:view>
+  <!--oracle-jdev-comment:preferred-managed-bean-name:mdsAdminBean-->
+</jsp:root>

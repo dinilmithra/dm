@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="MDSHome.jspx" id="d1">
+            <af:form id="f1">
+                <af:pageTemplate viewId="/com/dm/adf/mdsutilapp/mdsview/templates/MDSViewTemplate.jspx"
+                                 value="#{bindings.ptb1}" id="pt1">
+                    <f:facet name="content">
+                        <af:panelTabbed position="above" id="pt2">
+                            <af:showDetailItem id="tab1" text="Tab Label 1"/>
+                            <af:showDetailItem id="tab2" text="Tab Label 2"/>
+                            <af:showDetailItem id="tab3" text="Tab Label 3"/>
+                            <af:showDetailItem id="tab4" text="Tab Label 4">
+                                <af:panelSplitter id="ps1" orientation="horizontal" splitterPosition="300">
+                                    <f:facet name="first">
+                                        <af:button text="button 1" id="b1"/>
+                                    </f:facet>
+                                    <f:facet name="second">
+                                        <af:inputText label="Label 1" id="it1"/>
+                                    </f:facet>
+                                </af:panelSplitter>
+                            </af:showDetailItem>
+                        </af:panelTabbed>
+                    </f:facet>
+                </af:pageTemplate>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

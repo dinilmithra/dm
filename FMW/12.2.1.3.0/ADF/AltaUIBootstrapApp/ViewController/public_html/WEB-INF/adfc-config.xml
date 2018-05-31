@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="panelTabbed-bootstrap">
+    <page>/panelTabbed-bootstrap.jsf</page>
+  </view>
+  <view id="panelTabbed">
+    <page>/panelTabbed.jsf</page>
+  </view>
+</adfc-config>

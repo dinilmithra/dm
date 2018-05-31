@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="employee_search_fragmentPageDef"
+                Package="com.dm.gfdemoapp.hrview.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="EmployeeSearch" RangeSize="25" DataControl="HRServiceDataControl" id="EmployeeSearchIterator"/>
+    <searchRegion Criteria="EmployeesSearchCriteria" Customizer="oracle.jbo.uicli.binding.JUSearchBindingCustomizer"
+                  Binds="EmployeeSearchIterator" id="EmployeesSearchCriteriaQuery"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="EmployeeSearchIterator" id="EmployeeSearch">
+      <nodeDefinition DefName="com.dm.gfdemoapp.hrmodel.vo.EmployeesView" Name="EmployeeSearch0">
+        <AttrNames>
+          <Item Value="EmployeeId"/>
+          <Item Value="FirstName"/>
+          <Item Value="LastName"/>
+          <Item Value="Email"/>
+          <Item Value="PhoneNumber"/>
+          <Item Value="HireDate"/>
+          <Item Value="JobId"/>
+          <Item Value="Salary"/>
+          <Item Value="CommissionPct"/>
+          <Item Value="ManagerId"/>
+          <Item Value="DepartmentId"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

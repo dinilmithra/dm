@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.gfdemoapp.hrview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/com/dm/gfdemoapp/hrview/pages/EmployeeSearch.jspx"
+          usageId="com_dm_gfdemoapp_hrview_EmployeeSearchPageDef"/>
+    <page path="/com/dm/gfdemoapp/hrview/fragments/employee-search-fragment.jsff"
+          usageId="com_dm_gfdemoapp_hrview_employee_search_fragmentPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_gfdemoapp_hrview_EmployeeSearchPageDef"
+          path="com.dm.gfdemoapp.hrview.pages.EmployeeSearchPageDef"/>
+    <page id="com_dm_gfdemoapp_hrview_employee_search_fragmentPageDef"
+          path="com.dm.gfdemoapp.hrview.fragments.employee_search_fragmentPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HRServiceDataControl" Package="com.dm.gfdemoapp.hrmodel.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HRServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

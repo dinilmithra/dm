@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.adf.prsapp.prsview" ClientType="Generic">
+  <pageMap>
+    <page path="/Home.jspx" usageId="com_dm_adf_prsapp_prsview_HomePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_adf_prsapp_prsview_HomePageDef" path="com.dm.adf.prsapp.prsview.pageDefs.HomePageDef"/>
+  </pageDefinitionUsages>
+</Application>

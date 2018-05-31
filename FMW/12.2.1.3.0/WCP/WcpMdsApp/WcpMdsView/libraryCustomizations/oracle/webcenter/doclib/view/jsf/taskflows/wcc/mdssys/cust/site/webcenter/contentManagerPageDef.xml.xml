@@ -1,0 +1,7 @@
+<mds:customization version="12.2.1_20170820.0914" xmlns:mds="http://xmlns.oracle.com/mds">
+  <mds:insert parent="wccmainregion(xmlns(mds_ns1=http://xmlns.oracle.com/adf/controller/binding))/mds_ns1:parameters"
+              position="last">
+    <parameter id="customizationEnabled" value="#{pageFlowScope.customizationEnabled}"
+               xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </mds:insert>
+</mds:customization>

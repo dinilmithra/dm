@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.adf.tftransapp.tftview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/hr/pages/Home.jspx" usageId="com_dm_adf_tftransapp_tftview_HomePageDef"/>
+    <page path="/hr/fragments/departments-fragment.jsff"
+          usageId="com_dm_adf_tftransapp_tftview_departments_fragmentPageDef"/>
+    <page path="/hr/fragments/employees-fragment.jsff"
+          usageId="com_dm_adf_tftransapp_tftview_employees_fragmentPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_adf_tftransapp_tftview_HomePageDef" path="hr.pages.HomePageDef"/>
+    <page id="com_dm_adf_tftransapp_tftview_departments_fragmentPageDef"
+          path="hr.fragments.departments_fragmentPageDef"/>
+    <page id="com_dm_adf_tftransapp_tftview_employees_fragmentPageDef" path="hr.fragments.employees_fragmentPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HRModuleDataControl" Package="com.dm.adf.tftransapp.tftmodel.hr.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HRModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

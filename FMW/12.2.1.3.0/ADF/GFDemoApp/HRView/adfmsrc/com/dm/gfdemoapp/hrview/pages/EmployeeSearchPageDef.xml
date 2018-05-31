@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="EmployeeSearchPageDef"
+                Package="com.dm.gfdemoapp.hrview.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="employeesearchflown1"
+              taskFlowId="/WEB-INF/com/dm/gfdemoapp/hrview/pageflows/employee-search-flown.xml#employee-search-flown"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

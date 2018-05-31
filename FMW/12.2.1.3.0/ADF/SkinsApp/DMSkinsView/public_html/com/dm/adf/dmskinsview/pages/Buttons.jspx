@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Home.jspx" id="d1">
+            <af:form id="f1">
+                <af:goLink id="gl1" text="Go Link" styleClass="tabLink"/>
+                <af:spacer width="10" height="10" id="s1"/>
+                <af:button text="Stadium" id="b2" styleClass="Stadium"/>
+                <af:spacer width="10" height="10" id="s3"/>
+                <af:button text="Next" id="cb1" styleClass="FancyArrowNext"/>
+                <af:spacer width="10" height="10" id="s4"/>
+                <af:button text="Previous" id="cb2" styleClass="FancyArrowPrev"/>
+                <af:spacer width="10" height="10" id="s5"/>
+                <af:button text="X" id="cb3" styleClass="FancyButtonClose"/>
+                <af:spacer width="10" height="10" id="s6"/>
+                <af:button text="ok" id="cb4" styleClass="FancyButtonOK"/>
+                <af:spacer width="10" height="10" id="s7"/>
+                <af:button text="top to right" id="cb5" styleClass="FancyDoubleArrowTop2Right"/>
+                <af:spacer width="10" height="10" id="s8"/>
+                <af:button text="Round" id="b1" styleClass="RButton"/>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

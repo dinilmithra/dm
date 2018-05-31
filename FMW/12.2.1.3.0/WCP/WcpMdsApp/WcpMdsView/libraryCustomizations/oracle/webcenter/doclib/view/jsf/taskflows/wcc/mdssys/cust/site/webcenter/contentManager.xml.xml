@@ -1,0 +1,9 @@
+<mds:customization version="12.2.1_20170820.0914" xmlns:mds="http://xmlns.oracle.com/mds">
+  <mds:insert after="__128" parent="wccmain">
+    <input-parameter-definition id="s_1" xmlns="http://xmlns.oracle.com/adf/controller">
+      <name>customizationEnabled</name>
+      <value>#{pageFlowScope.customizationEnabled}</value>
+      <class>java.lang.Boolean</class>
+    </input-parameter-definition>
+  </mds:insert>
+</mds:customization>

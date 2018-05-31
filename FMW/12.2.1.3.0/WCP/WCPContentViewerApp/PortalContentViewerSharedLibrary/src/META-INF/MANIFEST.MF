@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.2
+Created-By: Dinil Mithra
+Specification-Version: 2.0
+Implementation-Version: 12.2.1.3.1
+Implementation-Label: WORKPLACE_12.2.1.3.0
+Implementation-Vendor: Dinil Mithra
+Implementation-Patch-Number: 
+Implementation-Patch-List: 
+Implementation-Title: WCP extension for content viewer
+Extension-Name: extend.spaces.webapp.contentviewer
+

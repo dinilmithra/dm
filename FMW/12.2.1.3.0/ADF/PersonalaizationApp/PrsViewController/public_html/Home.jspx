@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="Home.jspx" id="d1">
+            <af:form id="f1">
+                <af:panelHeader text="panelHeader 1" id="ph1">
+                    <f:facet name="context"/>
+                    <f:facet name="toolbar"/>
+                    <f:facet name="menuBar">
+                        <af:link text="Logout" id="l2"
+                                 destination="/adfAuthentication?logout=true&amp;end_url=/faces/Home"/>
+                    </f:facet>
+                    <f:facet name="legend"/>
+                    <f:facet name="info"/>
+                    <!--<af:panelBox text="PanelBox1" id="pb1">
+                        <f:facet name="toolbar"/>
+                        <af:spacer width="10" height="100" id="s1"/>
+                    </af:panelBox>-->
+                    <!--<af:panelBox text="PanelBox 2" id="pb2" dontPersist="ALL">
+                        <f:facet name="toolbar"/>
+                        <af:spacer width="10" height="100" id="s2"/>
+                    </af:panelBox>-->
+                    <af:panelTabbed position="above" id="pt1">
+                        <af:showDetailItem id="tab1" text="Tab Label 1" dontPersist="ALL"/>
+                        <af:showDetailItem id="tab2" text="Tab Label 2" dontPersist="ALL"/>
+                        <af:showDetailItem id="tab3" text="Tab Label 3" dontPersist="ALL"/>
+                        <af:showDetailItem id="tab5" text="Tab Label 5" dontPersist="ALL"/>
+                        <af:showDetailItem id="tab6" text="Tab Label 6" dontPersist="ALL"/>
+                    </af:panelTabbed>
+                </af:panelHeader>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

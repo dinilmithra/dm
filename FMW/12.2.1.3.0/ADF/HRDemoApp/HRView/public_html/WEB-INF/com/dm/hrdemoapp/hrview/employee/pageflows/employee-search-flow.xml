@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="employee-search-flow">
+    <default-activity>employee-search-fragment</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__3">
+      <name>employeeID</name>
+      <value>#{pageFlowScope.employeeID}</value>
+    </input-parameter-definition>
+    <view id="employee-search-fragment">
+      <page>/com/dm/hrdemoapp/hrview/employee/fragments/employee-search-fragment.jsff</page>
+    </view>
+    <task-flow-call id="employee-details">
+      <task-flow-reference>
+        <document>/WEB-INF/com/dm/hrdemoapp/hrview/employee/pageflows/employee-details-flow.xml</document>
+        <id>employee-details</id>
+      </task-flow-reference>
+      <input-parameter id="__4">
+        <name>employeeID</name>
+        <value>#{pageFlowScope.employeeID}</value>
+      </input-parameter>
+    </task-flow-call>
+    <control-flow-rule id="__1">
+      <from-activity-id>employee-search-fragment</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>employee-details</from-outcome>
+        <to-activity-id>employee-details</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="employee-search-flown">
+    <default-activity>employee-search-fragment</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <view id="employee-search-fragment">
+      <page>/com/dm/gfdemoapp/hrview/fragments/employee-search-fragment.jsff</page>
+    </view>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

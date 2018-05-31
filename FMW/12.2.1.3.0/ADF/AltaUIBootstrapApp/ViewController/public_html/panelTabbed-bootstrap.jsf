@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:document title="panelTabbed-bootstrap.jsf" id="d1">
+    <af:form id="f1">
+      <af:pageTemplate viewId="/template-bootstrap.jsf" id="pt2">
+        <f:facet name="target">
+          <af:panelTabbed position="above" id="pt1">
+            <af:showDetailItem id="tab1" text="Basic"/>
+            <af:showDetailItem id="tab2" text="Detail"/>
+          </af:panelTabbed>
+        </f:facet>
+      </af:pageTemplate>
+    </af:form>
+  </af:document>
+</f:view>

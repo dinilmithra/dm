@@ -1,0 +1,71 @@
+<?xml version = '1.0'?>
+<!-- Copyright (c) 2009, 2015, Oracle and/or its affiliates. 
+All rights reserved.-->
+<jsp:root version="2.1" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:dt="http://xmlns.oracle.com/webcenter/content/templates"
+          xmlns:cmf="http://xmlns.oracle.com/webcenter/content/faces"
+          xmlns:rtc="http://xmlns.oracle.com/webcenter/collab/rtc"
+          xmlns:cmfn="http://xmlns.oracle.com/webcenter/content/functions" xmlns:f="http://java.sun.com/jsf/core">
+    <dt:contentTemplateDef var="node">
+        <af:switcher facetName="#{empty node ? 'EmptyNode' : 'NodeExists'}" id="s1">
+            <f:facet name="EmptyNode">
+                <!--
+            **
+            ** Handling of missing node (deleted, user has no rights, etc.)
+            **
+            -->
+                <af:outputText id="emptyMsg" value="#{templateBundle.EMPTY_NODE}"/>
+            </f:facet>
+            <f:facet name="NodeExists">
+                <af:panelGroupLayout layout="scroll" id="pgl1">
+                    <af:spacer height="5" id="sp0"/>
+                    <af:goImageLink text="#{node.name}" id="pugil1" icon="#{node.primaryProperty.icon.smallIcon}"
+                                    destination="#{node.primaryProperty.url}" targetFrame="_blank"
+                                    rendered="#{not node.isFolder}"
+                                    shortDesc="#{not empty node.propertyMap['xComments'].value.stringValue ? node.propertyMap['xComments'].value.stringValue : node.primaryProperty.value.binaryValue.name}"/>
+                    <af:goImageLink text="#{node.name}" id="gil1" disabledIcon="#{node.icon.smallIcon}" destination=""
+                                    disabled="true" targetFrame="_blank"
+                                    shortDesc="#{not empty node.propertyMap['xComments'].value.stringValue ? node.propertyMap['xComments'].value.stringValue : node.path}"
+                                    rendered="#{node.isFolder}"/>
+                    <af:spacer height="5" id="sp1"/>
+                    <af:panelFormLayout id="pfl0">
+                        <af:panelLabelAndMessage label="#{templateBundle.COLUMN_TITLE}" id="plam0"
+                                                 rendered="#{(not empty node.propertyMap['dDocTitle'].value.stringValue) and (node.name != node.propertyMap['dDocTitle'].value.stringValue)}">
+                            <af:outputText value="#{node.propertyMap['dDocTitle'].value.stringValue}" id="otDesc0"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{templateBundle.COLUMN_COMMENTS}" id="plam1"
+                                                 rendered="#{not empty node.propertyMap['xComments'].value.stringValue}">
+                            <af:outputText value="#{not empty node.propertyMap['xComments'].value.stringValue ? node.propertyMap['xComments'].value.stringValue : node.primaryProperty.value.binaryValue.name}"
+                                           id="otDesc1"/>
+                        </af:panelLabelAndMessage>
+                        <af:panelLabelAndMessage label="#{templateBundle.COLUMN_PATH}" rendered="#{node.hasParentNode}"
+                                                 id="plam2">
+                            <af:outputText value="#{cmfn:getParentNodePath(node.parentId, node.path)}" id="otDesc2"/>
+                        </af:panelLabelAndMessage>
+                        <af:inputText label="#{templateBundle.COLUMN_SIZE}"
+                                      value="#{node.primaryProperty.value.binaryValue.size}" readOnly="true"
+                                      id="cppgit3" rendered="#{not node.isFolder}">
+                            <f:converter converterId="oracle.webcenter.doclib.view.jsf.convert.Size"/>
+                        </af:inputText>
+                        <af:inputText label="#{templateBundle.COLUMN_CREATED_DATE}" value="#{node.createdDate}"
+                                      rendered="#{node.createdDate != null}" readOnly="true" id="cppgit5">
+                            <f:converter converterId="oracle.webcenter.doclib.view.jsf.convert.DateTime"/>
+                        </af:inputText>
+                        <af:panelLabelAndMessage label="#{templateBundle.COLUMN_CREATED_USERNAME}" id="cppgplam4"
+                                                 rendered="#{!empty node.createdBy}">
+                            <rtc:presence username="#{node.createdBy}" id="p2"/>
+                        </af:panelLabelAndMessage>
+                        <af:inputText label="#{templateBundle.COLUMN_MODIFIED_DATE}" value="#{node.modifiedDate}"
+                                      rendered="#{node.modifiedDate != null}" readOnly="true" id="cppgit6">
+                            <f:converter converterId="oracle.webcenter.doclib.view.jsf.convert.DateTime"/>
+                        </af:inputText>
+                        <af:panelLabelAndMessage label="#{templateBundle.COLUMN_MODIFIED_USERNAME}"
+                                                 rendered="#{!empty node.modifiedBy}" id="cppgplam5">
+                            <rtc:presence username="#{node.modifiedBy}" id="p3"/>
+                        </af:panelLabelAndMessage>
+                    </af:panelFormLayout>
+                </af:panelGroupLayout>
+            </f:facet>
+        </af:switcher>
+    </dt:contentTemplateDef>
+</jsp:root>

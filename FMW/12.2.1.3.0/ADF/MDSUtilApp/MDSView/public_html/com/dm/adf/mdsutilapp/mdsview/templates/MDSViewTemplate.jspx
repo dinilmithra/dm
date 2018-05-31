@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:pageTemplateDef var="attrs" definition="private">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description/>
+                <display-name>MDSViewTemplate</display-name>
+                <facet>
+                    <facet-name>content</facet-name>
+                </facet>
+                <attribute>
+                    <attribute-name>title</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+            </component>
+        </af:xmlContent>
+        <af:panelSplitter orientation="horizontal" splitterPosition="131" id="pt_ps1">
+            <f:facet name="first">
+                <af:navigationPane hint="tabs" id="pt_np1" value="#{root_menu}" var="menuModel">
+                    <f:facet name="nodeStamp">
+                        <af:commandNavigationItem text="#{menuModel.label}" id="pt_cni1"
+                                                  action="#{menuModel.doAction}"/>
+                    </f:facet>
+                </af:navigationPane>
+            </f:facet>
+            <f:facet name="second">
+                <af:panelBox id="pt_pb1" showDisclosure="false">
+                    <f:facet name="toolbar">
+                        <af:panelGroupLayout id="pt_pgl1" layout="horizontal">
+                            <af:panelLabelAndMessage label="Welcome" id="pt_plam1">
+                                <af:outputText value="#{securityContext.userName}" id="pt_ol1"/>
+                            </af:panelLabelAndMessage>
+                            <af:spacer width="20" height="10" id="pt_s2"/>
+                            <af:link text="Logout" id="pt_l1"
+                                     destination="/adfAuthentication?logout=true&amp;end_url=/login.html"/>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                    <af:facetRef facetName="content"/>
+                </af:panelBox>
+            </f:facet>
+        </af:panelSplitter>
+    </af:pageTemplateDef>
+</jsp:root>

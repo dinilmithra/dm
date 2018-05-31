@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.wcp.extension.portal.docviewerapp.folderviewer" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/com/dm/wcp/extension/portal/docviewerapp/folderviewer/fragments/dm-content-manager.jsff"
+          usageId="com_dm_wcp_extension_portal_docviewerapp_folderviewer_content-managerPageDef"/>
+    <page path="/com/dm/wcp/extension/portal/docviewerapp/folderviewer/fragments/dm-alert.jsff"
+          usageId="com_dm_wcp_extension_portal_docviewerapp_folderviewer_alertPageDef"/>
+    <page path="/com/dm/wcp/extension/portal/docviewerapp/folderviewer/fragments/dm-main.jsff"
+          usageId="com_dm_wcp_extension_portal_docviewerapp_folderviewer_mainPageDef"/>
+    <page path="/com/dm/wcp/extension/portal/docviewerapp/folderviewer/fragments/dm-docInfo.jsff"
+          usageId="com_dm_wcp_extension_portal_docviewerapp_folderviewer_dm_docInfoPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_wcp_extension_portal_docviewerapp_folderviewer_content-managerPageDef"
+          path="com.dm.wcp.extension.portal.docviewerapp.folderviewer.fragments.dm-content-managerPageDef"/>
+    <page id="com_dm_wcp_extension_portal_docviewerapp_folderviewer_alertPageDef"
+          path="com.dm.wcp.extension.portal.docviewerapp.folderviewer.fragments.dm-alertPageDef"/>
+    <page id="com_dm_wcp_extension_portal_docviewerapp_folderviewer_mainPageDef"
+          path="com.dm.wcp.extension.portal.docviewerapp.folderviewer.fragments.dm-mainPageDef"/>
+    <page id="com_dm_wcp_extension_portal_docviewerapp_folderviewer_dm_docInfoPageDef"
+          path="com.dm.wcp.extension.portal.docviewerapp.folderviewer.fragments.dm_docInfoPageDef"/>
+  </pageDefinitionUsages>
+</Application>

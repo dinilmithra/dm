@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.hrdemoapp.hrview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/com/dm/hrdemoapp/hrview/employee/fragments/employee-search-fragment.jsff"
+          usageId="com_dm_hrdemoapp_hrview_employee_search_fragmentPageDef"/>
+    <page path="/com/dm/hrdemoapp/hrview/employee/fragments/employee-details-fragment.jsff"
+          usageId="com_dm_hrdemoapp_hrview_employee_details_fragmentPageDef"/>
+    <page path="/com/dm/hrdemoapp/hrview/employee/pages/Details.jspx" usageId="com_dm_hrdemoapp_hrview_DetailsPageDef"/>
+    <page path="/com/dm/hrdemoapp/hrview/employee/pages/Search.jspx" usageId="com_dm_hrdemoapp_hrview_SearchPageDef"/>
+    <page path="/WEB-INF/com/dm/hrdemoapp/hrview/employee/pageflows/employee-details-flow.xml#employee-details@ExecuteWithParams"
+          usageId="com_dm_hrdemoapp_hrview_employee_details_flow_employee_details_ExecuteWithParamsPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_hrdemoapp_hrview_employee_search_fragmentPageDef"
+          path="com.dm.hrdemoapp.hrview.employee.fragments.employee_search_fragmentPageDef"/>
+    <page id="com_dm_hrdemoapp_hrview_employee_details_fragmentPageDef"
+          path="com.dm.hrdemoapp.hrview.employee.fragments.employee_details_fragmentPageDef"/>
+    <page id="com_dm_hrdemoapp_hrview_DetailsPageDef" path="com.dm.hrdemoapp.hrview.employee.pages.DetailsPageDef"/>
+    <page id="com_dm_hrdemoapp_hrview_SearchPageDef" path="com.dm.hrdemoapp.hrview.employee.pages.SearchPageDef"/>
+    <page id="com_dm_hrdemoapp_hrview_employee_details_flow_employee_details_ExecuteWithParamsPageDef"
+          path="com.dm.hrdemoapp.hrview.employee.pageflows.employee_details_flow_employee_details_ExecuteWithParamsPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HRServiceDataControl" Package="com.dm.hrdemoapp.hrmodel.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HRServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

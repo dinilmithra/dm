@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <f:view>
+        <af:document title="HRHome.jspx" id="d1">
+            <af:form id="f1">
+                <af:panelBox text="Employees" id="pb1">
+                    <f:facet name="toolbar">
+                        <af:link text="Logout" id="l1"
+                                 destination="/adfAuthentication?logout=true&amp;end_url=/faces/HRHome"/>
+                    </f:facet>
+                    <af:region value="#{bindings.hrhomeflow1.regionModel}" id="r1"/>
+                </af:panelBox>
+            </af:form>
+        </af:document>
+    </f:view>
+</jsp:root>

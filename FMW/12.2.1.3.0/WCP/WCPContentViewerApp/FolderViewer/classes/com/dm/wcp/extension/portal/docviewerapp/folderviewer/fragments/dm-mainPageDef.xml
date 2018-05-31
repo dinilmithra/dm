@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="dm-mainPageDef"
+                Package="com.dm.wcp.extension.portal.docviewerapp.folderviewer.fragments">
+    <parameters/>
+    <executables>
+        <variableIterator id="variables"/>
+        <taskFlow id="CheckInUploadPFFlow1" taskFlowId="/WEB-INF/wcc/upload/CheckInUploadPFFlow.xml#CheckInUploadPFFlow"
+                  activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding" Refresh="ifNeeded">
+            <parameters>
+                <parameter id="CheckInUploadBean" value="#{wccCheckInUploadBean}"/>
+                <parameter id="wccSearchBean" value="#{wccSearchBean}"/>
+                <parameter id="wccDocumentsBean" value="#{wccDocumentsBean}"/>
+                <parameter id="wccMainBean" value="#{wccMainBean}"/>
+            </parameters>
+        </taskFlow>
+    </executables>
+    <bindings/>
+</pageDefinition>

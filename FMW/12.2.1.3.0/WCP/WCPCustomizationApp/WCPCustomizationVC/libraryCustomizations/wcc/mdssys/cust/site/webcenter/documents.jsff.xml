@@ -1,0 +1,6 @@
+<mds:customization version="12.2.1_20170820.0914" xmlns:mds="http://xmlns.oracle.com/mds">
+  <mds:insert parent="pgl2" position="first" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:outputText xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                   value="Documents Flag: #{pageFlowScope.customizationEnabled}" id="sot1"/>
+  </mds:insert>
+</mds:customization>

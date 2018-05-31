@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.9.14" id="MDSAdminPageDef"
+                Package="com.dm.wcextapp.customutils.mds.admin.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="mdsadminflow1"
+              taskFlowId="/WEB-INF/com/dm/wcextapp/mds/admin/pageflows/mds-admin-flow.xml#mds-admin-flow"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>

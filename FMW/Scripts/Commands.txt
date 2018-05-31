@@ -1,0 +1,12 @@
+cd C:\DinilMithra\install\oracle\webcenter\12.2.1.2.0\Middleware\Oracle_Home\user_projects\domains\WC_domain\bin
+
+startManagedWebLogic.cmd WC_Portal localhost:8888
+startManagedWebLogic.cmd WCCADF_server1 localhost:16225
+startManagedWebLogic.cmd UCM_server1 localhost:16200
+
+
+stopManagedWebLogic.cmd WC_Portal localhost:8888
+stopManagedWebLogic.cmd WCCADF_server1 localhost:16225
+stopManagedWebLogic.cmd UCM_server1 localhost:16200
+
+C:\DinilMithra\install\oracle\JDeveloper\12.2.1.2.0\Middleware\Oracle_Home

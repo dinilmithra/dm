@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:panelTabbed position="above" id="pt1">
+        <af:showDetailItem id="tab1" text="Tab Label 1" dontPersist="ALL"/>
+        <af:showDetailItem id="tab2" text="Tab Label 2" dontPersist="ALL"/>
+        <af:showDetailItem id="tab3" text="Tab Label 3" dontPersist="ALL"/>
+        <af:showDetailItem id="tab4" text="Tab Label 4" dontPersist="ALL"/>
+    </af:panelTabbed>
+</jsp:root>

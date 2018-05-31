@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+<JboProject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="HRModel"
+  Version="12.2.1.9.14"
+  SeparateXMLFiles="true"
+  PackageName="com.dm.gfdemoapp.hrmodel">
+  <DesignTime>
+    <Attr Name="_DTExpressionTypeChecking" Value="true"/>
+    <Attr Name="_jbo.TypeMapEntries" Value="OracleApps"/>
+    <Attr Name="_jprName" Value="../../../../../HRModel.jpr"/>
+    <Attr Name="_NamedConnection" Value="hrconn"/>
+    <Attr Name="_appModuleNames0" Value="com.dm.gfdemoapp.hrmodel.am.HRService"/>
+  </DesignTime>
+  <Containee
+    Name="am"
+    PackageName="com.dm.gfdemoapp.hrmodel.am"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_AM" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="eo"
+    PackageName="com.dm.gfdemoapp.hrmodel.eo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_EO" Value="true"/>
+      <Attr Name="_AS" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
+    Name="vo"
+    PackageName="com.dm.gfdemoapp.hrmodel.vo"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VO" Value="true"/>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+</JboProject>

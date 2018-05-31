@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<jazn-data>
+    <jazn-realm default="jazn.com">
+        <realm>
+            <name>jazn.com</name>
+            <users>
+                <user>
+                    <name>alice</name>
+                    <guid>5261FCF0107F11E1BF6003560BC9F744</guid>
+                    <display-name>Alice</display-name>
+                    <credentials>{903}9TVA+ceAtzma/5C4YcgksO6SG9O+H8E+</credentials>
+                </user>
+                <user>
+                    <name>bob</name>
+                    <guid>5261FCF1107F11E1BF6003560BC9F744</guid>
+                    <display-name>Bob</display-name>
+                    <credentials>{903}StWC+vwQvXFMZX7NBq8bf8QgMfqqQSr2</credentials>
+                </user>
+                <user>
+                    <name>layout</name>
+                    <guid>E7D963E0320311E1BF933D2781325A18</guid>
+                    <credentials>{903}tCE7ART4iY2e7nGvy0EOwkUNWjsnNk/R</credentials>
+                </user>
+            </users>
+        </realm>
+    </jazn-realm>
+    <policy-store>
+        <applications>
+            <application>
+                <name>doag2011-demo</name>
+                <jazn-policy>
+                    <grant>
+                        <grantee>
+                            <principals>
+                                <principal>
+                                    <class>oracle.security.jps.internal.core.principals.JpsAuthenticatedRoleImpl</class>
+                                    <name>authenticated-role</name>
+                                </principal>
+                            </principals>
+                        </grantee>
+                        <permissions>
+                            <permission>
+                                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                                <name>de.team.demo.view.pageDefs.view1PageDef</name>
+                                <actions>view</actions>
+                            </permission>
+                            <permission>
+                                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                                <name>/WEB-INF/task-flow-definition.xml#task-flow-definition</name>
+                                <actions>view</actions>
+                            </permission>
+                        </permissions>
+                        <permission-set-refs>
+                        </permission-set-refs>
+                    </grant>
+                </jazn-policy>
+            </application>
+        </applications>
+    </policy-store>
+    <jazn-policy>
+    </jazn-policy>
+</jazn-data>
+

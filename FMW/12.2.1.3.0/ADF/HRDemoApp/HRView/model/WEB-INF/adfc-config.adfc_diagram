@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="x">88.01758</property>
+      <property
+         name="y">83.5</property>
+   </OverallProperties>
+   <View
+      id="View2">
+      <property
+         name="activityId">Search</property>
+      <property
+         name="x">246.53516</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Search&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="page">/com/dm/hrdemoapp/hrview/employee/pages/Search.jspx</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">Details</property>
+      <property
+         name="x">387.53516</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Details&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">83.5</property>
+      <property
+         name="page">/com/dm/hrdemoapp/hrview/employee/pages/Details.jspx</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+</SDM>

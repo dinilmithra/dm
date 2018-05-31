@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (c) 2011, 2017, Oracle and/or its affiliates. All rights reserved. -->
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelGroupLayout id="pgl1" layout="vertical">
+    <af:message id="m1" messageType="error"
+                message="#{pageFlowScope.wccTaskFlowBean.errorMessage}"
+                styleClass="WccMainMessageBox"/>
+  </af:panelGroupLayout>
+</ui:composition>

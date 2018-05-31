@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+    <task-flow-definition id="dm-content-viewer">
+        <description>DM Content Viewer</description>
+        <display-name>DM Content Viewer</display-name>
+        <default-activity>initialize</default-activity>
+        <input-parameter-definition id="__10">
+            <description id="__11">The folder for determining the source and range of task flow content. Default is the root folder of the content repository for the current Portal. Enter a path or EL expression to display content from another folder or Portal. Example: /Enterprise Libraries/monty/Public </description>
+            <display-name id="__12">Start Folder Path</display-name>
+            <name id="__13">startFolderPath</name>
+            <value id="__14">#{pageFlowScope.contentManagerBean.startFolderPath}</value>
+            <class id="__15">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__20">
+            <description id="__21">Pin data that customizes the taskflow rendition.</description>
+            <display-name id="__22">Pin Data</display-name>
+            <name id="__23">internalPin</name>
+            <value id="__24">#{pageFlowScope.contentManagerBean.internalPin}</value>
+            <class id="__25">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__50">
+            <description id="__51">Filter to indicate whether to list folders or files.</description>
+            <display-name id="__52">Browse List Filter</display-name>
+            <name id="__53">browseListFilter</name>
+            <value id="__54">#{pageFlowScope.contentManagerBean.browseListFilter}</value>
+            <class id="__55">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__60">
+            <description id="__61">Filter to show items that are authored by current user. The supported values are true/false.</description>
+            <display-name id="__62">Authored By Me Flag</display-name>
+            <name id="__63">authoredByMeFilter</name>
+            <value id="__64">#{pageFlowScope.contentManagerBean.authoredByMeFilter}</value>
+            <class id="__65">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__70">
+            <description id="__71">Filter to show items that are checked out by current user. The supported values are true/false.</description>
+            <display-name id="__72">Checked Out By Me Flag</display-name>
+            <name id="__73">checkedOutByMeFilter</name>
+            <value id="__74">#{pageFlowScope.contentManagerBean.checkedOutByMeFilter}</value>
+            <class id="__75">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__80">
+            <description id="__81">Filter to show items that are favorited by current user. The supported values are true/false.</description>
+            <display-name id="__82">Favorited by Me Flag</display-name>
+            <name id="__83">favoritedByMeFilter</name>
+            <value id="__84">#{pageFlowScope.contentManagerBean.favoritedByMeFilter}</value>
+            <class id="__85">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__90">
+            <description id="__91">Filter to show items that are followed by current user. The supported values are true/false.</description>
+            <display-name id="__92">Followed by Me Flag</display-name>
+            <name id="__93">followedByMeFilter</name>
+            <value id="__94">#{pageFlowScope.contentManagerBean.followedByMeFilter}</value>
+            <class id="__95">java.lang.String</class>
+        </input-parameter-definition>
+        <input-parameter-definition id="__128">
+            <description id="__129">Property to specify whether the taskflow should render taking dimensions of parent or children. The supported values are children/parent.</description>
+            <display-name id="__130">Dimensions From</display-name>
+            <name id="__131">dimensionsFrom</name>
+            <value id="__132">#{pageFlowScope.contentManagerBean.dimensionsFrom}</value>
+            <class id="__133">java.lang.String</class>
+        </input-parameter-definition>
+        <managed-bean id="__100">
+            <managed-bean-name id="__101">contentManagerBean</managed-bean-name>
+            <managed-bean-class id="__102">oracle.webcenter.doclib.internal.view.wcc.backing.ContentManagerBean</managed-bean-class>
+            <managed-bean-scope id="__103">pageFlow</managed-bean-scope>
+        </managed-bean>
+        <method-call id="initialize">
+            <method id="__104">#{pageFlowScope.contentManagerBean.initialize}</method>
+            <outcome id="__105">
+                <to-string/>
+            </outcome>
+        </method-call>
+        <view id="alertPage">
+            <page id="dlmv111">/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/fragments/dm-alert.jsff</page>
+        </view>
+        <task-flow-call id="wccmain">
+            <task-flow-reference>
+                <document>com\dm\wcp\extension\portal\contentviewerapp\contentviewer\taskflows\dm-wcmain.xml</document>
+                <id>wccmain</id>
+            </task-flow-reference>
+            <input-parameter id="______1">
+                <name>fFolderGUID</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="______2">
+                <name>documentPropertiesMethodExp</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="______5">
+                <name>path</name>
+                <value>#{pageFlowScope.contentManagerBean.startFolderPath}</value>
+            </input-parameter>
+            <input-parameter id="______4">
+                <name>preferredLanguage</name>
+                <value>#{pageFlowScope.contentManagerBean.preferredLanguage}</value>
+            </input-parameter>
+            <input-parameter id="______3">
+                <name>formattingLocale</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="______6">
+                <name>wccRuiConfiguration</name>
+                <value>#{wccRuiConfiguration}</value>
+            </input-parameter>
+            <input-parameter id="______8">
+                <name>compactMode</name>
+                <value>#{true}</value>
+            </input-parameter>
+            <input-parameter id="______7">
+                <name>inplaceNavigation</name>
+                <value>#{true}</value>
+            </input-parameter>
+            <input-parameter id="______9">
+                <name>restrictNavigationMode</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="______10">
+                <name>disableMultiSelect</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="______11">
+                <name>overrideMode</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="______12">
+                <name>dateTimeFormatPattern</name>
+                <value>#{pageFlowScope.contentManagerBean.dateTimeFormatPattern}</value>
+            </input-parameter>
+            <input-parameter id="______15">
+                <name>wccReturnValueBean</name>
+                <value>#{wccReturnValueBean}</value>
+            </input-parameter>
+            <input-parameter id="______13">
+                <name>pin</name>
+                <value>#{pageFlowScope.contentManagerBean.pin}</value>
+            </input-parameter>
+            <input-parameter id="______14">
+                <name>timeZone</name>
+                <value>#{pageFlowScope.contentManagerBean.timeZone}</value>
+            </input-parameter>
+        </task-flow-call>
+        <task-flow-call id="dm-wcmain">
+            <task-flow-reference>
+                <document>/WEB-INF/com/dm/wcp/extension/portal/contentviewerapp/contentviewer/taskflows/dm-wcmain.xml</document>
+                <id>dm-wcmain</id>
+            </task-flow-reference>
+            <input-parameter id="________1">
+                <name>fFolderGUID</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="________4">
+                <name>documentPropertiesMethodExp</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="________2">
+                <name>path</name>
+                <value>#{pageFlowScope.contentManagerBean.startFolderPath}</value>
+            </input-parameter>
+            <input-parameter id="________8">
+                <name>preferredLanguage</name>
+                <value>#{pageFlowScope.contentManagerBean.preferredLanguage}</value>
+            </input-parameter>
+            <input-parameter id="________9">
+                <name>formattingLocale</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="________5">
+                <name>wccRuiConfiguration</name>
+                <value>#{wccRuiConfiguration}</value>
+            </input-parameter>
+            <input-parameter id="________6">
+                <name>compactMode</name>
+                <value>#{true}</value>
+            </input-parameter>
+            <input-parameter id="________7">
+                <name>inplaceNavigation</name>
+                <value>#{true}</value>
+            </input-parameter>
+            <input-parameter id="________3">
+                <name>restrictNavigationMode</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="________10">
+                <name>disableMultiSelect</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="________14">
+                <name>overrideMode</name>
+                <value></value>
+            </input-parameter>
+            <input-parameter id="________12">
+                <name>dateTimeFormatPattern</name>
+                <value>#{pageFlowScope.contentManagerBean.dateTimeFormatPattern}</value>
+            </input-parameter>
+            <input-parameter id="________13">
+                <name>wccReturnValueBean</name>
+                <value>#{wccReturnValueBean}</value>
+            </input-parameter>
+            <input-parameter id="________11">
+                <name>pin</name>
+                <value>#{pageFlowScope.contentManagerBean.pin}</value>
+            </input-parameter>
+            <input-parameter id="________15">
+                <name>timeZone</name>
+                <value>#{pageFlowScope.contentManagerBean.timeZone}</value>
+            </input-parameter>
+        </task-flow-call>
+        <control-flow-rule id="__16">
+            <from-activity-id>initialize</from-activity-id>
+            <control-flow-case id="__17">
+                <from-outcome>wccdoclib</from-outcome>
+                <to-activity-id>dm-wcmain</to-activity-id>
+            </control-flow-case>
+            <control-flow-case id="__18">
+                <from-outcome>error</from-outcome>
+                <to-activity-id>alertPage</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <control-flow-rule id="__19">
+            <from-activity-id>alertPage</from-activity-id>
+            <control-flow-case id="__160">
+                <from-outcome>retry-initialization</from-outcome>
+                <to-activity-id>initialize</to-activity-id>
+            </control-flow-case>
+        </control-flow-rule>
+        <use-page-fragments/>
+    </task-flow-definition>
+</adfc-config>

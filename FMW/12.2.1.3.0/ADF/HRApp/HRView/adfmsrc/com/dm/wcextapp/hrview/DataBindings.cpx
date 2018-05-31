@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="com.dm.wcextapp.hrview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/hr/fragments/hr-home-fragment.jsff" usageId="com_dm_wcextapp_hrview_hr_home_fragmentPageDef"/>
+    <page path="/hr/fragments/employees-fragment.jsff" usageId="com_dm_wcextapp_hrview_employees_fragmentPageDef"/>
+    <page path="/hr/pages/Employees.jspx" usageId="com_dm_wcextapp_hrview_EmployeesPageDef"/>
+    <page path="/hr/pages/HRHome.jspx" usageId="com_dm_wcextapp_hrview_HRHomePageDef"/>
+    <page path="/common/pages/Tester.jspx" usageId="com_dm_wcextapp_hrview_TesterPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_wcextapp_hrview_hr_home_fragmentPageDef" path="hr.fragments.hr_home_fragmentPageDef"/>
+    <page id="com_dm_wcextapp_hrview_employees_fragmentPageDef" path="hr.fragments.employees_fragmentPageDef"/>
+    <page id="com_dm_wcextapp_hrview_EmployeesPageDef" path="hr.pages.EmployeesPageDef"/>
+    <page id="com_dm_wcextapp_hrview_HRHomePageDef" path="hr.pages.HRHomePageDef"/>
+    <page id="com_dm_wcextapp_hrview_TesterPageDef" path="common.pages.TesterPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HRServiceDataControl" Package="com.dm.wcextapp.hrmodel.hr.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HRServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>
