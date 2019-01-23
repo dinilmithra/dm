@@ -25,9 +25,9 @@
             <af:panelGroupLayout layout="horizontal"
                                  xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
                                  id="pgl1" inlineStyle="padding:2px;">
-              <af:image id="i1" source="/adf/images/DD_Logo_361C_RGB.jpg"
+              <af:image id="i1" source="/adf/images/logo.png"
                         shortDesc="Delta Logo"
-                        inlineStyle="height:50px; width:250px;"/>
+                        inlineStyle="height:50px; width:100px;"/>
             </af:panelGroupLayout>
           </f:facet>
         </af:panelStretchLayout>
