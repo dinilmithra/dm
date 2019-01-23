@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:f="http://java.sun.com/jsf/core">
+  <af:panelHeader text="Tester View Fragment" id="ph1">
+    <f:facet name="context"/>
+    <f:facet name="menuBar"/>
+    <f:facet name="toolbar"/>
+    <f:facet name="legend"/>
+    <f:facet name="info"/>
+    <af:panelFormLayout id="pfl1">
+      <af:panelLabelAndMessage label="Refresh Flag" id="plam1">
+        <af:outputText value="#{pageFlowScope.refreshFlag}" id="ot1"/>
+      </af:panelLabelAndMessage>
+      <af:inputText value="#{HomeBean.firstName}" id="inputText1"
+                    label="First Name: "/>
+      <!--<af:inputText id="inputText2" label="Last Name: "
+                    value="#{HoamBackBean.lastName}"/>-->
+      <af:commandLink text="My View" id="cb1" action="my-view"/>
+    </af:panelFormLayout>
+  </af:panelHeader>
+</jsp:root>

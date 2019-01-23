@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="Home">
+    <page>/com/dm/taskflowrefreshapp/view/pages/Home.jspx</page>
+  </view>
+  <managed-bean id="__4">
+    <managed-bean-name id="__2">HomeBean</managed-bean-name>
+    <managed-bean-class id="__1">com.dm.taskflowrefreshapp.view.beans.HomeBean</managed-bean-class>
+    <managed-bean-scope id="__3">session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__5">
+    <managed-bean-name id="__7">TesterBean</managed-bean-name>
+    <managed-bean-class id="__8">com.dm.taskflowrefreshapp.view.beans.TesterBean</managed-bean-class>
+    <managed-bean-scope id="__6">session</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__11">
+    <managed-bean-name id="__10">HoamBackBean</managed-bean-name>
+    <managed-bean-class id="__9">com.dm.taskflowrefreshapp.view.beans.HoamBackBean</managed-bean-class>
+    <managed-bean-scope id="__12">request</managed-bean-scope>
+  </managed-bean>
+</adfc-config>
