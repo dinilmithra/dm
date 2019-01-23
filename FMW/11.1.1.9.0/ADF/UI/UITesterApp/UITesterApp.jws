@@ -26,6 +26,16 @@
             <hash n="archiveOptions">
                <value n="hasManifest" v="false"/>
             </hash>
+            <hash n="dependencies">
+               <list n="dependencyList">
+                  <hash>
+                     <value n="adapterClass" v="oracle.jdevimpl.deploy.common.DefaultProfileDependable"/>
+                     <url n="ownerURL" path="UITesterVC/UITesterVC.jpr"/>
+                     <value n="pathInEar" v=""/>
+                     <value n="profileName" v="UITesterVC"/>
+                  </hash>
+               </list>
+            </hash>
             <url n="earURL" path="deploy/UITesterApp.ear"/>
             <value n="enterpriseAppName" v="UITesterApp"/>
             <hash n="fileGroups">
