@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <itemNode id="itemNode_Home" label="Home" action="adfMenu_Home"
+            focusViewId="/Home"/>
+  <itemNode id="itemNode_Tester" label="Tester" action="adfMenu_Tester"
+            focusViewId="/Tester"/>
+</menu>

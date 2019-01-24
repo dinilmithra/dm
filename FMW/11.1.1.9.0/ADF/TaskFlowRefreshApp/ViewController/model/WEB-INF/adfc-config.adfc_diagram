@@ -1,20 +1,69 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <SDM>
    <OverallProperties
-      id="OverallProperties1"/>
+      id="OverallProperties1">
+      <property
+         name="y">83.5</property>
+      <property
+         name="x">88.01758</property>
+   </OverallProperties>
    <View
       id="View2">
       <property
          name="activityId">Home</property>
       <property
-         name="page">/pages/Home.jspx</property>
+         name="page">/com/dm/taskflowrefreshapp/view/pages/Home.jspx</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>Home&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
          name="exceptionHandler">false</property>
       <property
-         name="y">193.09766</property>
+         name="y">251.20117</property>
       <property
-         name="x">257.5</property>
+         name="x">168.03516</property>
    </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">Tester</property>
+      <property
+         name="page">/com/dm/taskflowrefreshapp/view/pages/Tester.jspx</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>Tester&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">251.20117</property>
+      <property
+         name="x">314.03516</property>
+   </View>
+   <WildcardControlFlowRule
+      id="WildcardControlFlowRule4">
+      <property
+         name="activityId">*</property>
+      <property
+         name="y">84.0</property>
+      <property
+         name="x">241.03516</property>
+   </WildcardControlFlowRule>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="WildcardControlFlowRule4"
+      to="View3">
+      <property
+         name="fromOutcome">adfMenu_Tester</property>
+      <property
+         name="sdm:polyPoints">B57,244.53516,126.649414,314.03516,196.85059,T50</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase6"
+      from="WildcardControlFlowRule4"
+      to="View2">
+      <property
+         name="fromOutcome">adfMenu_Home</property>
+      <property
+         name="sdm:polyPoints">B43,237.53516,126.649414,168.03516,196.85059,T50</property>
+   </ControlFlowCase>
 </SDM>

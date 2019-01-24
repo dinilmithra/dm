@@ -22,9 +22,9 @@
       <property
          name="y">266.5</property>
       <property
-         name="x">267.53516</property>
-      <property
          name="pageFragment">true</property>
+      <property
+         name="x">267.53516</property>
    </View>
    <View
       id="View6">
@@ -39,9 +39,9 @@
       <property
          name="y">434.20117</property>
       <property
-         name="x">267.53516</property>
-      <property
          name="pageFragment">true</property>
+      <property
+         name="x">267.53516</property>
    </View>
    <ControlFlowCase
       islink="true"
@@ -80,11 +80,11 @@
    </MethodCall>
    <ControlFlowCase
       islink="true"
-      id="ControlFlowCase9"
+      id="ControlFlowCase10"
       from="MethodCall6"
       to="View2">
       <property
-         name="fromOutcome">initilize</property>
+         name="fromOutcome">setup</property>
       <property
          name="sdm:polyPoints">B50,T50</property>
    </ControlFlowCase>

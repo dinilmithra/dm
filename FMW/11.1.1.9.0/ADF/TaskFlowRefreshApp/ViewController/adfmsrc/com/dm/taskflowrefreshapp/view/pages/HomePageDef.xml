@@ -7,6 +7,8 @@
       <variable Name="myViewTFRefreshFlag" Type="java.lang.Boolean"
                 DefaultValue="false"/>
     </variableIterator>
+    <page path="com.dm.taskflowrefreshapp.view.templates.BaseTemplatePageDef"
+          id="pageTemplateBinding" Refresh="ifNeeded"/>
     <taskFlow id="myviewflow1"
               taskFlowId="/WEB-INF/com/dm/taskflowrefreshapp/pageflows/my-view-flow.xml#my-view-flow"
               activation="deferred"

@@ -12,6 +12,8 @@
       <managed-bean-class id="__16">com.dm.taskflowrefreshapp.view.beans.MyViewFlowBean</managed-bean-class>
       <managed-bean-scope id="__17">pageFlow</managed-bean-scope>
     </managed-bean>
+    <initializer id="__24">#{pageFlowScope.MyViewFlowBean.initilizer}</initializer>
+    <finalizer id="__25">#{pageFlowScope.MyViewFlowBean.finalizer}</finalizer>
     <view id="my-view">
       <page>/com/dm/taskflowrefreshapp/view/fragments/my-view.jsff</page>
     </view>
@@ -19,9 +21,9 @@
       <page>/com/dm/taskflowrefreshapp/view/fragments/tester-view.jsff</page>
     </view>
     <method-call id="initilize">
-      <method>#{pageFlowScope.MyViewFlowBean.initilize}</method>
+      <method>#{pageFlowScope.MyViewFlowBean.setup}</method>
       <outcome id="__18">
-        <fixed-outcome>initilize</fixed-outcome>
+        <fixed-outcome>setup</fixed-outcome>
       </outcome>
     </method-call>
     <control-flow-rule id="__2">
@@ -38,11 +40,11 @@
         <to-activity-id id="__9">my-view</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
-    <control-flow-rule id="__19">
-      <from-activity-id id="__20">initilize</from-activity-id>
-      <control-flow-case id="__23">
-        <from-outcome id="__21">initilize</from-outcome>
-        <to-activity-id id="__22">my-view</to-activity-id>
+    <control-flow-rule id="__26">
+      <from-activity-id id="__27">initilize</from-activity-id>
+      <control-flow-case id="__30">
+        <from-outcome id="__28">setup</from-outcome>
+        <to-activity-id id="__29">my-view</to-activity-id>
       </control-flow-case>
     </control-flow-rule>
     <use-page-fragments/>

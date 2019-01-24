@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:panelStretchLayout id="pt_psl1">
+      <f:facet name="center">
+        <af:panelSplitter id="pt_ps1" splitterPosition="100"
+                          orientation="horizontal">
+          <f:facet name="first">
+            <af:navigationPane hint="list" id="pt_np1" value="#{root_menu}"
+                               var="base_menu"
+                               inlineStyle="-toppadding:10.0px;">
+              <f:facet name="nodeStamp">
+                <af:commandNavigationItem text="#{base_menu.label}" id="pt_cni1"
+                                          action="#{base_menu.doAction}"
+                                          visible="#{base_menu.visible}"
+                                          disabled="#{base_menu.disabled}"
+                                          rendered="#{base_menu.rendered}"/>
+              </f:facet>
+            </af:navigationPane>
+          </f:facet>
+          <f:facet name="second">
+            <af:facetRef facetName="content"/>
+          </f:facet>
+        </af:panelSplitter>
+      </f:facet>
+    </af:panelStretchLayout>
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>BaseTemplate</display-name>
+        <facet>
+          <facet-name>content</facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>Page Name</attribute-name>
+          <attribute-class>java.lang.String</attribute-class>
+        </attribute>
+      </component>
+    </af:xmlContent>
+  </af:pageTemplateDef>
+</jsp:root>

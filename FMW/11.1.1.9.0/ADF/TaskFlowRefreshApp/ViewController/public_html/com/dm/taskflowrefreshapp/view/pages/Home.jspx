@@ -7,28 +7,34 @@
   <f:view>
     <af:document id="d1">
       <af:form id="f1">
-        <af:subform id="s1" defaultCommand="cl1">
-          <af:panelHeader text="Home Page Region" id="ph1">
-            <af:panelFormLayout id="pfl1">
-              <af:panelLabelAndMessage label="Refresh Flag" id="plam1">
-                <af:outputText value="#{bindings.myViewTFRefreshFlag1.inputValue}"
-                               id="ot1"/>
-              </af:panelLabelAndMessage>
-              <af:inputText label="First Name" id="it1"
-                            value="#{HomeBean.firstName}"/>
-              <!--<af:inputText label="Last Name" id="it2"
+        <af:pageTemplate viewId="/com/dm/taskflowrefreshapp/view/templates/BaseTemplate.jspx"
+                         value="#{bindings.pageTemplateBinding}" id="pt1">
+          <f:facet name="content">
+            <af:panelGroupLayout id="pgl1" layout="scroll">
+              <af:subform id="s1" defaultCommand="cl1">
+                <af:panelHeader text="Home Page Region" id="ph1">
+                  <af:panelFormLayout id="pfl1">
+                    <af:panelLabelAndMessage label="Refresh Flag" id="plam1">
+                      <af:outputText value="#{bindings.myViewTFRefreshFlag1.inputValue}"
+                                     id="ot1"/>
+                    </af:panelLabelAndMessage>
+                    <af:inputText label="First Name" id="it1"
+                                  value="#{HomeBean.firstName}"/>
+                    <!--<af:inputText label="Last Name" id="it2"
                             value="#{HoamBackBean.lastName}"/>-->
-              <af:commandLink text="Submit" id="cl1">
-                <af:setPropertyListener from="#{(bindings.myViewTFRefreshFlag1.inputValue == true) ? false : true }"
-                                        to="#{bindings.myViewTFRefreshFlag1.inputValue}"
-                                        type="action"/>
-              </af:commandLink>
-            </af:panelFormLayout>
-          </af:panelHeader>
-        </af:subform>
-        <af:subform id="s2">
-          <af:region value="#{bindings.myviewflow1.regionModel}" id="r1"/>
-        </af:subform>
+                    <af:commandLink text="Submit" id="cl1">
+                      <af:setPropertyListener from="#{(bindings.myViewTFRefreshFlag1.inputValue == true) ? false : true }"
+                                              to="#{bindings.myViewTFRefreshFlag1.inputValue}"
+                                              type="action"/>
+                    </af:commandLink>
+                  </af:panelFormLayout>
+                </af:panelHeader>
+              </af:subform>
+              <!--<af:subform id="s2"/>-->
+              <af:region value="#{bindings.myviewflow1.regionModel}" id="r1"/>
+            </af:panelGroupLayout>
+          </f:facet>
+        </af:pageTemplate>
       </af:form>
     </af:document>
   </f:view>

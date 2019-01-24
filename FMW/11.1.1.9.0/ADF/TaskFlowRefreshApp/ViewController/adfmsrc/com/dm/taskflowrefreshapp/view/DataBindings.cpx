@@ -11,11 +11,15 @@
     <page path="/com/dm/taskflowrefreshapp/view/pages/Home.jspx" usageId="com_dm_beanapp_view_HomePageDef"/>
     <page path="/com/dm/taskflowrefreshapp/view/pages/Tester.jspx"
           usageId="com_dm_beanapp_view_TesterPageDef"/>
+    <page path="/com/dm/taskflowrefreshapp/view/templates/BaseTemplate.jspx"
+          usageId="com_dm_taskflowrefreshapp_view_BaseTemplatePageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="com_dm_beanapp_view_HomePageDef"
           path="com.dm.taskflowrefreshapp.view.pages.HomePageDef"/>
     <page id="com_dm_beanapp_view_TesterPageDef"
           path="com.dm.taskflowrefreshapp.view.pages.TesterPageDef"/>
+    <page id="com_dm_taskflowrefreshapp_view_BaseTemplatePageDef"
+          path="com.dm.taskflowrefreshapp.view.templates.BaseTemplatePageDef"/>
   </pageDefinitionUsages>
 </Application>

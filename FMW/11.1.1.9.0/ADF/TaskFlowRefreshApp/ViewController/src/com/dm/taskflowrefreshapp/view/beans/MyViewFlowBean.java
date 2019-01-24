@@ -12,8 +12,16 @@ public class MyViewFlowBean {
         _logger.info("Initializing " + this);
     }
 
-    public void initilize() {
-        _logger.info("Calling");
+    public void setup() {
+        _logger.info("");
+    }
+
+    public void initilizer() {
+        _logger.info("" + this);
+    }
+
+    public void finalizer() {
+        _logger.info("" + this);
     }
 
     @Override
