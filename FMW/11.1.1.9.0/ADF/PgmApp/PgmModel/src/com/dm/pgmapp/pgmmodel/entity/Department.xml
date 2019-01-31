@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE Entity SYSTEM "jbo_03_01.dtd">
+<!---->
+<Entity
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="Department"
+  Version="11.1.1.66.73"
+  InheritPersonalization="merge"
+  DBObjectType="table"
+  DBObjectName="DEPARTMENT"
+  AliasName="Department"
+  BindingStyle="OracleName"
+  UseGlueCode="false">
+  <DesignTime>
+    <AttrArray Name="_publishEvents"/>
+  </DesignTime>
+  <Attribute
+    Name="Id"
+    IsUpdateable="while_insert"
+    IsNotNull="true"
+    ColumnName="ID"
+    SQLType="NUMERIC"
+    Type="java.lang.Integer"
+    ColumnType="NUMBER"
+    TableName="DEPARTMENT"
+    PrimaryKey="true"/>
+  <Attribute
+    Name="Name"
+    IsUpdateable="while_insert"
+    Precision="80"
+    ColumnName="NAME"
+    SQLType="VARCHAR"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    TableName="DEPARTMENT"/>
+  <AccessorAttribute
+    Name="Employee"
+    Association="com.dm.pgmapp.pgmmodel.entity.assoc.DeptToEmpAssoc"
+    AssociationEnd="com.dm.pgmapp.pgmmodel.entity.assoc.DeptToEmpAssoc.Employee"
+    AssociationOtherEnd="com.dm.pgmapp.pgmmodel.entity.assoc.DeptToEmpAssoc.Department"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <Key
+    Name="DepartmentIdCheck">
+    <DesignTime>
+      <Attr Name="_isNotNull" Value="true"/>
+      <Attr Name="_DBObjectName" Value="DEPARTMENT_ID_CHECK"/>
+      <Attr Name="_checkCondition" Value='"ID" IS NOT NULL'/>
+      <Attr Name="_isCheck" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.dm.pgmapp.pgmmodel.entity.Department.Id"/>
+    </AttrArray>
+  </Key>
+  <Key
+    Name="DepartmentPrimaryKey"
+    PrimaryKey="true">
+    <DesignTime>
+      <Attr Name="_DBObjectName" Value="DEPARTMENT_PRIMARY_KEY"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.dm.pgmapp.pgmmodel.entity.Department.Id"/>
+    </AttrArray>
+  </Key>
+</Entity>
