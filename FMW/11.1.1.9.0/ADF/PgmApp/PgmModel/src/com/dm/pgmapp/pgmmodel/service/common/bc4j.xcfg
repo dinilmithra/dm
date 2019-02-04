@@ -1,14 +1,27 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
    <AppModuleConfigBag ApplicationName="com.dm.pgmapp.pgmmodel.service.PgmService">
-      <AppModuleConfig name="PgmServiceLocal" ApplicationName="com.dm.pgmapp.pgmmodel.service.PgmService" DeployPlatform="LOCAL" jbo.project="com.dm.pgmapp.pgmmodel.PgmModel">
+      <AppModuleConfig name="PgmServiceLocal"
+                       ApplicationName="com.dm.pgmapp.pgmmodel.service.PgmService"
+                       DeployPlatform="LOCAL"
+                       jbo.project="com.dm.pgmapp.pgmmodel.PgmModel"
+                       SessionClass="com.dm.pgmapp.utils.framework.CustomSessionImpl">
+         <AM-Pooling jbo.ampool.connectionstrategyclass="com.dm.pgmapp.utils.framework.NoDatabaseConnectionStrategy"
+                     PoolClassName="com.dm.pgmapp.utils.framework.NoDatabaseApplicationPoolImpl"/>
          <Security AppModuleJndiName="com.dm.pgmapp.pgmmodel.service.PgmService"/>
-         <Custom JDBCDataSource="java:comp/env/jdbc/HRDS"/>
+         <Custom RequiresConnection="false"/>
       </AppModuleConfig>
-      <AppModuleConfig name="PgmServiceShared" ApplicationName="com.dm.pgmapp.pgmmodel.service.PgmService" DeployPlatform="LOCAL" jbo.project="com.dm.pgmapp.pgmmodel.PgmModel">
-         <AM-Pooling jbo.ampool.maxpoolsize="1" jbo.ampool.isuseexclusive="false"/>
+      <AppModuleConfig name="PgmServiceShared"
+                       ApplicationName="com.dm.pgmapp.pgmmodel.service.PgmService"
+                       DeployPlatform="LOCAL"
+                       jbo.project="com.dm.pgmapp.pgmmodel.PgmModel"
+                       SessionClass="com.dm.pgmapp.utils.framework.CustomSessionImpl">
+         <AM-Pooling jbo.ampool.maxpoolsize="1"
+                     jbo.ampool.isuseexclusive="false"
+                     jbo.ampool.connectionstrategyclass="com.dm.pgmapp.utils.framework.NoDatabaseConnectionStrategy"
+                     PoolClassName="com.dm.pgmapp.utils.framework.NoDatabaseApplicationPoolImpl"/>
          <Security AppModuleJndiName="com.dm.pgmapp.pgmmodel.service.PgmService"/>
-         <Custom JDBCDataSource="java:comp/env/jdbc/HRDS"/>
+         <Custom RequiresConnection="false"/>
       </AppModuleConfig>
    </AppModuleConfigBag>
 </BC4JConfig>

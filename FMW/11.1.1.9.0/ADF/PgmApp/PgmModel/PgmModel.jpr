@@ -184,6 +184,7 @@
       <hash n="runConfigurationDefinitions">
          <hash n="Default">
             <value n="custom" v="false"/>
+            <value n="javaOptions" v="-Djbo.debugoutput=console"/>
             <value n="name" v="Default"/>
          </hash>
       </hash>

@@ -27,8 +27,7 @@ public class EmployeesViewImpl extends ProgrammaticViewObjectImpl {
 
     @Override
     protected Collection<Object> getScrollableData(ScrollableDataFilter scrollableDataFilter) {
-        //        return super.getScrollableData(scrollableDataFilter);
-        
+      
         RowContext ctx = scrollableDataFilter.getRowContext();
         String masterAccessorName = ctx.getMasterAccessorName();
         Map masterRowData = (Map)ctx.getMasterRowDataProvider();
@@ -36,7 +35,8 @@ public class EmployeesViewImpl extends ProgrammaticViewObjectImpl {
         Collection<Object> rows =
             populateEmployees(scrollableDataFilter, masterAccessorName,
                               masterRowData);
-        return rows;
+        return rows;  //        return super.getScrollableData(scrollableDataFilter);
+        
     }
 
     private Collection<Object> populateEmployees(ScrollableDataFilter scrollableDataFilter,
