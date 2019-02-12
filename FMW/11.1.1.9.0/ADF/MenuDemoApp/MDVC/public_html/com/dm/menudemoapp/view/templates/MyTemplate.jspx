@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>MyTemplate</display-name>
+        <facet>
+          <facet-name>content</facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>Title</attribute-name>
+          <attribute-class>java.lang.String</attribute-class>
+        </attribute>
+      </component>
+    </af:xmlContent>
+    <af:panelStretchLayout id="pt_psl1">
+      <f:facet name="bottom"/>
+      <f:facet name="center">
+        <af:panelSplitter orientation="horizontal" splitterPosition="100"
+                          id="pt_ps1">
+          <f:facet name="first">
+            <af:panelBox id="pt_pb1">
+              <f:facet name="toolbar"/>
+              <af:navigationPane hint="list" id="pt_np1" value="#{root_menu}"
+                                 var="menu">
+                <f:facet name="nodeStamp">
+                  <af:commandNavigationItem text="#{menu.label}" id="pt_cni1"
+                                            action="#{menu.doAction}"/>
+                </f:facet>
+              </af:navigationPane>
+            </af:panelBox>
+          </f:facet>
+          <f:facet name="second">
+            <!-- id="af_twocol_left_sidebar_split_stretched"   -->
+            <af:facetRef facetName="content"/>
+          </f:facet>
+        </af:panelSplitter>
+      </f:facet>
+      <f:facet name="start"/>
+      <f:facet name="end"/>
+      <f:facet name="top">
+        <af:panelBox id="pt_pb2" showDisclosure="false">
+          <f:facet name="toolbar">
+            <af:commandButton text="Home" id="pt_cb1" action="adfMenu_Home"
+                              immediate="true"/>
+          </f:facet>
+        </af:panelBox>
+      </f:facet>
+    </af:panelStretchLayout>
+  </af:pageTemplateDef>
+</jsp:root>

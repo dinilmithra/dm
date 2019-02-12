@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <view id="Billing">
+    <page>/com/dm/menudemoapp/view/pages/Billing.jspx</page>
+  </view>
+  <view id="Claims">
+    <page>/com/dm/menudemoapp/view/pages/Claims.jspx</page>
+  </view>
+  <view id="Home">
+    <page>/com/dm/menudemoapp/view/pages/Home.jspx</page>
+  </view>
+  <view id="MyAccount">
+    <page>/com/dm/menudemoapp/view/pages/MyAccount.jspx</page>
+  </view>
+  <view id="Documents">
+    <page>/com/dm/menudemoapp/view/pages/Documents.jspx</page>
+  </view>
+  <view id="Providers">
+    <page>/com/dm/menudemoapp/view/pages/Providers.jspx</page>
+  </view>
+  <control-flow-rule id="__1">
+    <from-activity-id id="__2">*</from-activity-id>
+    <control-flow-case id="__3">
+      <from-outcome id="__4">adfMenu_Billing</from-outcome>
+      <to-activity-id id="__5">Billing</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__6">
+      <from-outcome id="__7">adfMenu_Claims</from-outcome>
+      <to-activity-id id="__8">Claims</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__9">
+      <from-outcome id="__10">adfMenu_Home</from-outcome>
+      <to-activity-id id="__11">Home</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__12">
+      <from-outcome id="__13">adfMenu_MyAccount</from-outcome>
+      <to-activity-id id="__14">MyAccount</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__26">
+      <from-outcome id="__27">adfMenu_Documents</from-outcome>
+      <to-activity-id id="__28">Documents</to-activity-id>
+    </control-flow-case>
+    <control-flow-case id="__29">
+      <from-outcome id="__30">adfMenu_Providers</from-outcome>
+      <to-activity-id id="__31">Providers</to-activity-id>
+    </control-flow-case>
+  </control-flow-rule>
+  <managed-bean id="__15">
+    <description id="__17">Menu Model Managed Bean</description>
+    <managed-bean-name id="__16">root_menu</managed-bean-name>
+    <managed-bean-class>oracle.adf.view.rich.model.MDSMenuModel</managed-bean-class>
+    <managed-bean-scope id="__18">request</managed-bean-scope>
+    <managed-property id="__21">
+      <property-name id="__20">createHiddenNodes</property-name>
+      <value id="__19">false</value>
+    </managed-property>
+    <managed-property id="__22">
+      <property-name id="__25">source</property-name>
+      <property-class id="__24">java.lang.String</property-class>
+      <value id="__23">/WEB-INF/root_menu.xml</value>
+    </managed-property>
+  </managed-bean>
+</adfc-config>

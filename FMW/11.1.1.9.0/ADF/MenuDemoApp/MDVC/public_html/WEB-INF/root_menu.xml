@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<menu xmlns="http://myfaces.apache.org/trinidad/menu">
+  <itemNode id="itemNode_Home" label="Home" action="adfMenu_Home"
+            focusViewId="/Home"/>
+  <itemNode id="itemNode_MyAccount" label="My Account"
+            action="adfMenu_MyAccount" focusViewId="/MyAccount"/>
+  <itemNode id="itemNode_Billing" label="Billing" action="adfMenu_Billing"
+            focusViewId="/Billing"/>
+  <itemNode id="itemNode_Claims" label="Claims" action="adfMenu_Claims"
+            focusViewId="/Claims"/>
+  <itemNode id="itemNode_Providers" label="Providers" action="adfMenu_Providers"
+            focusViewId="/Providers"/>
+  <itemNode id="itemNode_Documents" label="Documents" action="adfMenu_Documents"
+            focusViewId="/Documents"/>
+</menu>

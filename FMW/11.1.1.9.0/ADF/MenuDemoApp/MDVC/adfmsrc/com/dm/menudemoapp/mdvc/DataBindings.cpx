@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.66.73" id="DataBindings" SeparateXMLFiles="false"
+             Package="com.dm.menudemoapp.mdvc" ClientType="Generic">
+  <pageMap>
+    <page path="/com/dm/menudemoapp/view/templates/MyTemplate.jspx"
+          usageId="com_dm_menudemoapp_mdvc_MyTemplatePageDef"/>
+    <page path="/com/dm/menudemoapp/view/pages/Providers.jspx"
+          usageId="com_dm_menudemoapp_mdvc_ProvidersPageDef"/>
+    <page path="/com/dm/menudemoapp/view/pages/MyAccount.jspx"
+          usageId="com_dm_menudemoapp_mdvc_MyAccountPageDef"/>
+    <page path="/com/dm/menudemoapp/view/pages/Home.jspx"
+          usageId="com_dm_menudemoapp_mdvc_HomePageDef"/>
+    <page path="/com/dm/menudemoapp/view/pages/Documents.jspx"
+          usageId="com_dm_menudemoapp_mdvc_DocumentsPageDef"/>
+    <page path="/com/dm/menudemoapp/view/pages/Claims.jspx"
+          usageId="com_dm_menudemoapp_mdvc_ClaimsPageDef"/>
+    <page path="/com/dm/menudemoapp/view/pages/Billing.jspx"
+          usageId="com_dm_menudemoapp_mdvc_BillingPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_menudemoapp_mdvc_MyTemplatePageDef"
+          path="com.dm.menudemoapp.view.templates.MyTemplatePageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_ProvidersPageDef"
+          path="com.dm.menudemoapp.view.pages.ProvidersPageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_MyAccountPageDef"
+          path="com.dm.menudemoapp.view.pages.MyAccountPageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_HomePageDef"
+          path="com.dm.menudemoapp.view.pages.HomePageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_DocumentsPageDef"
+          path="com.dm.menudemoapp.view.pages.DocumentsPageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_ClaimsPageDef"
+          path="com.dm.menudemoapp.view.pages.ClaimsPageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_BillingPageDef"
+          path="com.dm.menudemoapp.view.pages.BillingPageDef"/>
+  </pageDefinitionUsages>
+</Application>
