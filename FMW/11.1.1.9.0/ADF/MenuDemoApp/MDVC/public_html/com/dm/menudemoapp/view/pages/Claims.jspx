@@ -5,15 +5,15 @@
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <f:view>
-    <af:document id="d1">
+    <af:document id="d1" title="Claims">
       <af:form id="f1">
         <af:pageTemplate viewId="/com/dm/menudemoapp/view/templates/MyTemplate.jspx"
                          value="#{bindings.pageTemplateBinding}" id="pt1">
           <f:facet name="content">
             <af:panelGroupLayout id="pgl1" layout="vertical">
-              <af:outputText value="Claims" id="ot1"/>
-              <af:commandButton text="Home" id="cb1" action="adfMenu_Home"
-                                immediate="true"/>
+              <!--<af:region value="#{bindings.claimflow1.regionModel}" id="r1"/>-->
+              <af:region value="#{bindings.dynamicRegion1.regionModel}"
+                         id="r1"/>
             </af:panelGroupLayout>
           </f:facet>
         </af:pageTemplate>

@@ -2,6 +2,11 @@
 <Application xmlns="http://xmlns.oracle.com/adfm/application"
              version="11.1.1.66.73" id="DataBindings" SeparateXMLFiles="false"
              Package="com.dm.menudemoapp.mdvc" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
   <pageMap>
     <page path="/com/dm/menudemoapp/view/templates/MyTemplate.jspx"
           usageId="com_dm_menudemoapp_mdvc_MyTemplatePageDef"/>
@@ -17,6 +22,8 @@
           usageId="com_dm_menudemoapp_mdvc_ClaimsPageDef"/>
     <page path="/com/dm/menudemoapp/view/pages/Billing.jspx"
           usageId="com_dm_menudemoapp_mdvc_BillingPageDef"/>
+    <page path="/com/dm/menudemoapp/view/fragment/claims-fragment.jsff"
+          usageId="com_dm_menudemoapp_mdvc_claims_fragmentPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="com_dm_menudemoapp_mdvc_MyTemplatePageDef"
@@ -33,5 +40,17 @@
           path="com.dm.menudemoapp.view.pages.ClaimsPageDef"/>
     <page id="com_dm_menudemoapp_mdvc_BillingPageDef"
           path="com.dm.menudemoapp.view.pages.BillingPageDef"/>
+    <page id="com_dm_menudemoapp_mdvc_claims_fragmentPageDef"
+          path="com.dm.menudemoapp.view.fragment.claims_fragmentPageDef"/>
   </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="ClaimsServiceDataControl"
+                     Package="com.dm.menudemoapp.mdmodel.demo.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="ClaimsServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
 </Application>

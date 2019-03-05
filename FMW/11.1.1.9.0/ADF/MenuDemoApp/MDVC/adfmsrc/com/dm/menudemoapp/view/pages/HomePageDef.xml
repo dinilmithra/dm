@@ -7,6 +7,10 @@
     <variableIterator id="variables"/>
     <page path="com.dm.menudemoapp.view.templates.MyTemplatePageDef"
           id="pageTemplateBinding" Refresh="ifNeeded"/>
+    <taskFlow id="homeflow1"
+              taskFlowId="/WEB-INF/com/dm/menudemoapp/taskflows/home-flow.xml#home-flow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings/>
 </pageDefinition>

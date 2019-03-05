@@ -32,6 +32,12 @@
                                             action="#{menu.doAction}"/>
                 </f:facet>
               </af:navigationPane>
+              <af:commandButton text="Claims" id="pt_cb2"
+                                action="adfMenu_Claims">
+                <af:setPropertyListener from="/WEB-INF/com/dm/menudemoapp/taskflows/claim-flow.xml#claim-flow"
+                                        to="#{MyAccountDynamicRegionBean.taskFlowId}"
+                                        type="action"/>
+              </af:commandButton>
             </af:panelBox>
           </f:facet>
           <f:facet name="second">
@@ -41,7 +47,22 @@
         </af:panelSplitter>
       </f:facet>
       <f:facet name="start"/>
-      <f:facet name="end"/>
+      <f:facet name="end">
+        <af:panelGroupLayout layout="scroll"
+                             xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                             id="pt_pgl1">
+          <f:verbatim>
+            <p>
+               
+            </p>
+          </f:verbatim>
+          <f:verbatim>
+            <p>
+               
+            </p>
+          </f:verbatim>
+        </af:panelGroupLayout>
+      </f:facet>
       <f:facet name="top">
         <af:panelBox id="pt_pb2" showDisclosure="false">
           <f:facet name="toolbar">

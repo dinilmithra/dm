@@ -5,12 +5,20 @@
   </view>
   <view id="Claims">
     <page>/com/dm/menudemoapp/view/pages/Claims.jspx</page>
+    <input-page-parameter>
+      <from-value>#{requestScope.pLandingFlow}</from-value>
+      <to-value>#{requestScope.pLandingFlow2}</to-value>
+    </input-page-parameter>
   </view>
   <view id="Home">
     <page>/com/dm/menudemoapp/view/pages/Home.jspx</page>
   </view>
   <view id="MyAccount">
     <page>/com/dm/menudemoapp/view/pages/MyAccount.jspx</page>
+    <input-page-parameter>
+      <from-value>#{requestScope.pLandingFlow}</from-value>
+      <to-value>#{requestScope.pLandingFlow2}</to-value>
+    </input-page-parameter>
   </view>
   <view id="Documents">
     <page>/com/dm/menudemoapp/view/pages/Documents.jspx</page>
@@ -59,5 +67,10 @@
       <property-class id="__24">java.lang.String</property-class>
       <value id="__23">/WEB-INF/root_menu.xml</value>
     </managed-property>
+  </managed-bean>
+  <managed-bean id="__35">
+    <managed-bean-name id="__33">MyAccountDynamicRegionBean</managed-bean-name>
+    <managed-bean-class id="__34">com.dm.menudemoapp.view.fragment.bean.MyAccountDynamicRegionBean</managed-bean-class>
+    <managed-bean-scope id="__32">session</managed-bean-scope>
   </managed-bean>
 </adfc-config>

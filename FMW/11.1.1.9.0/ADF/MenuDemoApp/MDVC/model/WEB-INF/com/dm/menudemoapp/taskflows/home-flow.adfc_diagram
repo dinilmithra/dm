@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1">
+      <property
+         name="linkStyle">Orthogonal</property>
+      <property
+         name="y">91.149414</property>
+      <property
+         name="x">88.01758</property>
+   </OverallProperties>
+   <View
+      id="View2">
+      <property
+         name="activityId">home-fragment</property>
+      <property
+         name="page">/com/dm/menudemoapp/view/fragment/home-fragment.jsff</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>home-fragment&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">98.79883</property>
+      <property
+         name="x">267.53516</property>
+      <property
+         name="pageFragment">true</property>
+   </View>
+   <ParentAction
+      id="ParentAction3">
+      <property
+         name="activityId">parentAction1</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>parentAction1&lt;/b>&lt;/p>&lt;p>Activity Type:  Parent Action&lt;/p></property>
+      <property
+         name="exceptionHandler">false</property>
+      <property
+         name="y">266.5</property>
+      <property
+         name="x">267.53516</property>
+   </ParentAction>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="ParentAction3">
+      <property
+         name="fromOutcome">claims</property>
+      <property
+         name="sdm:polyPoints">B50,T50</property>
+   </ControlFlowCase>
+</SDM>

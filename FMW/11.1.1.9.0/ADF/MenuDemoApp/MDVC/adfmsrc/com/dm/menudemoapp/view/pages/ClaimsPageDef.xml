@@ -7,6 +7,16 @@
     <variableIterator id="variables"/>
     <page path="com.dm.menudemoapp.view.templates.MyTemplatePageDef"
           id="pageTemplateBinding" Refresh="ifNeeded"/>
+          <!--
+    <taskFlow id="claimflow1"
+              taskFlowId="/WEB-INF/com/dm/menudemoapp/taskflows/claim-flow.xml#claim-flow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+              -->
+    <taskFlow id="dynamicRegion1"
+              taskFlowId="${MyAccountDynamicRegionBean.dynamicTaskFlowId}"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
   </executables>
   <bindings/>
 </pageDefinition>

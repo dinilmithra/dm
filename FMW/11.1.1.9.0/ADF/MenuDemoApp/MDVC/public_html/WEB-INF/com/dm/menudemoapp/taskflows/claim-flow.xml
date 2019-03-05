@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="claim-flow">
+    <template-reference>
+      <document id="__1">/WEB-INF/com/dm/menudemoapp/taskflows/template/demo-task-flow-template.xml</document>
+      <id id="__2">demo-task-flow-template</id>
+    </template-reference>
+    <default-activity id="__3">claims-fragment</default-activity>
+    <managed-bean id="__9">
+      <managed-bean-name id="__12">ClaimsFragmentBean</managed-bean-name>
+      <managed-bean-class id="__11">com.dm.menudemoapp.view.fragment.bean.ClaimsFragmentBean</managed-bean-class>
+      <managed-bean-scope id="__10">pageFlow</managed-bean-scope>
+    </managed-bean>
+    <view id="claims-fragment">
+      <page>/com/dm/menudemoapp/view/fragment/claims-fragment.jsff</page>
+    </view>
+    <parent-action id="parentAction1">
+      <root-outcome>adfMenu_Home</root-outcome>
+    </parent-action>
+    <control-flow-rule id="__4">
+      <from-activity-id id="__5">claims-fragment</from-activity-id>
+      <control-flow-case id="__7">
+        <from-outcome id="__8">home</from-outcome>
+        <to-activity-id id="__6">parentAction1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

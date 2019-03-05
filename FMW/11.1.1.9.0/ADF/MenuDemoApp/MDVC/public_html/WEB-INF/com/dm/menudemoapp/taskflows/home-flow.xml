@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="home-flow">
+    <template-reference>
+      <document id="__2">/WEB-INF/com/dm/menudemoapp/taskflows/template/demo-task-flow-template.xml</document>
+      <id id="__1">demo-task-flow-template</id>
+    </template-reference>
+    <default-activity id="__3">home-fragment</default-activity>
+    <view id="home-fragment">
+      <page>/com/dm/menudemoapp/view/fragment/home-fragment.jsff</page>
+    </view>
+    <parent-action id="parentAction1">
+      <root-outcome>adfMenu_Claims</root-outcome>
+    </parent-action>
+    <control-flow-rule id="__4">
+      <from-activity-id id="__5">home-fragment</from-activity-id>
+      <control-flow-case id="__6">
+        <from-outcome id="__8">claims</from-outcome>
+        <to-activity-id id="__7">parentAction1</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

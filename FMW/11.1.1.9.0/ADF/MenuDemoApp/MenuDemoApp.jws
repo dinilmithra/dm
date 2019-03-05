@@ -4,6 +4,7 @@
       <value n="adrs-instance-binding" v="DefaultServer"/>
    </hash>
    <value n="application-package-prefix" v="com.dm.menudemoapp"/>
+   <url n="application-source-directory" path="src/"/>
    <value n="appTemplateId" v="adfWebappApplicationTemplate"/>
    <hash n="component-versions">
       <value n="oracle.adf.share.dt.migration.jps.JaznCredStoreMigratorHelper" v="11.1.1.1.0"/>
@@ -79,6 +80,15 @@
       </hash>
       <list n="profileList">
          <string v="MenuDemoApp_application1"/>
+      </list>
+      <value n="Security-Deployment-Migrate-Users-And-Groups-Key" v="false"/>
+      <value n="Security-Deployment-Overwrite-Application-Policies-Key" v="false"/>
+      <value n="Security-Deployment-Overwrite-Credentials-Key" v="false"/>
+      <value n="Weblogic-JDBC-Auto-Sync-Key" v="false"/>
+   </hash>
+   <hash n="oracle.mds.internal.dt.ide.CustOptions">
+      <list n="customizationLibraries">
+         <hash/>
       </list>
    </hash>
 </jws:workspace>

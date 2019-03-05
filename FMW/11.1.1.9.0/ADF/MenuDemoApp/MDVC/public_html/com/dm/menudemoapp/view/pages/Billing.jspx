@@ -5,7 +5,7 @@
           xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <f:view>
-    <af:document id="d1">
+    <af:document id="d1" title="Billing">
       <af:form id="f1">
         <af:pageTemplate viewId="/com/dm/menudemoapp/view/templates/MyTemplate.jspx"
                          value="#{bindings.pageTemplateBinding}" id="pt1">
