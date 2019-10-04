@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.22.48" id="ResourceRegistry"
+             SeparateXMLFiles="false" Package="com.dm.hrapp.hrrestmodel" ClientType="Generic">
+  <pageMap>
+    <page path="v0_Employees" usageId="v0_HrService_EmployeesViewResources"/>
+    <page path="v0_Countries" usageId="v0_SharedHrService_CountriesViewResources"/>
+    <page path="v0_Locations" usageId="v0_SharedHrService_LocationsViewResources"/>
+    <page path="v0_Regions" usageId="v0_SharedHrService_RegionsViewResources"/>
+    <page path="v0_Departments" usageId="v0_HrServices_DepartmentsViewResources"/>
+  </pageMap>
+  <dataControlUsages>
+    <BC4JDataControl id="HrServiceDataControl" Package="com.dm.hrapp.hrrestmodel.eo"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HrServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="SharedHrServiceDataControl" Package="com.dm.hrapp.hrrestmodel.eo"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="SharedHrServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="SharedHrServiceDataControl1" Package="com.dm.hrapp.hrrestmodel.eo"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="SharedHrServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="SharedHrServiceDataControl2" Package="com.dm.hrapp.hrrestmodel.eo"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="SharedHrServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="SharedHrServiceDataControl3" Package="com.dm.hrapp.hrrestmodel.eo"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="SharedHrServiceLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+    <BC4JDataControl id="HrServicesDataControl" Package="com.dm.hrapp.hrrestmodel"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="HrServicesLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+  <pageDefinitionUsages>
+    <page id="v0_HrService_EmployeesViewResources"
+          path="com.dm.hrapp.hrrestmodel.eo.rest.v0.HrService_EmployeesViewResources"/>
+    <page id="v0_SharedHrService_CountriesViewResources"
+          path="com.dm.hrapp.hrrestmodel.eo.rest.v0.SharedHrService_CountriesViewResources"/>
+    <page id="v0_SharedHrService_LocationsViewResources"
+          path="com.dm.hrapp.hrrestmodel.eo.rest.v0.SharedHrService_LocationsViewResources"/>
+    <page id="v0_SharedHrService_RegionsViewResources"
+          path="com.dm.hrapp.hrrestmodel.eo.rest.v0.SharedHrService_RegionsViewResources"/>
+    <page id="v0_HrServices_DepartmentsViewResources"
+          path="com.dm.hrapp.hrrestmodel.rest.v0.HrServices_DepartmentsViewResources"/>
+  </pageDefinitionUsages>
+</Application>

@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.dm.hrapp.hrrestmodel.services.application.SharedHrService">
+      <AppModuleConfig name="SharedHrServiceLocal" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="com.dm.hrapp.hrrestmodel.services.application.SharedHrService" jbo.project="com.dm.hrapp.hrrestmodel.HrRESTModel">
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/HRDS" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.dm.hrapp.hrrestmodel.services.application.SharedHrService"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="SharedHrServiceShared" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="com.dm.hrapp.hrrestmodel.services.application.SharedHrService" jbo.project="com.dm.hrapp.hrrestmodel.HrRESTModel">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/HRDS" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="com.dm.hrapp.hrrestmodel.services.application.SharedHrService"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>
