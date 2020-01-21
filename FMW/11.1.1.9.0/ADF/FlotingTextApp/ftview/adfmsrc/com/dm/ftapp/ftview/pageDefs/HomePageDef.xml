@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.66.73" id="HomePageDef"
+                Package="com.dm.ftapp.ftview.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="EmpDetailsViewView1" RangeSize="25"
+              DataControl="HRServiceDataControl"
+              id="EmpDetailsViewView1Iterator"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="EmpDetailsViewView1Iterator" id="EmpDetailsViewView1">
+      <nodeDefinition DefName="com.dm.flotingtextapp.ftmodel.vo.EmpDetailsViewView"
+                      Name="EmpDetailsViewView10">
+        <AttrNames>
+          <Item Value="EmployeeId"/>
+          <Item Value="JobId"/>
+          <Item Value="ManagerId"/>
+          <Item Value="DepartmentId"/>
+          <Item Value="LocationId"/>
+          <Item Value="CountryId"/>
+          <Item Value="FirstName"/>
+          <Item Value="LastName"/>
+          <Item Value="Salary"/>
+          <Item Value="CommissionPct"/>
+          <Item Value="DepartmentName"/>
+          <Item Value="JobTitle"/>
+          <Item Value="City"/>
+          <Item Value="StateProvince"/>
+          <Item Value="CountryName"/>
+          <Item Value="RegionName"/>
+          <Item Value="RowID"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+  </bindings>
+</pageDefinition>

@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="com.dm.flotingtextapp.ftmodel.am.HRService">
+      <AppModuleConfig name="HRServiceLocal" DeployPlatform="LOCAL" jbo.project="com.dm.flotingtextapp.ftmodel.FTModel" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="com.dm.flotingtextapp.ftmodel.am.HRService">
+         <Security AppModuleJndiName="com.dm.flotingtextapp.ftmodel.am.HRService"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/HRDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="HRServiceShared" DeployPlatform="LOCAL" jbo.project="com.dm.flotingtextapp.ftmodel.FTModel" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory" ApplicationName="com.dm.flotingtextapp.ftmodel.am.HRService">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Security AppModuleJndiName="com.dm.flotingtextapp.ftmodel.am.HRService"/>
+         <Custom JDBCDataSource="java:comp/env/jdbc/HRDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewLink SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewLink
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="EmpManagerFkLink"
+  Version="11.1.1.66.73"
+  InheritPersonalization="merge"
+  EntityAssociation="com.dm.flotingtextapp.ftmodel.eo.EmpManagerFkAssoc">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <ViewLinkDefEnd
+    Name="ManagerIdEmployeesView"
+    Cardinality="1"
+    Owner="com.dm.flotingtextapp.ftmodel.vo.EmployeesView"
+    Source="true">
+    <DesignTime>
+      <Attr Name="_finderName" Value="ManagerIdEmployeesView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.dm.flotingtextapp.ftmodel.vo.EmployeesView.EmployeeId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+  <ViewLinkDefEnd
+    Name="EmployeesView"
+    Cardinality="-1"
+    Owner="com.dm.flotingtextapp.ftmodel.vo.EmployeesView">
+    <DesignTime>
+      <Attr Name="_finderName" Value="EmployeesView"/>
+      <Attr Name="_isUpdateable" Value="true"/>
+    </DesignTime>
+    <AttrArray Name="Attributes">
+      <Item Value="com.dm.flotingtextapp.ftmodel.vo.EmployeesView.ManagerId"/>
+    </AttrArray>
+  </ViewLinkDefEnd>
+</ViewLink>

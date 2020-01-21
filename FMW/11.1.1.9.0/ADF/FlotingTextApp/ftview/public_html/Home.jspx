@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <f:view>
+    <af:document id="d1">
+      <af:messages id="m1"/>
+      <af:form id="f1">
+        <!--<af:panelGroupLayout id="pgl4" layout="scroll">
+          <af:spacer width="10" height="100" id="s1"/>
+        </af:panelGroupLayout>-->
+        <af:panelGroupLayout layout="scroll"
+                             xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                             id="pgl4">
+          <af:spacer width="10" height="40" id="s1"/>
+          <af:panelGroupLayout styleClass="floating-message-container AFStretchWidth"
+                               id="pgl3" layout="horizontal">
+            <af:panelGroupLayout id="pgl1" layout="horizontal"
+                                 styleClass="AFStretchWidth outer-message-container">
+              <af:panelGroupLayout styleClass="alert alert-error message-container AFStretchWidth"
+                                   id="pgl5" layout="horizontal">
+                <af:outputText value="Hello Greetings!" id="ot1"
+                               inlineStyle="font-weight:bold;"/>
+              </af:panelGroupLayout>
+            </af:panelGroupLayout>
+          </af:panelGroupLayout>
+          <af:listView value="#{bindings.EmpDetailsViewView1.collectionModel}"
+                       var="item"
+                       emptyText="#{bindings.EmpDetailsViewView1.viewable ? 'No data to display.' : 'Access Denied.'}"
+                       id="lv1" selection="single" immediate="true"
+                       styleClass="AFStretchWidth" fetchSize="100">
+            <af:listItem id="li1">
+              <af:panelGridLayout id="pgl2">
+                <af:gridRow marginTop="5px" height="auto" id="gr1">
+                  <af:gridCell marginStart="5px" width="50%" id="gc3">
+                    <af:panelGroupLayout id="pgl6" layout="horizontal">
+                      <af:outputText value="#{item.FirstName}" id="ot2"/>
+                      <af:outputText value=" " id="ot4"/>
+                      <af:outputText value="#{item.LastName}" id="ot3"/>
+                    </af:panelGroupLayout>
+                  </af:gridCell>
+                  <af:gridCell marginStart="5px" width="50%" marginEnd="5px"
+                               id="gc2">
+                    <af:outputText value="#{item.DepartmentName}" id="ot5"/>
+                  </af:gridCell>
+                </af:gridRow>
+              </af:panelGridLayout>
+            </af:listItem>
+          </af:listView>
+        </af:panelGroupLayout>
+      </af:form>
+    </af:document>
+  </f:view>
+</jsp:root>

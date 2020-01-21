@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE JboProject SYSTEM "jbo_03_01.dtd">
+<!---->
+
+<JboProject
+   xmlns="http://xmlns.oracle.com/bc4j"
+   Name="FTModel"
+   Version="11.1.1.66.73"
+   SeparateXMLFiles="true"
+   PackageName="com.dm.flotingtextapp.ftmodel">
+   <DesignTime>
+      <Attr Name="_jprName" Value="../../../../../FTModel.jpr"/>
+      <Attr Name="_appModuleNames0"
+         Value="com.dm.flotingtextapp.ftmodel.am.HRService"/>
+      <Attr Name="_NamedConnection" Value="HR"/>
+   </DesignTime>
+   <Containee
+      Name="am"
+      PackageName="com.dm.flotingtextapp.ftmodel.am"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_AM" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="eo"
+      PackageName="com.dm.flotingtextapp.ftmodel.eo"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_EO" Value="true"/>
+         <Attr Name="_AS" Value="true"/>
+      </DesignTime>
+   </Containee>
+   <Containee
+      Name="vo"
+      PackageName="com.dm.flotingtextapp.ftmodel.vo"
+      ObjectType="JboPackage">
+      <DesignTime>
+         <Attr Name="_VO" Value="true"/>
+         <Attr Name="_VL" Value="true"/>
+      </DesignTime>
+   </Containee>
+</JboProject>
