@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel"
+                version="11.1.1.66.73" id="HomePageDef"
+                Package="com.dm.menudemoapp.view.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <page path="com.dm.menudemoapp.view.templates.MyTemplatePageDef"
+          id="pageTemplateBinding" Refresh="ifNeeded"/>
+    <taskFlow id="homeflow1"
+              taskFlowId="/WEB-INF/com/dm/menudemoapp/taskflows/home-flow.xml#home-flow"
+              activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+  </executables>
+  <bindings/>
+</pageDefinition>
