@@ -86,6 +86,7 @@
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
          <string v="ADFbcREST"/>
+         <string v="Maven"/>
          <string v="XML"/>
       </list>
    </hash>
@@ -172,6 +173,9 @@
       <list n="profileList">
          <string v="HRApp_RESTWebService"/>
       </list>
+   </hash>
+   <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
+      <url n="pomfileURL" path="pom.xml"/>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
       <value n="j2eeWebAppName" v="HRApp-RESTWebService-webapp"/>
