@@ -6,7 +6,12 @@
   Name="HRService"
   Version="12.2.1.22.48"
   InheritPersonalization="merge"
-  ClearCacheOnRollback="true">
+  ClearCacheOnRollback="true"
+  ComponentClass="com.dm.adf.hrapp.hrmodel.services.HRServiceImpl"
+  ComponentInterface="com.dm.adf.hrapp.hrmodel.services.common.HRService">
+  <DesignTime>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
   <Properties>
     <SchemaBasedProperties>
       <LABEL
@@ -19,6 +24,16 @@
   <ViewUsage
     Name="EmployeesView1"
     ViewObjectName="com.dm.adf.hrapp.hrmodel.vo.EmployeesView"/>
+  <ClientInterface
+    Name="__clientInterface">
+    <Method
+      Name="sayHai"
+      MethodName="sayHai">
+      <Return
+        Name="_return_type_"
+        Type="java.lang.String"/>
+    </Method>
+  </ClientInterface>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.dm.adf.hrapp.hrmodel.HRModelBundle"/>

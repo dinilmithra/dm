@@ -2,19 +2,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
   <groupId>HRApp</groupId>
-  <artifactId>HRApp</artifactId>
+  <artifactId>RESTWebService</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <description>Project for RESTWebService</description>
   <packaging>pom</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>HRApp</groupId>
+      <artifactId>HRModel</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>ADF-Model-REST-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
   <build>
+    <sourceDirectory>src/</sourceDirectory>
     <resources>
       <resource>
-        <directory>src/</directory>
+        <directory>${basedir}</directory>
         <includes>
-          <include>**</include>
+          <include>*</include>
         </includes>
       </resource>
     </resources>
+    <outputDirectory>classes/</outputDirectory>
     <plugins>
+    <!--
       <plugin>
         <groupId>com.oracle.adf.plugin</groupId>
         <artifactId>ojmake</artifactId>
@@ -24,7 +44,7 @@
             ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
           </ojmake>
           <files>
-            ${basedir}/HRApp.jws
+            ${basedir}/RESTWebService.jpr
           </files>
         </configuration>
         <executions>
@@ -35,6 +55,16 @@
             </goals>
           </execution>
         </executions>
+      </plugin> -->
+      <plugin>
+        <version>2.4</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webappDirectory>
+            public_html
+          </webappDirectory>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>com.oracle.adf.plugin</groupId>
@@ -45,13 +75,16 @@
             ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
           </ojdeploy>
           <workspace>
-            ${basedir}/HRApp.jws
+            ${basedir}/../HRApp.jws
           </workspace>
+          <project>
+            RESTWebService
+          </project>
           <profile>
-            HRApp_Project1_HRApp
+            HRApp_RESTWebService
           </profile>
           <outputfile>
-            ${project.build.directory}/${project.build.finalName}.ear
+            ${project.build.directory}/${project.build.finalName}.war
           </outputfile>
         </configuration>
         <executions>
@@ -71,35 +104,4 @@
     <version>12.2.1-4-0</version>
     <relativePath></relativePath>
   </parent>
-  <modules>
-    <module>HRModel</module>
-    <module>HRVC</module>
-    <module>RESTWebService</module>
-  </modules>
-  <dependencies>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>HRModel</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>HRVC</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>war</type>
-    </dependency>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>RESTWebService</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>war</type>
-    </dependency>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>RESTWebService</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>pom</type>
-    </dependency>
-  </dependencies>
 </project>

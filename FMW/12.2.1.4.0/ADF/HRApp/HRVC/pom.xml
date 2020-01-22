@@ -5,6 +5,7 @@
   <artifactId>HRVC</artifactId>
   <version>1.0-SNAPSHOT</version>
   <description>Generated POM from JDeveloper for project HRVC</description>
+  <packaging>war</packaging>
   <build>
     <sourceDirectory>src/</sourceDirectory>
     <resources>
@@ -32,21 +33,11 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>
-            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
-          </ojdeploy>
-          <workspace>
-            ${basedir}/../HRApp.jws
-          </workspace>
-          <project>
-            HRVC
-          </project>
-          <profile>
-            HRApp_HRVC_webapp
-          </profile>
-          <outputfile>
-            ${project.build.directory}/${project.build.finalName}.war
-          </outputfile>
+          <ojdeploy>${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe</ojdeploy>
+          <workspace>${basedir}/../HRApp.jws</workspace>
+          <project>HRVC</project>
+          <profile>HRApp_HRVC_webapp</profile>
+          <outputfile>${project.build.directory}/${project.build.finalName}.war</outputfile>
         </configuration>
         <executions>
           <execution>
@@ -60,6 +51,13 @@
     </plugins>
   </build>
   <dependencies>
+    <dependency>
+      <groupId>HRApp</groupId>
+      <artifactId>HRModel</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>com.oracle.adf.library</groupId>
       <artifactId>JSP-Runtime</artifactId>
@@ -187,17 +185,14 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>HRModel</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>jar</type>
-      <scope>compile</scope>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>Oracle-JEWT</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
-  <packaging>war</packaging>
   <properties>
-    <oracleHome>
-      ${env.ORACLE_HOME}
-    </oracleHome>
+    <oracleHome>${env.ORACLE_HOME}</oracleHome>
   </properties>
 </project>
