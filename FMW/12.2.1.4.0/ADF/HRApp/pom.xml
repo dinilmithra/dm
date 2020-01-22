@@ -20,8 +20,12 @@
         <artifactId>ojmake</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojmake>${oracleHome}/jdeveloper/jdev/bin/ojmake.exe</ojmake>
-          <files>${basedir}/HRApp.jws</files>
+          <ojmake>
+            ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
+          </ojmake>
+          <files>
+            ${basedir}/HRApp.jws
+          </files>
         </configuration>
         <executions>
           <execution>
@@ -37,10 +41,18 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe</ojdeploy>
-          <workspace>${basedir}/HRApp.jws</workspace>
-          <profile>HRApp_Project1_HRApp</profile>
-          <outputfile>${project.build.directory}/${project.build.finalName}.ear</outputfile>
+          <ojdeploy>
+            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
+          </ojdeploy>
+          <workspace>
+            ${basedir}/HRApp.jws
+          </workspace>
+          <profile>
+            HRApp_Project1_HRApp
+          </profile>
+          <outputfile>
+            ${project.build.directory}/${project.build.finalName}.ear
+          </outputfile>
         </configuration>
         <executions>
           <execution>
@@ -62,7 +74,6 @@
   <modules>
     <module>HRModel</module>
     <module>HRVC</module>
-    <module>RESTWebService</module>
   </modules>
   <dependencies>
     <dependency>
@@ -77,14 +88,5 @@
       <version>1.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>RESTWebService</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>war</type>
-    </dependency>
   </dependencies>
-  <properties>
-    <oracleHome>${env.ORACLE_HOME}</oracleHome>
-  </properties>
 </project>
