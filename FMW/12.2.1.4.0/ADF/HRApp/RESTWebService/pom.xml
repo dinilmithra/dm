@@ -5,23 +5,10 @@
   <artifactId>RESTWebService</artifactId>
   <version>1.0-SNAPSHOT</version>
   <description>Project for RESTWebService</description>
-  <packaging>pom</packaging>
-  <dependencies>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>HRModel</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>jar</type>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.oracle.adf.library</groupId>
-      <artifactId>ADF-Model-REST-Runtime</artifactId>
-      <version>12.2.1-4-0</version>
-      <type>pom</type>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+  <packaging>war</packaging>
+  <properties>
+    <oracleHome>${env.ORACLE_HOME}</oracleHome>
+  </properties>
   <build>
     <sourceDirectory>src/</sourceDirectory>
     <resources>
@@ -34,32 +21,10 @@
     </resources>
     <outputDirectory>classes/</outputDirectory>
     <plugins>
-    <!--
       <plugin>
-        <groupId>com.oracle.adf.plugin</groupId>
-        <artifactId>ojmake</artifactId>
-        <version>12.2.1-4-0</version>
-        <configuration>
-          <ojmake>
-            ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
-          </ojmake>
-          <files>
-            ${basedir}/RESTWebService.jpr
-          </files>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin> -->
-      <plugin>
-        <version>2.4</version>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
+        <version>2.4</version>
         <configuration>
           <webappDirectory>
             public_html
@@ -78,10 +43,10 @@
             ${basedir}/../HRApp.jws
           </workspace>
           <project>
-            RESTWebService
+            HRVC
           </project>
           <profile>
-            HRApp_RESTWebService
+            HRApp_HRVC_webapp
           </profile>
           <outputfile>
             ${project.build.directory}/${project.build.finalName}.war
@@ -98,10 +63,20 @@
       </plugin>
     </plugins>
   </build>
-  <parent>
-    <groupId>com.oracle.adf</groupId>
-    <artifactId>adf-parent</artifactId>
-    <version>12.2.1-4-0</version>
-    <relativePath></relativePath>
-  </parent>
+  <dependencies>
+    <dependency>
+      <groupId>HRApp</groupId>
+      <artifactId>HRModel</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>ADF-Model-REST-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 </project>

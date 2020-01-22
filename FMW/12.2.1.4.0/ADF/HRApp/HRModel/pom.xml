@@ -47,15 +47,9 @@
           <workspace>
             ${basedir}/../HRApp.jws
           </workspace>
-          <project>
-            HRModel
-          </project>
-          <profile>
-            HRApp_HRModel_adflib
-          </profile>
-          <outputfile>
-            ${project.build.directory}/${project.build.finalName}.jar
-          </outputfile>
+          <project>HRModel</project>
+          <profile>HRApp_HRModel_adflib</profile>
+          <outputfile>${project.build.directory}/${project.build.finalName}.jar</outputfile>
         </configuration>
         <executions>
           <execution>

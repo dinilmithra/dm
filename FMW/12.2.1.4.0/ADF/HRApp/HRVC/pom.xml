@@ -6,6 +6,9 @@
   <version>1.0-SNAPSHOT</version>
   <description>Generated POM from JDeveloper for project HRVC</description>
   <packaging>war</packaging>
+  <properties>
+    <oracleHome>${env.ORACLE_HOME}</oracleHome>
+  </properties>
   <build>
     <sourceDirectory>src/</sourceDirectory>
     <resources>
@@ -23,9 +26,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.4</version>
         <configuration>
-          <webappDirectory>
-            public_html
-          </webappDirectory>
+          <webappDirectory>public_html</webappDirectory>
         </configuration>
       </plugin>
       <plugin>
@@ -33,7 +34,9 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe</ojdeploy>
+          <ojdeploy>
+            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
+          </ojdeploy>
           <workspace>${basedir}/../HRApp.jws</workspace>
           <project>HRVC</project>
           <profile>HRApp_HRVC_webapp</profile>
@@ -192,7 +195,4 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-  <properties>
-    <oracleHome>${env.ORACLE_HOME}</oracleHome>
-  </properties>
 </project>
