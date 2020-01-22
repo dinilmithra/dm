@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48"
+                id="HRService_DepartmentsViewResources" Package="com.dm.adf.hrapp.hrmodel.services.rest.v10"
+                usageMode="RESTClient">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <iterator Binds="DepartmentsView1" RangeSize="25" DataControl="HRServiceDataControl" id="DepartmentsView1Iter"/>
+  </executables>
+  <bindings>
+    <tree IterBinding="DepartmentsView1Iter" id="departments" AccessorFolder="Always">
+      <ServiceConfiguration EnableRowContextLOV="false"/>
+      <nodeDefinition DefName="com.dm.adf.hrapp.hrmodel.vo.DepartmentsView"
+                      Name="com.dm.adf.hrapp.hrmodel.vo.DepartmentsView" DiscrName="_Sys_Accessor">
+        <Accessors>
+          <Item Value="EmployeesView"/>
+        </Accessors>
+      </nodeDefinition>
+      <nodeDefinition DefName="com.dm.adf.hrapp.hrmodel.vo.EmployeesView"
+                      Name="com.dm.adf.hrapp.hrmodel.vo.EmployeesView"/>
+    </tree>
+  </bindings>
+</pageDefinition>

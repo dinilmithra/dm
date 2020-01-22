@@ -1,5 +1,8 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <jws:workspace xmlns:jws="http://xmlns.oracle.com/ide/project">
+   <hash n="adrs-workspace-properties">
+      <value n="adrs-instance-binding" v="DefaultServer"/>
+   </hash>
    <value n="application-package-prefix" v="com.dm.adf.hrapp"/>
    <value n="appTemplateId" v="adfWebappApplicationTemplate"/>
    <hash n="component-versions">
@@ -27,6 +30,7 @@
    <list n="listOfChildren">
       <hash><url n="URL" path="HRModel/HRModel.jpr"/></hash>
       <hash><url n="URL" path="HRVC/HRVC.jpr"/></hash>
+      <hash><url n="URL" path="RESTWebService/RESTWebService.jpr"/></hash>
    </list>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">

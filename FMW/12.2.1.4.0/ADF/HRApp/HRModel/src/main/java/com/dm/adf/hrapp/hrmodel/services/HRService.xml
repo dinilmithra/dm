@@ -19,6 +19,15 @@
   <ViewUsage
     Name="EmployeesView1"
     ViewObjectName="com.dm.adf.hrapp.hrmodel.vo.EmployeesView"/>
+  <ViewUsage
+    Name="EmployeesView2"
+    ViewObjectName="com.dm.adf.hrapp.hrmodel.vo.EmployeesView"/>
+  <ViewLinkUsage
+    Name="EmpDeptFkLink1"
+    ViewLinkObjectName="com.dm.adf.hrapp.hrmodel.vo.EmpDeptFkLink"
+    SrcViewUsageName="com.dm.adf.hrapp.hrmodel.services.HRService.DepartmentsView1"
+    DstViewUsageName="com.dm.adf.hrapp.hrmodel.services.HRService.EmployeesView2"
+    Reversed="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.dm.adf.hrapp.hrmodel.HRModelBundle"/>
