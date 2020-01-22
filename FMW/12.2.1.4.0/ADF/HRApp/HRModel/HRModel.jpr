@@ -69,6 +69,9 @@
       <string v="oracle.adfdtinternal.model.ide.settings.ADFMSettings/adfmContentSet"/>
    </list>
    <value n="defaultPackage" v="com.dm.adf.hrapp.hrmodel"/>
+   <value n="jbo.JpxName" v="com.dm.adf.hrapp.hrmodel.HRModel"/>
+   <value n="jbo.NoAttrEnumClasses" v="true"/>
+   <value n="JboProject" v="true"/>
    <hash n="oracle.ide.model.TechnologyScopeConfiguration">
       <list n="technologyScope">
          <string v="ADFbc"/>
@@ -77,11 +80,75 @@
          <string v="XML"/>
       </list>
    </hash>
+   <value n="oracle.jbo.SavedPreferences" v="true"/>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
+      <list n="copyRes">
+         <string v=".cpx"/>
+         <string v=".dcx"/>
+         <string v=".ejx"/>
+         <string v=".gif"/>
+         <string v=".ini"/>
+         <string v=".jpeg"/>
+         <string v=".jpg"/>
+         <string v=".png"/>
+         <string v=".properties"/>
+         <string v=".sva"/>
+         <string v=".tag"/>
+         <string v=".tld"/>
+         <string v=".wsdl"/>
+         <string v=".xcfg"/>
+         <string v=".xlf"/>
+         <string v=".xml"/>
+         <string v=".xsd"/>
+         <string v=".xsl"/>
+         <string v=".jpx"/>
+         <string v=".rpx"/>
+         <string v=".json"/>
+         <string v=".bcs"/>
+      </list>
       <value n="webIANAEncoding" v="windows-1252"/>
    </hash>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">
+         <hash n="HRApp_HRModel">
+            <value n="adflib-connectionDetails" v="true"/>
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="true"/>
+            </hash>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="2"/>
+                        </hash>
+                        <hash>
+                           <value n="type" v="5"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Project Output"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="WEB-INF/classes/**"/>
+                              <value n="type" v="1"/>
+                           </hash>
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="project-output"/>
+                     <value n="type" v="1"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="jarURL" path="deploy/HRApp_HRModel.jar"/>
+            <hash n="LibraryDependencies"/>
+            <value n="profileClass" v="oracle.adfdt.common.deploy.impl.AdfLibraryProfile"/>
+            <value n="profileName" v="HRApp_HRModel"/>
+         </hash>
          <hash n="HRApp_HRModel_adflib">
             <value n="adflib-connectionDetails" v="true"/>
             <hash n="archiveOptions">
@@ -126,6 +193,7 @@
       </hash>
       <list n="profileList">
          <string v="HRApp_HRModel_adflib"/>
+         <string v="HRApp_HRModel"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
