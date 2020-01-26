@@ -1,0 +1,24 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <View
+      id="View2">
+      <property
+         name="activityId">reqres</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">397.0</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>reqres&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">140.89648</property>
+      <property
+         name="page">/reqres/fragments/reqres.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+</SDM>

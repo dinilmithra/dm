@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns:f="http://java.sun.com/jsf/core" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="untitled1.jsf" id="d1">
+        <af:messages id="m1"/>
+        <af:form id="f1">
+            <af:table value="#{bindings.data.collectionModel}" var="row" rows="#{bindings.data.rangeSize}"
+                      emptyText="#{bindings.data.viewable ? 'No data to display.' : 'Access Denied.'}"
+                      rowBandingInterval="0" fetchSize="#{bindings.data.rangeSize}" id="t1">
+                <af:column headerText="#{bindings.data.hints.last_name.label}" id="c1">
+                    <af:inputText value="#{row.bindings.last_name.inputValue}"
+                                  label="#{bindings.data.hints.last_name.label}"
+                                  required="#{bindings.data.hints.last_name.mandatory}"
+                                  columns="#{bindings.data.hints.last_name.displayWidth}"
+                                  maximumLength="#{bindings.data.hints.last_name.precision}"
+                                  shortDesc="#{bindings.data.hints.last_name.tooltip}" id="it1">
+                        <f:validator binding="#{row.bindings.last_name.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column headerText="#{bindings.data.hints.id.label}" id="c2">
+                    <af:inputText value="#{row.bindings.id.inputValue}" label="#{bindings.data.hints.id.label}"
+                                  required="#{bindings.data.hints.id.mandatory}"
+                                  columns="#{bindings.data.hints.id.displayWidth}"
+                                  maximumLength="#{bindings.data.hints.id.precision}"
+                                  shortDesc="#{bindings.data.hints.id.tooltip}" id="it2">
+                        <f:validator binding="#{row.bindings.id.validator}"/>
+                        <af:convertNumber groupingUsed="false" pattern="#{bindings.data.hints.id.format}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column headerText="#{bindings.data.hints.avatar.label}" id="c3">
+                    <af:inputText value="#{row.bindings.avatar.inputValue}" label="#{bindings.data.hints.avatar.label}"
+                                  required="#{bindings.data.hints.avatar.mandatory}"
+                                  columns="#{bindings.data.hints.avatar.displayWidth}"
+                                  maximumLength="#{bindings.data.hints.avatar.precision}"
+                                  shortDesc="#{bindings.data.hints.avatar.tooltip}" id="it3">
+                        <f:validator binding="#{row.bindings.avatar.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column headerText="#{bindings.data.hints.first_name.label}" id="c4">
+                    <af:inputText value="#{row.bindings.first_name.inputValue}"
+                                  label="#{bindings.data.hints.first_name.label}"
+                                  required="#{bindings.data.hints.first_name.mandatory}"
+                                  columns="#{bindings.data.hints.first_name.displayWidth}"
+                                  maximumLength="#{bindings.data.hints.first_name.precision}"
+                                  shortDesc="#{bindings.data.hints.first_name.tooltip}" id="it4">
+                        <f:validator binding="#{row.bindings.first_name.validator}"/>
+                    </af:inputText>
+                </af:column>
+                <af:column headerText="#{bindings.data.hints.email.label}" id="c5">
+                    <af:inputText value="#{row.bindings.email.inputValue}" label="#{bindings.data.hints.email.label}"
+                                  required="#{bindings.data.hints.email.mandatory}"
+                                  columns="#{bindings.data.hints.email.displayWidth}"
+                                  maximumLength="#{bindings.data.hints.email.precision}"
+                                  shortDesc="#{bindings.data.hints.email.tooltip}" id="it5">
+                        <f:validator binding="#{row.bindings.email.validator}"/>
+                    </af:inputText>
+                </af:column>
+            </af:table>
+        </af:form>
+    </af:document>
+</f:view>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48" id="reqresPageDef"
+                Package="reqres.fragments">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables">
+      <variable Type="java.lang.String" Name="getUsers_page" IsQueriable="false"/>
+    </variableIterator>
+    <methodIterator Binds="getUsers.result" DataControl="ReqResRESTDataControl" RangeSize="25"
+                    BeanClass="com.dm.adf.hrapp.ReqResRESTDataControl.getUsers_Data_methodReturn"
+                    id="getUsersIterator"/>
+    <accessorIterator MasterBinding="getUsersIterator" Binds="data" RangeSize="25" DataControl="ReqResRESTDataControl"
+                      BeanClass="com.dm.adf.hrapp.ReqResRESTDataControl.getUsers_Data_methodReturn_data"
+                      id="dataIterator"/>
+  </executables>
+  <bindings>
+    <methodAction id="getUsers" RequiresUpdateModel="true" Action="invokeMethod" MethodName="getUsers"
+                  IsViewObjectMethod="false" DataControl="ReqResRESTDataControl"
+                  InstanceName="bindings.getUsers.dataControl"
+                  ReturnName="data.ReqResRESTDataControl.methodResults.getUsers_getUsers_dataControl_getUsers_result">
+      <NamedData NDName="page" NDType="java.lang.String" NDValue="${bindings.getUsers_page}"/>
+    </methodAction>
+    <tree IterBinding="dataIterator" id="data">
+      <nodeDefinition DefName="com.dm.adf.hrapp.ReqResRESTDataControl.getUsers_Data_methodReturn_data" Name="data0">
+        <AttrNames>
+          <Item Value="last_name"/>
+          <Item Value="id"/>
+          <Item Value="avatar"/>
+          <Item Value="first_name"/>
+          <Item Value="email"/>
+        </AttrNames>
+      </nodeDefinition>
+    </tree>
+    <attributeValues IterBinding="getUsersIterator" id="total_pages">
+      <AttrNames>
+        <Item Value="total_pages"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="variables" id="page1">
+      <AttrNames>
+        <Item Value="getUsers_page"/>
+      </AttrNames>
+    </attributeValues>
+    <attributeValues IterBinding="getUsersIterator" id="page">
+      <AttrNames>
+        <Item Value="page"/>
+      </AttrNames>
+    </attributeValues>
+  </bindings>
+</pageDefinition>

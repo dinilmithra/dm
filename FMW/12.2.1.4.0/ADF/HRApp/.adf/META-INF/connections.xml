@@ -23,4 +23,24 @@
       </StringRefAddr>
     </RefAddresses>
   </Reference>
+  <Reference name="ReqRes_Connection" className="oracle.adf.model.connection.rest.RestConnection" xmlns="">
+    <Factory className="oracle.adf.model.connection.rest.RestConnectionFactory"/>
+    <RefAddresses>
+      <XmlRefAddr addrType="ReqRes_Connection">
+        <Contents>
+          <restconnection name="ReqRes_Connection" url="https://reqres.in"/>
+        </Contents>
+      </XmlRefAddr>
+    </RefAddresses>
+  </Reference>
+  <Reference name="HR_REST_Connection1" className="oracle.adf.model.connection.rest.RestConnection" xmlns="">
+    <Factory className="oracle.adf.model.connection.rest.RestConnectionFactory"/>
+    <RefAddresses>
+      <XmlRefAddr addrType="HR_REST_Connection1">
+        <Contents>
+          <restconnection name="HR_REST_Connection1" url="http://127.0.0.1:7201/hrrestview/rest/1.0/describe"/>
+        </Contents>
+      </XmlRefAddr>
+    </RefAddresses>
+  </Reference>
 </References>

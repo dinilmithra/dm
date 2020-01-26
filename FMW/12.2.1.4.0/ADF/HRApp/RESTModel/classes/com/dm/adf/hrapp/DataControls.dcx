@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration" version="12.2.1.22.48" id="DataControls"
+                    Package="com.dm.adf.hrapp">
+  <AdapterDataControl id="RESTDataControl" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.rest.RestURLDCDefinition" SupportsTransactions="false"
+                      SupportsSortCollection="false" SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="false" Definition="com.dm.adf.hrapp.RESTDataControl"
+                      BeanClass="com.dm.adf.hrapp.RESTDataControl" xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <Source>
+      <Definitions>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/json" ConnectionName="ReqRes"
+                    Source="/api/users?pages=##pages##" HttpMethod="GET" id="getUsers" MethodRef="JSON"
+                    SchemaLocation="RESTDataControl_getUsers_response_schema.json" ensureKeyAttribute="true"
+                    dcStructureVersion="2" RootElement="methodReturn">
+          <Parameters>
+            <Parameter Name="pages" Value="1"/>
+          </Parameters>
+        </Definition>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/json" ConnectionName="ReqRes" Source="/api/users"
+                    HttpMethod="POST" id="createUser" MethodRef="JSON"
+                    SchemaLocation="RESTDataControl_createUser_response_schema.json"
+                    InputSchemaLocation="RESTDataControl_createUser_payload_schema.json" ensureKeyAttribute="true"
+                    dcStructureVersion="2" RootElement="methodReturn"/>
+      </Definitions>
+    </Source>
+  </AdapterDataControl>
+</DataControlConfigs>

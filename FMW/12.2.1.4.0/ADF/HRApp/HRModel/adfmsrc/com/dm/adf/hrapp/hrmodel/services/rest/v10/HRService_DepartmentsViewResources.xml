@@ -11,7 +11,7 @@
     <tree IterBinding="DepartmentsView1Iter" id="departments" AccessorFolder="Always">
       <ServiceConfiguration EnableRowContextLOV="false"/>
       <nodeDefinition DefName="com.dm.adf.hrapp.hrmodel.vo.DepartmentsView"
-                      Name="com.dm.adf.hrapp.hrmodel.vo.DepartmentsView" DiscrName="_Sys_Accessor">
+                      Name="com.dm.adf.hrapp.hrmodel.vo.DepartmentsView" DiscrName="_Sys_Accessor" HintsSuffix="ForHR">
         <Accessors>
           <Item Value="EmployeesView"/>
         </Accessors>

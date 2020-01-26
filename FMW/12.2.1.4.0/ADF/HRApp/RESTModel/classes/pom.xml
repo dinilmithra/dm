@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>HRApp</groupId>
+  <artifactId>HRRESTModel</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <description>Project for HRRESTModel</description>
+  <dependencies>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>ADF-Model-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>ADF-Model-Generic-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <sourceDirectory>src/</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <includes>
+          <include>*</include>
+        </includes>
+      </resource>
+    </resources>
+    <outputDirectory>classes/</outputDirectory>
+    <plugins>
+      <plugin/>
+    </plugins>
+  </build>
+  <parent>
+    <groupId>com.oracle.adf</groupId>
+    <artifactId>adf-parent</artifactId>
+    <version>12.2.1-4-0</version>
+    <relativePath></relativePath>
+  </parent>
+</project>

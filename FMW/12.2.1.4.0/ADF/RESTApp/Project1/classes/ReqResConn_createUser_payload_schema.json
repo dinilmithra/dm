@@ -1,0 +1,13 @@
+{
+  "$schema" : "http://www.oracle.com/schema",
+  "id" : "http://www.oracle.com/schema",
+  "type" : "object",
+  "properties" : {
+    "name" : {
+      "type" : "string"
+    },
+    "job" : {
+      "type" : "string"
+    }
+  }
+}

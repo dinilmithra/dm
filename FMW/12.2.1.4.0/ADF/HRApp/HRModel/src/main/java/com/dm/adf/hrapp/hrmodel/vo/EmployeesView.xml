@@ -13,6 +13,10 @@
   CustomQuery="false"
   SelectAllAttributes="false"
   PageIterMode="Full">
+  <Variable
+    Name="pName"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
   <EntityUsage
     Name="Employees"
     Entity="com.dm.adf.hrapp.hrmodel.eo.Employees"/>
@@ -36,6 +40,21 @@
     EntityAttrName="LastName"
     EntityUsage="Employees"
     AliasName="LAST_NAME"/>
+  <ViewAttribute
+    Name="Name"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Precision="255"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR">
+    <TransientExpression
+      Name="ExpressionScript"
+      trustMode="untrusted"
+      CodeSourceName="EmployeesViewRow"/>
+  </ViewAttribute>
   <ViewAttribute
     Name="Email"
     IsUnique="true"
@@ -88,6 +107,42 @@
     EntityAttrName="DepartmentId"
     EntityUsage="Employees"
     AliasName="DEPARTMENT_ID"/>
+  <ViewCriteria
+    Name="FilterByName"
+    ViewObjectName="com.dm.adf.hrapp.hrmodel.vo.EmployeesView"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="EmployeesViewCriteria_row_0"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="Name"
+        ViewAttribute="Name"
+        Operator="CONTAINS"
+        Conjunction="AND"
+        Value=":pName"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
   <ViewLinkAccessor
     Name="DepartmentsView"
     ViewLink="com.dm.adf.hrapp.hrmodel.vo.DeptMgrFkLink"
@@ -98,4 +153,18 @@
     ViewLink="com.dm.adf.hrapp.hrmodel.vo.EmpManagerFkLink"
     Type="oracle.jbo.RowIterator"
     IsUpdateable="false"/>
+  <RowFinders>
+    <ExpressionRowFinder
+      Name="RowFinder">
+      <ViewCriteriaUsage
+        Name="FilterByName"
+        FullName="com.dm.adf.hrapp.hrmodel.vo.EmployeesView.FilterByName"/>
+      <VarExpressionMap
+        Name="RowFinderMap">
+        <VariableExpressionMapping
+          Name="pName"
+          Variable="pName"/>
+      </VarExpressionMap>
+    </ExpressionRowFinder>
+  </RowFinders>
 </ViewObject>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataControlConfigs xmlns="http://xmlns.oracle.com/adfm/configuration" version="12.2.1.22.48" id="DataControls"
+                    Package="project1">
+  <AdapterDataControl id="ReqResConn" FactoryClass="oracle.adf.model.adapter.DataControlFactoryImpl"
+                      ImplDef="oracle.adf.model.adapter.rest.RestURLDCDefinition" SupportsTransactions="false"
+                      SupportsSortCollection="false" SupportsResetState="false" SupportsRangesize="false"
+                      SupportsFindMode="false" SupportsUpdates="false" Definition="project1.ReqResConn"
+                      BeanClass="project1.ReqResConn" xmlns="http://xmlns.oracle.com/adfm/datacontrol">
+    <Source>
+      <Definitions>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/json" ConnectionName="ReqResConn"
+                    Source="/api/users?pages=##pages##" HttpMethod="GET" id="getUsers" MethodRef="JSON"
+                    SchemaLocation="ReqResConn_getUsers_response_schema.json" ensureKeyAttribute="true"
+                    dcStructureVersion="2" RootElement="methodReturn">
+          <Parameters>
+            <Parameter Name="pages" Value="1"/>
+          </Parameters>
+        </Definition>
+        <Definition xmlns="http://xmlns.oracle.com/adfm/adapter/rest/json" ConnectionName="ReqResConn"
+                    Source="/api/users" HttpMethod="POST" id="createUser" MethodRef="JSON"
+                    SchemaLocation="ReqResConn_createUser_response_schema.json"
+                    InputSchemaLocation="ReqResConn_createUser_payload_schema.json" ensureKeyAttribute="true"
+                    dcStructureVersion="2" RootElement="methodReturn"/>
+      </Definitions>
+    </Source>
+  </AdapterDataControl>
+</DataControlConfigs>
