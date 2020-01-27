@@ -13,6 +13,7 @@
     <page path="/hr/templates/HRPageTemplate.jsf" usageId="com_dm_adf_hrapp_hrview_HRPageTemplatePageDef"/>
     <page path="/hr/pages/Employee.jsf" usageId="com_dm_adf_hrapp_hrview_EmployeePageDef"/>
     <page path="/reqres/fragments/reqres.jsff" usageId="com_dm_adf_hrapp_hrview_reqresPageDef"/>
+    <page path="/reqres/fragments/create-user.jsff" usageId="com_dm_adf_hrapp_hrview_create_userPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="com_dm_adf_hrapp_hrview_ReqResPageDef" path="reqres.pages.ReqResPageDef"/>
@@ -21,6 +22,7 @@
     <page id="com_dm_adf_hrapp_hrview_HRPageTemplatePageDef" path="hr.templates.HRPageTemplatePageDef"/>
     <page id="com_dm_adf_hrapp_hrview_EmployeePageDef" path="hr.pages.EmployeePageDef"/>
     <page id="com_dm_adf_hrapp_hrview_reqresPageDef" path="reqres.fragments.reqresPageDef"/>
+    <page id="com_dm_adf_hrapp_hrview_create_userPageDef" path="reqres.fragments.create_userPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <dc id="HR_RESTDataControl" path="com.dm.adf.hrapp.HR_RESTDataControl"/>

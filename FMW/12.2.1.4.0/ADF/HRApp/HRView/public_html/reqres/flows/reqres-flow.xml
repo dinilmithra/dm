@@ -8,6 +8,23 @@
     <view id="reqres">
       <page>/reqres/fragments/reqres.jsff</page>
     </view>
+    <view id="create-user">
+      <page>/reqres/fragments/create-user.jsff</page>
+    </view>
+    <control-flow-rule id="__1">
+      <from-activity-id>reqres</from-activity-id>
+      <control-flow-case id="__2">
+        <from-outcome>createuser</from-outcome>
+        <to-activity-id>create-user</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <control-flow-rule id="__3">
+      <from-activity-id>create-user</from-activity-id>
+      <control-flow-case id="__4">
+        <from-outcome>reqres</from-outcome>
+        <to-activity-id>reqres</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
     <use-page-fragments/>
   </task-flow-definition>
 </adfc-config>

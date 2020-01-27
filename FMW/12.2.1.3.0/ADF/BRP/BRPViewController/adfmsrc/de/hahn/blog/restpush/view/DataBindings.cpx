@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.9.14" id="DataBindings"
+             SeparateXMLFiles="false" Package="de.hahn.blog.restpush.view" ClientType="Generic">
+  <pageMap>
+    <page path="/Push.jsf" usageId="de_hahn_blog_restpush_view_PushPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="de_hahn_blog_restpush_view_PushPageDef" path="de.hahn.blog.restpush.view.pageDefs.PushPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <dc id="ReqRes" path="de.hahn.blog.restpush.ReqRes"/>
+  </dataControlUsages>
+</Application>

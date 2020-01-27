@@ -1,7 +1,14 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <SDM>
    <OverallProperties
-      id="OverallProperties1"/>
+      id="OverallProperties1">
+      <property
+         name="linkStyle">Orthogonal</property>
+      <property
+         name="x">88.01758</property>
+      <property
+         name="y">91.149414</property>
+   </OverallProperties>
    <View
       id="View2">
       <property
@@ -9,16 +16,53 @@
       <property
          name="pageFragment">true</property>
       <property
-         name="x">397.0</property>
+         name="x">267.53516</property>
       <property
          name="start">true</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>reqres&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">140.89648</property>
+         name="y">98.79883</property>
       <property
          name="page">/reqres/fragments/reqres.jsff</property>
       <property
          name="exceptionHandler">false</property>
    </View>
+   <View
+      id="View3">
+      <property
+         name="activityId">create-user</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">267.53516</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>create-user&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">266.5</property>
+      <property
+         name="page">/reqres/fragments/create-user.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="View2"
+      to="View3">
+      <property
+         name="fromOutcome">createuser</property>
+      <property
+         name="sdm:polyPoints">B44,264.03516,182.29883,264.03516,182.29883,T44</property>
+   </ControlFlowCase>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase5"
+      from="View3"
+      to="View2">
+      <property
+         name="fromOutcome">reqres</property>
+      <property
+         name="sdm:polyPoints">T56,271.03516,182.29883,271.03516,182.29883,B56</property>
+   </ControlFlowCase>
 </SDM>

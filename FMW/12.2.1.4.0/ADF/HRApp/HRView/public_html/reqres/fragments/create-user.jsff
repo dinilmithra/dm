@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGroupLayout id="pgl1" layout="scroll" partialTriggers="b1">
+        <af:panelFormLayout id="pfl1">
+            <af:inputText value="#{bindings.name.inputValue}" label="Name" required="#{bindings.name.hints.mandatory}"
+                          columns="#{bindings.name.hints.displayWidth}" maximumLength="#{bindings.name.hints.precision}"
+                          shortDesc="#{bindings.name.hints.tooltip}" id="it1">
+                <f:validator binding="#{bindings.name.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.job.inputValue}" label="Job" required="#{bindings.job.hints.mandatory}"
+                          columns="#{bindings.job.hints.displayWidth}" maximumLength="#{bindings.job.hints.precision}"
+                          shortDesc="#{bindings.job.hints.tooltip}" id="it2">
+                <f:validator binding="#{bindings.job.validator}"/>
+            </af:inputText>
+            <f:facet name="footer">
+                <af:panelGroupLayout id="pgl2" layout="horizontal">
+                    <af:button text="Cancel" id="b2" action="reqres">
+                        <af:resetActionListener/>
+                        <af:setPropertyListener from="#{null}" type="action" to="#{bindings.name.inputValue}"/>
+                        <af:setPropertyListener from="#{null}" type="action" to="#{bindings.job.inputValue}"/>
+                    </af:button>
+                    <af:button text="Save" id="b1" actionListener="#{bindings.createUsers.execute}"
+                               disabled="#{!bindings.createUsers.enabled}">
+                        <af:setPropertyListener from="#{true}" to="#{bindings.showResult1.inputValue}" type="action"/>
+                    </af:button>
+                </af:panelGroupLayout>
+            </f:facet>
+        </af:panelFormLayout>
+        <af:panelFormLayout id="pfl2" rendered="#{bindings.showResult1.inputValue}">
+            <af:inputText value="#{bindings.createdAt.inputValue}" label="#{bindings.createdAt.hints.label}"
+                          required="#{bindings.createdAt.hints.mandatory}"
+                          columns="#{bindings.createdAt.hints.displayWidth}"
+                          maximumLength="#{bindings.createdAt.hints.precision}"
+                          shortDesc="#{bindings.createdAt.hints.tooltip}" id="it3">
+                <f:validator binding="#{bindings.createdAt.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.name1.inputValue}" label="#{bindings.name1.hints.label}"
+                          required="#{bindings.name1.hints.mandatory}" columns="#{bindings.name1.hints.displayWidth}"
+                          maximumLength="#{bindings.name1.hints.precision}" shortDesc="#{bindings.name1.hints.tooltip}"
+                          id="it4">
+                <f:validator binding="#{bindings.name1.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.id.inputValue}" label="#{bindings.id.hints.label}"
+                          required="#{bindings.id.hints.mandatory}" columns="#{bindings.id.hints.displayWidth}"
+                          maximumLength="#{bindings.id.hints.precision}" shortDesc="#{bindings.id.hints.tooltip}"
+                          id="it5">
+                <f:validator binding="#{bindings.id.validator}"/>
+            </af:inputText>
+            <af:inputText value="#{bindings.job1.inputValue}" label="#{bindings.job1.hints.label}"
+                          required="#{bindings.job1.hints.mandatory}" columns="#{bindings.job1.hints.displayWidth}"
+                          maximumLength="#{bindings.job1.hints.precision}" shortDesc="#{bindings.job1.hints.tooltip}"
+                          id="it6">
+                <f:validator binding="#{bindings.job1.validator}"/>
+            </af:inputText>
+        </af:panelFormLayout>
+    </af:panelGroupLayout>
+</ui:composition>

@@ -62,7 +62,7 @@
       <property
          name="fromsrcid">__1</property>
       <property
-         name="sdm:polyPoints">B23,T81</property>
+         name="sdm:polyPoints">B50,T50</property>
    </ControlFlowCase>
    <ControlFlowCase
       islink="true"
@@ -76,6 +76,6 @@
       <property
          name="fromsrcid">__1</property>
       <property
-         name="sdm:polyPoints">B77,T19</property>
+         name="sdm:polyPoints">B50,T50</property>
    </ControlFlowCase>
 </SDM>

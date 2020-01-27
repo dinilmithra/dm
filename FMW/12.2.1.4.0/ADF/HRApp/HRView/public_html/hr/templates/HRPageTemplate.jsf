@@ -40,9 +40,6 @@
             <afc:attribute>
                 <afc:attribute-name>logoSmallImagePath</afc:attribute-name>
                 <afc:attribute-class>java.lang.String</afc:attribute-class>
-                <afc:default-value>
-                    /resources/images/DD_Logo_361C_RGB.jpg
-                </afc:default-value>
             </afc:attribute>
             <afc:attribute>
                 <afc:attribute-name>logoStyleClass</afc:attribute-name>
