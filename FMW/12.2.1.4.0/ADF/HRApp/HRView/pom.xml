@@ -18,7 +18,7 @@
       <groupId>HRApp</groupId>
       <artifactId>RESTModel</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <type>pom</type>
+      <type>jar</type>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -224,9 +224,6 @@
         <artifactId>ojmake</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojmake>
-            ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
-          </ojmake>
           <files>
             ${basedir}/HRView.jpr
           </files>
@@ -245,9 +242,6 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>
-            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
-          </ojdeploy>
           <workspace>
             ${basedir}/../HRApp.jws
           </workspace>
@@ -255,7 +249,7 @@
             HRView
           </project>
           <profile>
-            HRApp_HRView_webapp
+            webappHRView
           </profile>
           <outputfile>
             ${project.build.directory}/${project.build.finalName}.war

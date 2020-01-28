@@ -80,9 +80,6 @@
         <artifactId>ojmake</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojmake>
-            ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
-          </ojmake>
           <files>
             ${basedir}/RESTModel.jpr
           </files>
@@ -101,9 +98,6 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>
-            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
-          </ojdeploy>
           <workspace>
             ${basedir}/../HRApp.jws
           </workspace>

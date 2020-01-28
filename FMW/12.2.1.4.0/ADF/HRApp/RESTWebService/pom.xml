@@ -15,6 +15,13 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>HRApp</groupId>
+      <artifactId>RESTModel</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>com.oracle.adf.library</groupId>
       <artifactId>ADF-Model-REST-Runtime</artifactId>
       <version>12.2.1-4-0</version>
@@ -39,9 +46,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.4</version>
         <configuration>
-          <webappDirectory>
-            public_html/
-          </webappDirectory>
+          <webappDirectory>public_html/</webappDirectory>
         </configuration>
       </plugin>
       <plugin>
@@ -49,12 +54,7 @@
         <artifactId>ojmake</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojmake>
-            ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
-          </ojmake>
-          <files>
-            ${basedir}/RESTWebService.jpr
-          </files>
+          <files>${basedir}/RESTWebService.jpr</files>
         </configuration>
         <executions>
           <execution>
@@ -70,21 +70,10 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>
-            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
-          </ojdeploy>
-          <workspace>
-            ${basedir}/../HRApp.jws
-          </workspace>
-          <project>
-            RESTWebService
-          </project>
-          <profile>
-            HRApp_RESTWebService
-          </profile>
-          <outputfile>
-            ${project.build.directory}/${project.build.finalName}.war
-          </outputfile>
+          <workspace>${basedir}/../HRApp.jws</workspace>
+          <project>RESTWebService</project>
+          <profile>HRApp_RESTWebService</profile>
+          <outputfile>${project.build.directory}/${project.build.finalName}.war</outputfile>
         </configuration>
         <executions>
           <execution>

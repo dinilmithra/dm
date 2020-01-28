@@ -102,7 +102,7 @@
    </hash>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">
-         <hash n="HRApp_HRView_webapp">
+         <hash n="webappHRView">
             <hash n="appletArchives"/>
             <hash n="appletFiles">
                <value n="autoInclude" v="true"/>
@@ -113,7 +113,8 @@
             <hash n="archiveOptions">
                <value n="hasManifest" v="false"/>
             </hash>
-            <value n="enterpriseAppName" v="HRApp_HRView_webapp"/>
+            <value n="contextRoot" v="hrview"/>
+            <value n="enterpriseAppName" v="webappHRView"/>
             <hash n="fileGroups">
                <list n="groups">
                   <hash>
@@ -172,13 +173,13 @@
                   </hash>
                </list>
             </hash>
-            <url n="jarURL" path="deploy/HRApp_HRView_webapp.war"/>
+            <url n="jarURL" path="deploy/webappHRView.war"/>
             <value n="profileClass" v="oracle.jdeveloper.deploy.war.WarProfile"/>
-            <value n="profileName" v="HRApp_HRView_webapp"/>
+            <value n="profileName" v="webappHRView"/>
          </hash>
       </hash>
       <list n="profileList">
-         <string v="HRApp_HRView_webapp"/>
+         <string v="webappHRView"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">

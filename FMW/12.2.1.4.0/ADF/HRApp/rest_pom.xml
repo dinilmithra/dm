@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.dm.adf.hrapp</groupId>
-  <artifactId>HRApp</artifactId>
+  <artifactId>HRAppREST</artifactId>
   <version>1.0-SNAPSHOT</version>
   <description>Super POM for HRApp</description>
   <modules>
@@ -44,7 +44,7 @@
         <version>12.2.1-4-0</version>
         <configuration>
           <workspace>${basedir}/HRApp.jws</workspace>
-          <profile>applicationHRApp</profile>
+          <profile>applicationRESTWebService</profile>
           <outputfile>${project.build.directory}/${project.build.finalName}.ear</outputfile>
         </configuration>
         <executions>
@@ -72,14 +72,8 @@
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>HRVC</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>war</type>
-    </dependency>
-    <dependency>
-      <groupId>HRApp</groupId>
-      <artifactId>RESTWebService</artifactId>
+      <groupId>com.dm.adf.hrapp</groupId>
+      <artifactId>HRView</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
@@ -90,8 +84,8 @@
       <type>jar</type>
     </dependency>
     <dependency>
-      <groupId>com.dm.adf.hrapp</groupId>
-      <artifactId>HRView</artifactId>
+      <groupId>HRApp</groupId>
+      <artifactId>RESTWebService</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>war</type>
     </dependency>
