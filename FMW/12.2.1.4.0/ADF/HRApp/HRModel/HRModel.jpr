@@ -112,10 +112,7 @@
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">
          <hash n="adflibHRModel">
-            <value n="adflib-connectionDetails" v="false"/>
-            <list n="adflib-excludedConnections">
-               <string v="|"/>
-            </list>
+            <value n="adflib-connectionDetails" v="true"/>
             <hash n="archiveOptions">
                <value n="hasManifest" v="true"/>
             </hash>

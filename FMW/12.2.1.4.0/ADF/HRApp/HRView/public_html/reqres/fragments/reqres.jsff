@@ -18,9 +18,9 @@
                         <af:panelGroupLayout id="pgl4" layout="vertical">
                             <af:panelLabelAndMessage label="Name :" id="plam1">
                                 <af:panelGroupLayout id="pgl5" layout="horizontal">
-                                    <af:outputFormatted value="#{item.bindings.last_name.inputValue}" id="of2"/>
-                                    <af:spacer id="s3" width="10px"/>
                                     <af:outputFormatted value="#{item.bindings.first_name.inputValue}" id="of3"/>
+                                    <af:spacer id="s3" width="5px"/>
+                                    <af:outputFormatted value="#{item.bindings.last_name.inputValue}" id="of2"/>
                                 </af:panelGroupLayout>
                             </af:panelLabelAndMessage>
                             <af:panelLabelAndMessage label="Email :" id="plam2">

@@ -177,9 +177,113 @@
             <value n="profileClass" v="oracle.jdeveloper.deploy.war.WarProfile"/>
             <value n="profileName" v="webappHRView"/>
          </hash>
+         <hash n="webappHRView_TomCat">
+            <hash n="appletArchives"/>
+            <hash n="appletFiles">
+               <value n="autoInclude" v="true"/>
+               <list n="selectionFilters">
+                  <string v="oracle.jdevimpl.deploy.common.JavaSelectionFilter"/>
+               </list>
+            </hash>
+            <hash n="archiveOptions">
+               <value n="hasManifest" v="false"/>
+            </hash>
+            <value n="enterpriseAppName" v="webappHRView_TomCat"/>
+            <hash n="fileGroups">
+               <list n="groups">
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="5"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="Web Files"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="web-files"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <list n="contributors">
+                        <hash>
+                           <value n="type" v="2"/>
+                        </hash>
+                        <hash>
+                           <value n="type" v="7"/>
+                        </hash>
+                     </list>
+                     <value n="displayName" v="WEB-INF/classes"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="project-output"/>
+                     <value n="targetWithinJar" v="WEB-INF/classes"/>
+                     <value n="type" v="1"/>
+                  </hash>
+                  <hash>
+                     <value n="displayName" v="WEB-INF/lib"/>
+                     <hash n="filters">
+                        <list n="rules">
+                           <hash>
+                              <value n="pattern" v="identitystore.jar"/>
+                              <value n="type" v="1"/>
+                           </hash>
+                           <hash>
+                              <value n="pattern" v="adf-share-security.jar"/>
+                              <value n="type" v="1"/>
+                           </hash>
+                           <hash>
+                              <value n="pattern" v="adf-controller-security.jar"/>
+                              <value n="type" v="1"/>
+                           </hash>
+                           <hash>
+                              <value n="pattern" v="**"/>
+                              <value n="type" v="0"/>
+                           </hash>
+                        </list>
+                     </hash>
+                     <value n="internalName" v="libraries"/>
+                     <list n="selectedLibraries">
+                        <string v="JSF 2.2"/>
+                        <string v="ADF Page Flow Runtime"/>
+                        <string v="ADF Controller Runtime"/>
+                        <string v="ADF Faces Runtime 11"/>
+                        <string v="ADF Faces Databinding Runtime"/>
+                        <string v="JSTL 1.2 Tags"/>
+                        <string v="ADF Model Runtime"/>
+                        <string v="BC4J Runtime"/>
+                        <string v="ADF DVT Faces Runtime"/>
+                     </list>
+                     <value n="targetWithinJar" v="WEB-INF/lib"/>
+                     <value n="type" v="3"/>
+                     <list n="unselectedLibraries"/>
+                  </hash>
+               </list>
+            </hash>
+            <url n="jarURL" path="deploy/webappHRView_TomCat.war"/>
+            <value n="platformType" v="TOMCAT"/>
+            <value n="platformVersion" v="6.0"/>
+            <value n="profileClass" v="oracle.jdeveloper.deploy.war.WarProfile"/>
+            <value n="profileName" v="webappHRView_TomCat"/>
+            <hash n="properties">
+               <value n="" v=""/>
+            </hash>
+         </hash>
       </hash>
       <list n="profileList">
          <string v="webappHRView"/>
+         <string v="webappHRView_TomCat"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.maven.compiler.MavenConfiguration">
