@@ -285,7 +285,7 @@
          <list n="libraryDefinitions">
             <hash>
                <list n="classPath">
-                  <url path="../lib/ojdbc7.jar" jar-entry=""/>
+                  <url path="../../libs/ojdbc7.jar" jar-entry=""/>
                </list>
                <value n="deployedByDefault" v="true"/>
                <value n="description" v="OracleJDBCDriver"/>
