@@ -1,19 +1,26 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <SDM>
    <OverallProperties
-      id="OverallProperties1"/>
+      id="OverallProperties1">
+      <property
+         name="linkStyle">Orthogonal</property>
+      <property
+         name="x">88.01758</property>
+      <property
+         name="y">83.5</property>
+   </OverallProperties>
    <View
       id="View3">
       <property
          name="activityId">Home</property>
       <property
-         name="x">410.5</property>
+         name="x">246.53516</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>Home&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
       <property
-         name="y">154.79883</property>
+         name="y">83.5</property>
       <property
-         name="page">/Home.jsf</property>
+         name="page">/com/dm/tomcatwebappsample/adfview/home/pages/Home.jsf</property>
       <property
          name="exceptionHandler">false</property>
    </View>
