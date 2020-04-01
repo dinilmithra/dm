@@ -1,0 +1,6 @@
+[submodule "FMW/MyFolder"]
+	path = FMW/MyFolder
+	url = https://github.com/dinilmithra/dm.git
+[submodule "MyFolder"]
+	path = MyFolder
+	url = https://github.com/dinilmithra/dm.git
