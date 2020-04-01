@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="hrmodel.service.HRService">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="hrmodel.HRModel" name="HRServiceLocal" ApplicationName="hrmodel.service.HRService">
+         <AM-Pooling jbo.doconnectionpooling="true"/>
+         <Security AppModuleJndiName="hrmodel.service.HRService"/>
+         <Custom JDBCDataSource="jdbc/HRDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="hrmodel.HRModel" name="HRServiceShared" ApplicationName="hrmodel.service.HRService">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Security AppModuleJndiName="hrmodel.service.HRService"/>
+         <Custom JDBCDataSource="jdbc/HRDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+   <AppModuleConfigBag ApplicationName="hrmodel.service.HRServiceCached">
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="hrmodel.HRModel" name="HRServiceCachedLocal" ApplicationName="hrmodel.service.HRServiceCached">
+         <AM-Pooling jbo.doconnectionpooling="true"/>
+         <Security AppModuleJndiName="hrmodel.service.HRServiceCached"/>
+         <Custom JDBCDataSource="jdbc/HRDS"/>
+      </AppModuleConfig>
+      <AppModuleConfig DeployPlatform="LOCAL" jbo.project="hrmodel.HRModel" name="HRServiceCachedShared" ApplicationName="hrmodel.service.HRServiceCached">
+         <AM-Pooling jbo.ampool.dynamicjdbccredentials="false" jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1" jbo.ampool.resetnontransactionalstate="false"/>
+         <Security AppModuleJndiName="hrmodel.service.HRServiceCached"/>
+         <Custom JDBCDataSource="jdbc/HRDS"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>
