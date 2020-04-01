@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:panelFormLayout id="pfl1">
+    <af:panelLabelAndMessage label="#{bindings.PersonId.hints.label}"
+                             id="plam3">
+      <af:outputText value="#{bindings.PersonId.inputValue}" id="ot2"/>
+    </af:panelLabelAndMessage>
+    <af:panelLabelAndMessage label="#{bindings.FirstName.hints.label}"
+                             id="plam1">
+      <af:outputText value="#{bindings.FirstName.inputValue}" id="ot1"/>
+    </af:panelLabelAndMessage>
+    <af:panelLabelAndMessage label="#{bindings.LastName.hints.label}"
+                             id="plam2">
+      <af:outputText value="#{bindings.LastName.inputValue}" id="ot3"/>
+    </af:panelLabelAndMessage>
+  </af:panelFormLayout>
+</jsp:root>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1"
+          xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:h="http://java.sun.com/jsf/html"
+          xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+  <af:pageTemplateDef var="attrs">
+    <af:xmlContent>
+      <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+        <display-name>SMPageTemplate</display-name>
+        <facet>
+          <facet-name>content</facet-name>
+        </facet>
+        <attribute>
+          <attribute-name>pageName</attribute-name>
+          <attribute-class>java.lang.String</attribute-class>
+        </attribute>
+      </component>
+    </af:xmlContent>
+    <af:panelStretchLayout id="pt_psl1">
+      <f:facet name="center">
+        <!-- id="af_one_column_stretched"   -->
+        <af:facetRef facetName="content"/>
+      </f:facet>
+      <f:facet name="start">
+        <af:navigationPane hint="list" id="pt_np1" value="#{root_menu}"
+                           var="menu">
+          <f:facet name="nodeStamp">
+            <af:commandNavigationItem text="#{menu.label}" id="pt_cni1"
+                                      destination="#{menu.destination}"/>
+          </f:facet>
+        </af:navigationPane>
+      </f:facet>
+    </af:panelStretchLayout>
+  </af:pageTemplateDef>
+</jsp:root>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="user-view-flow">
+    <template-reference>
+      <document id="__1">/WEB-INF/sm-flow-template.xml</document>
+      <id id="__2">sm-flow-template</id>
+    </template-reference>
+    <default-activity id="__3">ExecuteWithParams</default-activity>
+    <input-parameter-definition id="__11">
+      <name id="__10">pPersonId</name>
+      <value>#{pageFlowScope.pPersonId}</value>
+    </input-parameter-definition>
+    <view id="user-view-fragment">
+      <page>/user-view-fragment.jsff</page>
+    </view>
+    <method-call id="ExecuteWithParams">
+      <method>#{bindings.ExecuteWithParams.execute}</method>
+      <outcome id="__4">
+        <fixed-outcome>ExecuteWithParams</fixed-outcome>
+      </outcome>
+    </method-call>
+    <control-flow-rule id="__5">
+      <from-activity-id id="__6">ExecuteWithParams</from-activity-id>
+      <control-flow-case id="__9">
+        <from-outcome id="__8">ExecuteWithParams</from-outcome>
+        <to-activity-id id="__7">user-view-fragment</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

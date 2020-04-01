@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application"
+             version="11.1.1.66.73" id="DataBindings" SeparateXMLFiles="false"
+             Package="com.dm.sharedmoduleapp.smview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
+  <pageMap>
+    <page path="/SMPageTemplate.jspx"
+          usageId="com_dm_sharedmoduleapp_smview_SMPageTemplatePageDef"/>
+    <page path="/User1.jspx"
+          usageId="com_dm_sharedmoduleapp_smview_User1PageDef"/>
+    <page path="/User2.jspx"
+          usageId="com_dm_sharedmoduleapp_smview_User2PageDef"/>
+    <page path="/Users.jspx"
+          usageId="com_dm_sharedmoduleapp_smview_UsersPageDef"/>
+    <page path="/user-view-fragment.jsff"
+          usageId="com_dm_sharedmoduleapp_smview_user_view_fragmentPageDef"/>
+    <page path="/WEB-INF/user-view-flow.xml#user-view-flow@ExecuteWithParams"
+          usageId="com_dm_sharedmoduleapp_smview_user_view_flow_user_view_flow_ExecuteWithParamsPageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="com_dm_sharedmoduleapp_smview_SMPageTemplatePageDef"
+          path="com.dm.sharedmoduleapp.smview.pageDefs.SMPageTemplatePageDef"/>
+    <page id="com_dm_sharedmoduleapp_smview_User1PageDef"
+          path="com.dm.sharedmoduleapp.smview.pageDefs.User1PageDef"/>
+    <page id="com_dm_sharedmoduleapp_smview_User2PageDef"
+          path="com.dm.sharedmoduleapp.smview.pageDefs.User2PageDef"/>
+    <page id="com_dm_sharedmoduleapp_smview_UsersPageDef"
+          path="com.dm.sharedmoduleapp.smview.pageDefs.UsersPageDef"/>
+    <page id="com_dm_sharedmoduleapp_smview_user_view_fragmentPageDef"
+          path="com.dm.sharedmoduleapp.smview.pageDefs.user_view_fragmentPageDef"/>
+    <page id="com_dm_sharedmoduleapp_smview_user_view_flow_user_view_flow_ExecuteWithParamsPageDef"
+          path="com.dm.sharedmoduleapp.smview.pageDefs.user_view_flow_user_view_flow_ExecuteWithParamsPageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="UserModuleDataControl"
+                     Package="com.dm.sharedmoduleapp.smmodel.services"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl"
+                     SupportsTransactions="true" SupportsFindMode="true"
+                     SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true"
+                     Configuration="UserModuleShared" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>
