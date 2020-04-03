@@ -197,8 +197,8 @@
       </list>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
-      <value n="j2eeWebAppName" v="HRApp-HRView-webapp"/>
-      <value n="j2eeWebContextRoot" v="HRApp-HRView-context-root"/>
+      <value n="j2eeWebAppName" v="hrapp"/>
+      <value n="j2eeWebContextRoot" v="hrapp"/>
    </hash>
    <hash n="oracle.jdeveloper.runner.RunConfigurations">
       <hash n="runConfigurationDefinitions">

@@ -23,7 +23,8 @@
         <af:facetRef facetName="content"/>
       </f:facet>
       <f:facet name="top">
-        <af:panelGroupLayout id="pt_pgl1" layout="horizontal" halign="end">
+        <af:panelGroupLayout id="pt_pgl1" layout="horizontal" halign="end"
+                             inlineStyle="padding-right:20px;padding-top:20px;">
           <af:goLink text="Logout" id="pt_gl1"
                      destination="/adfAuthentication?logout=true&amp;end_url=/login.html"/>
         </af:panelGroupLayout>
