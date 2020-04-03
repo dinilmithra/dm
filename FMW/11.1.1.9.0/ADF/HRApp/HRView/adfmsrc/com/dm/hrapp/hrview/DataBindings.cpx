@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://xmlns.oracle.com/adfm/application"
              version="11.1.1.66.73" id="DataBindings" SeparateXMLFiles="false"
-             Package="hrview" ClientType="Generic">
+             Package="com.dm.hrapp.hrview" ClientType="Generic">
+  <definitionFactories>
+    <factory nameSpace="http://xmlns.oracle.com/adf/controller/binding"
+             className="oracle.adf.controller.internal.binding.TaskFlowBindingDefFactoryImpl"/>
+    <dtfactory className="oracle.adf.controller.internal.dtrt.binding.BindingDTObjectFactory"/>
+  </definitionFactories>
   <pageMap>
-    <page path="/Home.jspx" usageId="hrview_HomePageDef"/>
+    <page path="/com/dm/hrapp/hrview/pages/Home.jspx" usageId="hrview_HomePageDef"/>
+    <page path="/com/dm/hrapp/hrview/pagetemplates/HRBaseTemplate.jspx"
+          usageId="hrview_HRBaseTemplatePageDef"/>
+    <page path="/com/dm/hrapp/hrview/fragments/employee-view-fragment.jsff"
+          usageId="hrview_employee_view_fragmentPageDef"/>
   </pageMap>
   <pageDefinitionUsages>
     <page id="hrview_HomePageDef" path="hrview.pageDefs.HomePageDef"/>
+    <page id="hrview_HRBaseTemplatePageDef"
+          path="com.dm.hrapp.hrview.pagetemplates.HRBaseTemplatePageDef"/>
+    <page id="hrview_employee_view_fragmentPageDef"
+          path="com.dm.hrapp.hrview.fragments.employee_view_fragmentPageDef"/>
   </pageDefinitionUsages>
   <dataControlUsages>
     <BC4JDataControl id="HRServiceDataControl" Package="hrmodel.service"

@@ -1,15 +1,19 @@
-package com.dm.hrapp.hrview.beans;
+package com.dm.hrapp.hrview.fragments.beans;
+
 
 import oracle.adf.share.ADFContext;
 import oracle.adf.share.logging.ADFLogger;
 
-public class HomeBean {
-    public HomeBean() {
+public class EmployeeViewFragmentBean {
+
+    public EmployeeViewFragmentBean() {
     }
 
-    ADFLogger logger = ADFLogger.createADFLogger(HomeBean.class);
+    ADFLogger logger =
+        ADFLogger.createADFLogger(EmployeeViewFragmentBean.class);
 
-    public String cb1_action() {
+    public String cb5_action() {
+
 
         String username =
             ADFContext.getCurrent().getSecurityContext().getUserName();
@@ -24,7 +28,6 @@ public class HomeBean {
             System.out.println("role : " + role);
 
         }
-
         return null;
     }
 }

@@ -54,8 +54,28 @@
             </grantee>
             <permissions>
               <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/com/dm/hrapp/hrview/pageflowtemplates/hr-flow-template.xml#hr-flow-template</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.controller.security.TaskFlowPermission</class>
+                <name>/WEB-INF/com/dm/hrapp/hrview/pageflows/employee-flow.xml#employee-flow</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>com.dm.hrapp.hrview.fragments.employee_view_fragmentPageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
                 <class>oracle.adf.share.security.authorization.RegionPermission</class>
                 <name>hrview.pageDefs.HomePageDef</name>
+                <actions>view</actions>
+              </permission>
+              <permission>
+                <class>oracle.adf.share.security.authorization.RegionPermission</class>
+                <name>com.dm.hrapp.hrview.pagetemplates.HRBaseTemplatePageDef</name>
                 <actions>view</actions>
               </permission>
             </permissions>
