@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8' standalone = 'yes'?>
+<jazn-data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/jazn-data-11_0.xsd">
+  <jazn-realm default="jazn.com">
+    <realm>
+      <name>jazn.com</name>
+      <users>
+        <user>
+          <name>dmith</name>
+          <display-name>D'Mith</display-name>
+          <credentials>{903}09eZ8W2QDF7S8j7HYmatgndRCK8NQX0o</credentials>
+        </user>
+      </users>
+      <roles>
+        <role>
+          <name>AD_EBD_USER</name>
+          <display-name>AD_EBD_USER</display-name>
+        </role>
+      </roles>
+    </realm>
+  </jazn-realm>
+  <policy-store>
+    <applications>
+      <application>
+        <name>HRApp</name>
+        <app-roles>
+          <app-role>
+            <name>EBD_USER</name>
+            <class>oracle.security.jps.service.policystore.ApplicationRole</class>
+            <display-name>EBD_USER</display-name>
+            <members>
+              <member>
+                <name>AD_EBD_USER</name>
+                <class>oracle.security.jps.internal.core.principals.JpsXmlEnterpriseRoleImpl</class>
+              </member>
+            </members>
+          </app-role>
+        </app-roles>
+      </application>
+    </applications>
+  </policy-store>
+</jazn-data>

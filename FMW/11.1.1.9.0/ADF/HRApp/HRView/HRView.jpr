@@ -55,6 +55,9 @@
       <string v="oracle.toplink.workbench.addin/toplinkContentSet"/>
    </list>
    <value n="defaultPackage" v="hrview"/>
+   <hash n="oracle.adfdtinternal.model.ide.security.SecurityPolicies">
+      <value n="grantOption" v="none"/>
+   </hash>
    <hash n="oracle.ide.model.DependencyConfiguration">
       <list n="dependencyList">
          <hash>
