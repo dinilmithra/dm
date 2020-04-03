@@ -6,8 +6,8 @@
   <executables>
     <variableIterator id="variables"/>
     <iterator Binds="EmployeesView1" RangeSize="25"
-              DataControl="HRServiceCachedDataControl"
-              id="EmployeesView1Iterator"/>
+              DataControl="HRServiceDataControl" id="EmployeesView1Iterator"
+              ChangeEventPolicy="ppr"/>
   </executables>
   <bindings>
     <attributeValues IterBinding="EmployeesView1Iterator" id="EmployeeId">
@@ -65,5 +65,13 @@
         <Item Value="DepartmentId"/>
       </AttrNames>
     </attributeValues>
+    <action IterBinding="EmployeesView1Iterator" id="First"
+            RequiresUpdateModel="true" Action="first"/>
+    <action IterBinding="EmployeesView1Iterator" id="Previous"
+            RequiresUpdateModel="true" Action="previous"/>
+    <action IterBinding="EmployeesView1Iterator" id="Next"
+            RequiresUpdateModel="true" Action="next"/>
+    <action IterBinding="EmployeesView1Iterator" id="Last"
+            RequiresUpdateModel="true" Action="last"/>
   </bindings>
 </pageDefinition>
