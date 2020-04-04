@@ -1,4 +1,4 @@
-<?xml version = '1.0' encoding = 'windows-1252'?>
+<?xml version = '1.0' encoding = 'UTF-8'?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
@@ -144,6 +144,9 @@
     <extension>swf</extension>
     <mime-type>application/x-shockwave-flash</mime-type>
   </mime-mapping>
+  <welcome-file-list>
+    <welcome-file>/welcome.jsp</welcome-file>
+  </welcome-file-list>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsff</url-pattern>
