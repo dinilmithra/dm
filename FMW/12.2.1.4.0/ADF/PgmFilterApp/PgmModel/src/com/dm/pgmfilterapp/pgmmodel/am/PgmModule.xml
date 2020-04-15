@@ -14,11 +14,17 @@
     </SchemaBasedProperties>
   </Properties>
   <ViewUsage
-    Name="EmployeeView1"
-    ViewObjectName="com.dm.pgmfilterapp.pgmmodel.vo.EmployeeView"/>
-  <ViewUsage
     Name="DepartmentView1"
     ViewObjectName="com.dm.pgmfilterapp.pgmmodel.vo.DepartmentView"/>
+  <ViewUsage
+    Name="EmployeeView1"
+    ViewObjectName="com.dm.pgmfilterapp.pgmmodel.vo.EmployeeView"/>
+  <ViewLinkUsage
+    Name="EmpToDeptLink1"
+    ViewLinkObjectName="com.dm.pgmfilterapp.pgmmodel.vo.links.EmpToDeptLink"
+    SrcViewUsageName="com.dm.pgmfilterapp.pgmmodel.am.PgmModule.DepartmentView1"
+    DstViewUsageName="com.dm.pgmfilterapp.pgmmodel.am.PgmModule.EmployeeView1"
+    Reversed="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.dm.pgmfilterapp.pgmmodel.PgmModelBundle"/>

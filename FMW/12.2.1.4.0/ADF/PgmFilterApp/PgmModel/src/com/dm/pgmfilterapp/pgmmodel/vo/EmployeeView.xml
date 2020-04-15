@@ -55,7 +55,7 @@
     IsPersistent="false"
     PrecisionRule="true"
     Precision="255"
-    Type="java.lang.String"
+    Type="java.lang.Integer"
     ColumnType="VARCHAR2"
     SQLType="VARCHAR"/>
   <AttrArray Name="KeyAttributes">

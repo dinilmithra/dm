@@ -48,7 +48,8 @@ public class DepartmentViewRowImpl extends ProgrammaticViewRowImpl {
      */
     protected enum AttributesEnum {
         Id,
-        Name;
+        Name,
+        EmployeeView;
         private static AttributesEnum[] vals = null;
         private static final int firstIndex = 0;
 
@@ -72,8 +73,10 @@ public class DepartmentViewRowImpl extends ProgrammaticViewRowImpl {
         }
     }
 
+
     public static final int ID = AttributesEnum.Id.index();
     public static final int NAME = AttributesEnum.Name.index();
+    public static final int EMPLOYEEVIEW = AttributesEnum.EmployeeView.index();
 
     /**
      * This is the default constructor (do not remove).

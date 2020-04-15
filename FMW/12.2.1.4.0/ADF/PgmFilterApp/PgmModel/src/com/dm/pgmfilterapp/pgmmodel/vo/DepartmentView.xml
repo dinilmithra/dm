@@ -43,6 +43,11 @@
   <AttrArray Name="KeyAttributes">
     <Item Value="Id"/>
   </AttrArray>
+  <ViewLinkAccessor
+    Name="EmployeeView"
+    ViewLink="com.dm.pgmfilterapp.pgmmodel.vo.links.EmpToDeptLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
   <ResourceBundle>
     <PropertiesBundle
       PropertiesFile="com.dm.pgmfilterapp.pgmmodel.PgmModelBundle"/>

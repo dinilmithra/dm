@@ -30,35 +30,35 @@ public class EmployeeViewImpl extends ProgrammaticViewObjectImpl {
         row1.put("Id", 1);
         row1.put("FirstName", "Dinil");
         row1.put("LastName", "Mithra");
-        row1.put("DeptId", 1);
+        row1.put("DeptId", 3);
         rows.add(row1);
 
         HashMap<String, Object> row2 = new HashMap<String, Object>();
         row2.put("Id", 2);
         row2.put("FirstName", "Krish");
         row2.put("LastName", "Menon");
-        row2.put("DeptId", 1);
+        row2.put("DeptId", 2);
         rows.add(row2);
 
         HashMap<String, Object> row3 = new HashMap<String, Object>();
         row3.put("Id", 3);
         row3.put("FirstName", "Mathew");
         row3.put("LastName", "Jordan");
-        row3.put("DeptId", 1);
+        row3.put("DeptId", 3);
         rows.add(row3);
 
         HashMap<String, Object> row4 = new HashMap<String, Object>();
         row4.put("Id", 4);
         row4.put("FirstName", "Shawn");
         row4.put("LastName", "Mendes");
-        row4.put("DeptId", 1);
+        row4.put("DeptId", 2);
         rows.add(row4);
 
         HashMap<String, Object> row5 = new HashMap<String, Object>();
         row5.put("Id", 5);
         row5.put("FirstName", "Jorden");
         row5.put("LastName", "Hopkin");
-        row5.put("DeptId", 1);
+        row5.put("DeptId", 3);
         rows.add(row5);
 
         HashMap<String, Object> row6 = new HashMap<String, Object>();

@@ -22,6 +22,14 @@
     </DesignTime>
   </Containee>
   <Containee
+    Name="links"
+    PackageName="com.dm.pgmfilterapp.pgmmodel.vo.links"
+    ObjectType="JboPackage">
+    <DesignTime>
+      <Attr Name="_VL" Value="true"/>
+    </DesignTime>
+  </Containee>
+  <Containee
     Name="vo"
     PackageName="com.dm.pgmfilterapp.pgmmodel.vo"
     ObjectType="JboPackage">
