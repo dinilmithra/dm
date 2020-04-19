@@ -3,10 +3,11 @@ package com.dm.pgmfilterapp.pgmmodel.vo;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 import oracle.jbo.Key;
 import oracle.jbo.RangePagingDataFilter;
+import oracle.jbo.RowContext;
 import oracle.jbo.ScrollableDataFilter;
 import oracle.jbo.server.ProgrammaticViewObjectImpl;
 // ---------------------------------------------------------------------
@@ -22,9 +23,9 @@ public class EmployeeViewImpl extends ProgrammaticViewObjectImpl {
     public EmployeeViewImpl() {
     }
 
-    private List<Object> populateData() {
+    private Collection<Object> populateData() {
 
-        List<Object> rows = new ArrayList<Object>();
+        Collection<Object> rows = new ArrayList<Object>();
 
         HashMap<String, Object> row1 = new HashMap<String, Object>();
         row1.put("Id", 1);
@@ -67,7 +68,7 @@ public class EmployeeViewImpl extends ProgrammaticViewObjectImpl {
         row6.put("LastName", "Muller");
         row6.put("DeptId", 1);
         rows.add(row6);
-        
+
         return rows;
 
     }
@@ -93,7 +94,14 @@ public class EmployeeViewImpl extends ProgrammaticViewObjectImpl {
      */
     public Collection<Object> getScrollableData(ScrollableDataFilter filter) {
         //        Collection<Object> value = super.getScrollableData(filter);
-        ArrayList<Object> value = (ArrayList<Object>) populateData();
+
+        RowContext ctx = filter.getRowContext();
+        String masterAccessorName = ctx.getMasterAccessorName();
+        Map masterRowData = (Map) ctx.getMasterRowDataProvider();
+        
+        ScrollableDataFilterImpl ss = null;
+
+        Collection<Object> value = populateData();
         return value;
     }
 }
