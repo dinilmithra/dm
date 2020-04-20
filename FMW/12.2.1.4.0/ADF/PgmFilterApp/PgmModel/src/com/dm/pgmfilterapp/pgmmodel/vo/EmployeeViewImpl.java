@@ -98,8 +98,6 @@ public class EmployeeViewImpl extends ProgrammaticViewObjectImpl {
         RowContext ctx = filter.getRowContext();
         String masterAccessorName = ctx.getMasterAccessorName();
         Map masterRowData = (Map) ctx.getMasterRowDataProvider();
-        
-        ScrollableDataFilterImpl ss = null;
 
         Collection<Object> value = populateData();
         return value;

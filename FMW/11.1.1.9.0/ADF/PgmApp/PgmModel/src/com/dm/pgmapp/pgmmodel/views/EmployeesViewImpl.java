@@ -3,7 +3,6 @@ package com.dm.pgmapp.pgmmodel.views;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-
 import java.util.Map;
 
 import oracle.jbo.RowContext;
@@ -29,6 +28,7 @@ public class EmployeesViewImpl extends ProgrammaticViewObjectImpl {
     protected Collection<Object> getScrollableData(ScrollableDataFilter scrollableDataFilter) {
       
         RowContext ctx = scrollableDataFilter.getRowContext();
+        
         String masterAccessorName = ctx.getMasterAccessorName();
         Map masterRowData = (Map)ctx.getMasterRowDataProvider();
 
