@@ -26,3 +26,4 @@ classes
 *.sso
 *.lck
 cwallet.sso.lck
+.data
