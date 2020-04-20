@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DepartmentsView"
+  Version="12.2.1.22.48"
+  InheritPersonalization="merge"
+  SelectList="Department.ID, 
+       Department.NAME"
+  FromList="DEPARTMENT Department"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  PageIterMode="Full"
+  RowClass="com.dm.pgmapp.pgmmodel.views.DepartmentsViewRowImpl"
+  ComponentClass="com.dm.pgmapp.pgmmodel.views.DepartmentsViewImpl"
+  AccessMode="DEFAULT">
+  <DesignTime>
+    <Attr Name="_objectSuperClassName"
+      Value="oracle.jbo.server.ProgrammaticViewObjectImpl"/>
+    <Attr Name="_rowSuperClassName"
+      Value="oracle.jbo.server.ProgrammaticViewRowImpl"/>
+    <Attr Name="_codeGenFlag2" Value="Coll"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.dm.pgmapp.pgmmodel.views.DepartmentsView_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <EntityUsage
+    Name="Department"
+    Entity="com.dm.pgmapp.pgmmodel.entity.Department"/>
+  <ViewAttribute
+    Name="Id"
+    IsUpdateable="while_insert"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="Id"
+    EntityUsage="Department"
+    AliasName="ID"/>
+  <ViewAttribute
+    Name="Name"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="Department"
+    AliasName="NAME"/>
+  <ViewLinkAccessor
+    Name="EmployeesView"
+    ViewLink="com.dm.pgmapp.pgmmodel.views.viewlinks.DeptToEmpLink"
+    Type="oracle.jbo.RowIterator"
+    IsUpdateable="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.dm.pgmapp.pgmmodel.PgmModelBundle"/>
+  </ResourceBundle>
+</ViewObject>
