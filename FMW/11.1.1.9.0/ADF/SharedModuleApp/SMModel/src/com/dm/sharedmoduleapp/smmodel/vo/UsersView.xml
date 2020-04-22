@@ -11,7 +11,9 @@
   RowClass="com.dm.sharedmoduleapp.smmodel.vo.UsersViewRowImpl"
   ComponentClass="com.dm.sharedmoduleapp.smmodel.vo.UsersViewImpl"
   PageIterMode="Full"
-  UseGlueCode="false">
+  UseGlueCode="false"
+  ComponentInterface="com.dm.sharedmoduleapp.smmodel.vo.common.UsersView"
+  ClientProxyName="com.dm.sharedmoduleapp.smmodel.vo.client.UsersViewClient">
   <DesignTime>
     <Attr Name="_codeGenFlag2" Value="Coll"/>
     <Attr Name="_isExpertMode" Value="true"/>
@@ -102,4 +104,11 @@
     <PropertiesBundle
       PropertiesFile="com.dm.sharedmoduleapp.smmodel.SMModelBundle"/>
   </ResourceBundle>
+  <ClientInterface>
+    <Method
+      Name="refresh">
+      <Return
+        Type="void"/>
+    </Method>
+  </ClientInterface>
 </ViewObject>

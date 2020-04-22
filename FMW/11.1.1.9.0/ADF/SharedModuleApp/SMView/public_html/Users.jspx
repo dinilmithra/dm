@@ -13,7 +13,9 @@
           <f:facet name="content">
             <af:panelCollection id="pc1">
               <f:facet name="menus"/>
-              <f:facet name="toolbar"/>
+              <f:facet name="toolbar">
+                <af:toolbar id="t2"/>
+              </f:facet>
               <f:facet name="statusbar"/>
               <af:table value="#{bindings.UsersView1.collectionModel}" var="row"
                         rows="#{bindings.UsersView1.rangeSize}"

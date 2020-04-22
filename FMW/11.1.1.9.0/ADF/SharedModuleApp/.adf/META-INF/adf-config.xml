@@ -15,9 +15,5 @@
   <adf:adf-properties-child xmlns="http://xmlns.oracle.com/adf/config/properties">
     <adf-property name="adfAppUID"
                   value="SharedModuleApp.com.dm.sharedmoduleapp"/>
-  </adf:adf-properties-child>
-  <sec:adf-security-child xmlns="http://xmlns.oracle.com/adf/security/config">
-    <CredentialStoreContext credentialStoreClass="oracle.adf.share.security.providers.jps.CSFCredentialStore"
-                            credentialStoreLocation="../../src/META-INF/jps-config.xml"/>
-  </sec:adf-security-child>
+  </adf:adf-properties-child> 
 </adf-config>

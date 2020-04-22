@@ -9,7 +9,6 @@
   PackageName="com.dm.sharedmoduleapp.smmodel">
   <DesignTime>
     <Attr Name="_jprName" Value="../../../../../SMModel.jpr"/>
-    <Attr Name="_NamedConnection" Value="HR"/>
     <Attr Name="_appModuleNames0"
       Value="com.dm.sharedmoduleapp.smmodel.services.UserModule"/>
   </DesignTime>

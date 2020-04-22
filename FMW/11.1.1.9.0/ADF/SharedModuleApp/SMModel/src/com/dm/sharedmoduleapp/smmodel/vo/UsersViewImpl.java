@@ -1,5 +1,8 @@
 package com.dm.sharedmoduleapp.smmodel.vo;
 
+
+import com.dm.sharedmoduleapp.smmodel.vo.common.UsersView;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -18,7 +21,7 @@ import oracle.jbo.server.ProgrammaticViewObjectImpl;
 // ---    Custom code may be added to this class.
 // ---    Warning: Do not modify method signatures of generated methods.
 // ---------------------------------------------------------------------
-public class UsersViewImpl extends ProgrammaticViewObjectImpl {
+public class UsersViewImpl extends ProgrammaticViewObjectImpl implements UsersView {
     /**
      * This is the default constructor (do not remove).
      */
@@ -112,4 +115,10 @@ public class UsersViewImpl extends ProgrammaticViewObjectImpl {
         ArrayList<Object> rows = (ArrayList<Object>)populateData();
         return rows;
     }
+
+    public void refresh() {
+        this.forceExecuteQueryOfSharedVO();
+    }
+
+
 }
