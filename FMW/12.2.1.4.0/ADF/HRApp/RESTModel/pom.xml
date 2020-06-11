@@ -75,6 +75,7 @@
     </resources>
     <outputDirectory>../RESTModel/target/classes/</outputDirectory>
     <plugins>
+    <!--
       <plugin>
         <groupId>com.oracle.adf.plugin</groupId>
         <artifactId>ojmake</artifactId>
@@ -120,6 +121,7 @@
           </execution>
         </executions>
       </plugin>
+      -->
     </plugins>
   </build>
   <parent>
