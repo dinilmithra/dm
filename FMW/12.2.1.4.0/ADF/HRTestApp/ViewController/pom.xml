@@ -241,7 +241,7 @@
             ViewController
           </project>
           <profile>
-            HRTestApp_ViewController_webapp
+            webappHRTestAppVC
           </profile>
           <outputfile>
             ${project.build.directory}/${project.build.finalName}.war

@@ -48,7 +48,7 @@
             ${basedir}/HRTestApp.jws
           </workspace>
           <profile>
-            HRTestApp_Project1_HRTestApp
+            applicationHRTestApp
           </profile>
           <outputfile>
             ${project.build.directory}/${project.build.finalName}.ear
