@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context reloadable="true">
-    <Loader delegate="true"/>
-    <Resource name="jdbc/HRDS" auth="Container" type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
-              url="jdbc:oracle:thin:@localhost:1521:orcl" username="hr" password="Welcome1" maxActive="20" maxIdle="30"
-              maxWait="-1"/>
-</Context>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="windows-1252" ?>
-<menu xmlns="http://myfaces.apache.org/trinidad/menu">
-    <itemNode id="itemNode_ReqRes" label="Req Res" action="adfMenu_ReqRes" focusViewId="/ReqRes" destination="ReqRes"/>
-    <itemNode id="itemNode_HRHome" label="HR Home" action="adfMenu_HRHome" focusViewId="/HRHome" destination="HRHome"/>
-</menu>
