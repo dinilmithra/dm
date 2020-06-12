@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE AppModule SYSTEM "jbo_03_01.dtd">
+<!---->
+<AppModule
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="PgmService"
+  Version="11.1.1.66.73"
+  InheritPersonalization="merge"
+  ClearCacheOnRollback="true">
+  <DesignTime>
+    <Attr Name="_deployType" Value="0"/>
+  </DesignTime>
+  <Properties>
+    <SchemaBasedProperties>
+      <LABEL
+        ResId="com.dm.pgmapp.pgmmodel.service.PgmService_LABEL"/>
+    </SchemaBasedProperties>
+  </Properties>
+  <ViewUsage
+    Name="DepartmentsView1"
+    ViewObjectName="com.dm.pgmapp.pgmmodel.views.DepartmentsView"/>
+  <ViewUsage
+    Name="EmployeesView1"
+    ViewObjectName="com.dm.pgmapp.pgmmodel.views.EmployeesView"/>
+  <ViewLinkUsage
+    Name="DeptToEmpLink1"
+    ViewLinkObjectName="com.dm.pgmapp.pgmmodel.views.viewlinks.DeptToEmpLink"
+    SrcViewUsageName="com.dm.pgmapp.pgmmodel.service.PgmService.DepartmentsView1"
+    DstViewUsageName="com.dm.pgmapp.pgmmodel.service.PgmService.EmployeesView1"
+    Reversed="false"/>
+  <ResourceBundle>
+    <PropertiesBundle
+      PropertiesFile="com.dm.pgmapp.pgmmodel.PgmModelBundle"/>
+  </ResourceBundle>
+</AppModule>

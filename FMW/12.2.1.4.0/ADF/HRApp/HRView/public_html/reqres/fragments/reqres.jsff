@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <af:panelGroupLayout id="pgl1" layout="scroll">
+        <af:panelBox id="pb1" showDisclosure="false">
+            <af:listView value="#{bindings.data.collectionModel}" var="item"
+                         emptyText="#{bindings.data.viewable ? 'No data to display.' : 'Access Denied.'}"
+                         fetchSize="#{bindings.data.rangeSize}" id="lv1">
+                <af:listItem id="li1">
+                    <af:panelGroupLayout layout="horizontal" id="pgl2">
+                        <f:facet name="separator">
+                            <af:spacer width="10" id="s1"/>
+                        </f:facet>
+                        <af:outputFormatted value="#{item.bindings.id.inputValue}" id="of1">
+                            <af:convertNumber groupingUsed="false" pattern="#{bindings.data.hints.id.format}"/>
+                        </af:outputFormatted>
+                        <af:image source="#{item.avatar}" id="ot1"/>
+                        <af:panelGroupLayout id="pgl4" layout="vertical">
+                            <af:panelLabelAndMessage label="Name :" id="plam1">
+                                <af:panelGroupLayout id="pgl5" layout="horizontal">
+                                    <af:outputFormatted value="#{item.bindings.first_name.inputValue}" id="of3"/>
+                                    <af:spacer id="s3" width="5px"/>
+                                    <af:outputFormatted value="#{item.bindings.last_name.inputValue}" id="of2"/>
+                                </af:panelGroupLayout>
+                            </af:panelLabelAndMessage>
+                            <af:panelLabelAndMessage label="Email :" id="plam2">
+                                <af:outputFormatted value="#{item.bindings.email.inputValue}" id="of4"/>
+                            </af:panelLabelAndMessage>
+                        </af:panelGroupLayout>
+                    </af:panelGroupLayout>
+                </af:listItem>
+            </af:listView>
+            <f:facet name="toolbar">
+                <af:button text="Add" id="b1" action="createuser"/>
+            </f:facet>
+        </af:panelBox>
+        <af:panelGroupLayout id="pgl3" layout="horizontal" halign="end">
+            <af:outputLabel value="Pages" id="ol1"/>
+            <af:iterator id="i1" value="#{bindings.total_pages.inputValue}" var="item" first="1">
+                <af:outputText value="outputText1" id="ot2"/>
+            </af:iterator>
+            <af:forEach begin="1" end="#{bindings.total_pages.inputValue}" var="item">
+                <af:spacer id="s2" width="10"/>
+                <af:link id="ot3" text="#{item}" actionListener="#{bindings.getUsers.execute}"
+                         inlineStyle="#{bindings.page.inputValue eq item ? 'color:Red;' : ''} ">
+                    <af:setPropertyListener from="#{item}" to="#{bindings.page1.inputValue}" type="action"/>
+                </af:link>
+            </af:forEach>
+        </af:panelGroupLayout>
+    </af:panelGroupLayout>
+</ui:composition>
+ 

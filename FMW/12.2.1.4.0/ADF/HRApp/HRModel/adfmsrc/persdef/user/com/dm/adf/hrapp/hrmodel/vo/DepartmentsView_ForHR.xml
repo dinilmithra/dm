@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<!DOCTYPE PDefViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<PDefViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="DepartmentsView_ForHR"
+  Version="12.2.1.22.48"
+  StaticDef="com.dm.adf.hrapp.hrmodel.vo.DepartmentsView">
+  <PDefAttribute
+    Name="ManagerId">
+    <Properties>
+      <SchemaBasedProperties>
+        <PAYLOADHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+  <PDefAttribute
+    Name="LocationId">
+    <Properties>
+      <SchemaBasedProperties>
+        <PAYLOADHINT
+          Value="Hide"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </PDefAttribute>
+</PDefViewObject>

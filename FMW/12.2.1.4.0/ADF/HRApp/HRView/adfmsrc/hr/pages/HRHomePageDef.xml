@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.22.48" id="HRHomePageDef"
+                Package="hr.pages">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="hrhomeflow1" taskFlowId="/hr/flows/hr-home-flow.xml#hr-home-flow" activation="deferred"
+              xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+    <page path="hr.templates.HRPageTemplatePageDef" id="ptb1" Refresh="ifNeeded"/>
+  </executables>
+  <bindings/>
+</pageDefinition>
