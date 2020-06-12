@@ -76,4 +76,55 @@
     <version>12.2.1-4-0</version>
     <relativePath></relativePath>
   </parent>
+  <dependencies>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>BC4J-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>ADF-Model-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>MDS-Runtime</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>MDS-Runtime-Dependencies</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>BC4J-Security</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>Oracle-JDBC</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>BC4J-Oracle-Domains</artifactId>
+      <version>12.2.1-4-0</version>
+      <type>pom</type>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 </project>

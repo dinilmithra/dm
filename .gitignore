@@ -27,3 +27,5 @@ classes
 *.lck
 cwallet.sso.lck
 .data
+/FMW/11.1.1.9.0/ADF/SharedModuleApp/SMView/public_html/WEB-INF/temp/adf/styles/cache/skyros-v1-desktop-3xufxt-en-ltr-ie-7.0-cmp.css
+/FMW/11.1.1.9.0/ADF/SharedModuleApp/SMView/public_html/WEB-INF/temp/adf/styles/cache/skyros-v1-desktop-3xufxt-en-ltr-ie-7.0-cmp2.css
