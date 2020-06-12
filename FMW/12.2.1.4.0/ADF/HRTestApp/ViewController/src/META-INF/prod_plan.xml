@@ -1,0 +1,38 @@
+<deployment-plan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.oracle.com/weblogic/deployment-plan http://xmlns.oracle.com/weblogic/deployment-plan/1.0/deployment-plan.xsd"
+                 xmlns="http://xmlns.oracle.com/weblogic/deployment-plan">
+    <application-name>HRTestApp</application-name>
+    <variable-definition>
+        <variable>
+            <name>checkFileModificationOff</name>
+            <value>false</value>
+        </variable>
+    </variable-definition>
+    
+    <module-override>
+        <module-name>jspExpressionEar.ear</module-name>
+        <module-type>ear</module-type>
+        <module-descriptor external="false">
+            <root-element>weblogic-application</root-element>
+            <uri>META-INF/weblogic-application.xml</uri>
+        </module-descriptor>
+        <module-descriptor external="false">
+            <root-element>application</root-element>
+            <uri>META-INF/application.xml</uri>
+        </module-descriptor>
+    </module-override>
+    
+    <module-override>
+        <module-name>webappHRTestVC_prod.war</module-name>
+        <module-type>war</module-type>
+        <module-descriptor external="false">
+            <root-element>web-app</root-element>
+            <uri>WEB-INF/web.xml</uri>
+            <variable-assignment>
+                <name>checkFileModificationOff</name>
+                <xpath>/web-app/context-param/[param-name="org.apache.myfaces.trinidad.CHECK_FILE_MODIFICATION"]/param-value</xpath>
+                <operation>replace</operation>
+            </variable-assignment>
+        </module-descriptor>
+    </module-override>
+</deployment-plan>
