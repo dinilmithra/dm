@@ -231,9 +231,6 @@
         <artifactId>ojdeploy</artifactId>
         <version>12.2.1-4-0</version>
         <configuration>
-          <ojdeploy>
-            ${oracleHome}/jdeveloper/jdev/bin/ojdeploy.exe
-          </ojdeploy>
           <workspace>
             ${basedir}/../HRTestApp.jws
           </workspace>
