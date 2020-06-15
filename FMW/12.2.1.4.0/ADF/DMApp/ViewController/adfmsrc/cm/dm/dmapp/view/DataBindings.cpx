@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://xmlns.oracle.com/adfm/application" version="12.2.1.22.48" id="DataBindings"
+             SeparateXMLFiles="false" Package="cm.dm.dmapp.view" ClientType="Generic">
+  <pageMap>
+    <page path="/Home.jsf" usageId="cm_dm_dmapp_view_HomePageDef"/>
+  </pageMap>
+  <pageDefinitionUsages>
+    <page id="cm_dm_dmapp_view_HomePageDef" path="cm.dm.dmapp.view.pageDefs.HomePageDef"/>
+  </pageDefinitionUsages>
+  <dataControlUsages>
+    <BC4JDataControl id="HRServiceDataControl" Package="cm.dm.dmapp.model.am"
+                     FactoryClass="oracle.adf.model.bc4j.DataControlFactoryImpl" SupportsTransactions="true"
+                     SupportsFindMode="true" SupportsRangesize="true" SupportsResetState="true"
+                     SupportsSortCollection="true" Configuration="AppModuleLocal" syncMode="Immediate"
+                     xmlns="http://xmlns.oracle.com/adfm/datacontrol"/>
+  </dataControlUsages>
+</Application>

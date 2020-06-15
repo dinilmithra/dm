@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BC4JConfig version="11.1" xmlns="http://xmlns.oracle.com/bc4j/configuration">
+   <AppModuleConfigBag ApplicationName="cm.dm.dmapp.model.am.HRService">
+      <AppModuleConfig name="AppModuleLocal" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory"
+                       ApplicationName="cm.dm.dmapp.model.am.HRService" jbo.project="cm.dm.dmapp.model.Model">
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/HRDS" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="cm.dm.dmapp.model.am.HRService"/>
+      </AppModuleConfig>
+      <AppModuleConfig name="AppModuleShared" DeployPlatform="LOCAL" java.naming.factory.initial="oracle.jbo.common.JboInitialContextFactory"
+                       ApplicationName="cm.dm.dmapp.model.am.HRService" jbo.project="cm.dm.dmapp.model.Model">
+         <AM-Pooling jbo.ampool.isuseexclusive="false" jbo.ampool.maxpoolsize="1"/>
+         <Database jbo.locking.mode="optimistic" JDBCDataSource="java:comp/env/jdbc/HRDS" jbo.TypeMapEntries="OracleApps"/>
+         <Security AppModuleJndiName="cm.dm.dmapp.model.am.HRService"/>
+      </AppModuleConfig>
+   </AppModuleConfigBag>
+</BC4JConfig>
