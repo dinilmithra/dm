@@ -1,0 +1,94 @@
+cd C:\Delta\install\apache-archiva-2.2.4\bin
+archiva install
+archiva start
+archiva stop
+
+mvn -Dplugin=install help:describe
+
+-------------------- Env Settings Start--------------------------
+
+set JAVA_HOME=C:\Delta\install\oracle\12.2.1.4.0\JDeveloper\Middleware\Oracle_Home\oracle_common\jdk
+set PATH=%PATH%;%JAVA_HOME%\bin
+set M2_HOME=C:\Delta\install\oracle\12.2.1.4.0\JDeveloper\Middleware\Oracle_Home\oracle_common\modules\org.apache.maven_3.2.5
+set PATH=%PATH%;%M2_HOME%\bin
+
+set ORACLE_HOME=C:\Delta\install\oracle\12.2.1.4.0\JDeveloper\Middleware\Oracle_Home
+set ARCHIVA_CONFIG_HOME=C:\Delta\Workspace\Repo\Archiva\config
+set MAVEN_SETTINGS_HOME=C:\Delta\Workspace\maven\settings
+set JFROG_REPO_DEV=https://jfrogbuild.deltads.ent/artifactory/delta-maven-oracle12c
+set ARCHIVA_REPO_DEV=http://localhost:8080/repository/dev
+set ARCHIVA_REPO_12c=http://localhost:8080/repository/oracle-12c
+set REPO_HOME=C:\Delta\Workspace\Repo
+set KEY_STORE_FILE=%MAVEN_SETTINGS_HOME%\certs\jdk8\a3_jdk8.jks
+
+echo JAVA_HOME=%JAVA_HOME%%
+echo M2_HOME=%M2_HOME%
+echo PATH=%PATH
+echo ORACLE_HOME=%ORACLE_HOME%
+echo ARCHIVA_CONFIG_HOME=%ARCHIVA_CONFIG_HOME%
+echo MAVEN_SETTINGS_HOME=%MAVEN_SETTINGS_HOME%
+echo JFROG_REPO_DEV=%JFROG_REPO_DEV%
+echo ARCHIVA_REPO_DEV=%ARCHIVA_REPO_DEV%
+echo ARCHIVA_REPO_12c=%ARCHIVA_REPO_12c%
+echo REPO_HOME=%REPO_HOME%
+echo KEY_STORE_FILE=%KEY_STORE_FILE%
+
+-------------------- Env Settings End--------------------------
+
+---------------------Trust Store Start-------------------------
+
+set JAVA_HOME=C:\Delta\install\oracle\12.2.1.4.0\JDeveloper\Middleware\Oracle_Home\oracle_common\jdk
+set PATH=%PATH%;%JAVA_HOME%\bin
+cd C:\Delta\Workspace\11.1.1.9.0\config\maven\certs\jdk8
+keytool -import -noprompt -storepass changeit -alias oracle.com -file oracle.cer -keystore a3_jdk8.jks -storetype JKS
+keytool -import -noprompt -storepass changeit -alias jfrogbuild.deltads.ent -file jfrogbuild.cer -keystore a3_jdk8.jks -storetype JKS
+keytool -list -v -storepass changeit -keystore a3_jdk8.jks
+
+keytool -printcert -file jfrogbuild.cer
+keytool -printcert -file oracle.cer
+
+---------------------Trust Store End----------------------------
+
+
+-------------------------------------------------------------------
+mvn -emp <password> -s%MAVEN_SETTINGS_HOME%\settings_archiva.xml
+mvn -ep <password> -s%MAVEN_SETTINGS_HOME%\settings_archiva.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml
+
+cd %ORACLE_HOME%\oracle_common\plugins\maven\com\oracle\maven\oracle-maven-sync\12.2.1
+
+mvn install:install-file -DpomFile=oracle-maven-sync-12.2.1.pom -Dfile=oracle-maven-sync-12.2.1.jar -Dmaven.repo.local=%REPO_HOME%\.m2\12c
+mvn com.oracle.maven:oracle-maven-sync:push -DoracleHome=%ORACLE_HOME% -DtestingOnly=false -DoverriteParents=true -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo
+
+------------Dev---------
+mvn deploy:deploy-file -Dfile=oracle-maven-sync-12.2.1.jar -DpomFile=oracle-maven-sync-12.2.1.pom -Durl=%ARCHIVA_REPO_DEV% -DrepositoryId=dev -s %MAVEN_SETTINGS_HOME%\settings_archiva.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml  -Dmaven.repo.local=%REPO_HOME%\.m2\12c
+mvn com.oracle.maven:oracle-maven-sync:push -DoracleHome=%ORACLE_HOME% -DoverriteParents=true -DserverId=dev -s %MAVEN_SETTINGS_HOME%\settings_archiva.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -DXmx1024m -DXX:MaxPermSize=128m
+
+--------JFrog ----------
+mvn deploy:deploy-file -Dfile=oracle-maven-sync-12.2.1.jar -DpomFile=oracle-maven-sync-12.2.1.pom -Durl=%JFROG_REPO_DEV% -DrepositoryId=dev -s%MAVEN_SETTINGS_HOME%\settings_jfrog_upload_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Djavax.net.ssl.trustStore=%MAVEN_SETTINGS_HOME%\certs\jdk8\a3_jdk8.jks -Dnet.ssl.trustStorePassword=changeit -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo
+mvn com.oracle.maven:oracle-maven-sync:push -DoracleHome=%ORACLE_HOME% -DoverriteParents=true -DserverId=dev -s%MAVEN_SETTINGS_HOME%\settings_jfrog_upload_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Djavax.net.ssl.trustStore=%MAVEN_SETTINGS_HOME%\certs\jdk8\a3_jdk8.jks -Dnet.ssl.trustStorePassword=changeit -DXmx1024m -DXX:MaxPermSize=128m
+
+-----12c-----
+mvn deploy:deploy-file -Dfile=oracle-maven-sync-12.2.1.jar -DpomFile=oracle-maven-sync-12.2.1.pom -Durl=%ARCHIVA_REPO_12c% -DrepositoryId=dev -s%MAVEN_SETTINGS_HOME%\settings_archiva.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12c
+mvn com.oracle.maven:oracle-maven-sync:push -DoracleHome=%ORACLE_HOME% -DoverriteParents=true -DserverId=oracle-12c -s%MAVEN_SETTINGS_HOME%\adf_settings_archiva_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -DXmx1024m -DXX:MaxPermSize=128m
+ 
+mvn archetype:crawl -Dcatalog=%REPO_HOME%\.m2\archetype-catalog.xml -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo
+mvn dependency:purge-local-repository -DreResolve=false  -s %MAVEN_SETTINGS_HOME%\settings_archiva.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml  -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo -e
+
+-------------------------------------------------------------------
+
+cd C:\DM\Workspace\dm\FMW\12.2.1.4.0\ADF\DMApp
+mvn clean package -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings_archiva_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Dfile.encoding=UTF-8 -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12c -e -o
+mvn clean deploy  -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings_archiva_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Dfile.encoding=UTF-8 -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12c -e
+mvn clean deploy  -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings_archiva_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Dfile.encoding=UTF-8 -DaltDeploymentRepository=delta-release::default::http://localhost:8080/repository/delta-release -DaltSnapshotDeploymentRepository=delta-snapshots::default::http://localhost:8080/repository/delta-snapshots -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12c -e
+mvn clean         -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings_archiva_12c.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Dfile.encoding=UTF-8 -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12c -e -o
+
+
+-Pmyprofile
+
+cd C:\Delta\Workspace\12.2.1.4.0\codebase\dev\EBD_12.2.1.4.0
+
+mvn clean package -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Djavax.net.ssl.trustStore=%KEY_STORE_FILE% -Dnet.ssl.trustStorePassword=changeit -Dmaven.test.skip=true -Dfile.encoding=UTF-8 -Denv=shared-dev -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo -e -o
+mvn clean install -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Djavax.net.ssl.trustStore=%KEY_STORE_FILE% -Dnet.ssl.trustStorePassword=changeit -Dmaven.test.skip=true -Dfile.encoding=UTF-8 -Denv=shared-dev -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo -e -o
+mvn clean deploy  -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Djavax.net.ssl.trustStore=%KEY_STORE_FILE% -Dnet.ssl.trustStorePassword=changeit -Dmaven.test.skip=true -Dfile.encoding=UTF-8 -Denv=shared-dev -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo -e -o
+mvn clean         -fpom.xml -s%MAVEN_SETTINGS_HOME%\adf_settings.xml -Dsettings.security=%MAVEN_SETTINGS_HOME%\settings-security.xml -Djavax.net.ssl.trustStore=%KEY_STORE_FILE% -Dnet.ssl.trustStorePassword=changeit -Dmaven.test.skip=true -Dfile.encoding=UTF-8 -Denv=shared-dev -DXmx1024m -DXX:MaxPermSize=128m -Dmaven.repo.local=%REPO_HOME%\.m2\12cRepo -e -o
+
