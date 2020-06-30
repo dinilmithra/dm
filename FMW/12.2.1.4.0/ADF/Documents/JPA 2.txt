@@ -1,0 +1,28 @@
+The files required for supporting JPA 2.1 are included with a default WebLogic Server installation, but they are not enabled by default. The files are:
+
+The javax.persistence_2.1.jar file that contains the JPA 2.1 libraries. This file is installed in the ORACLE_HOME\oracle_common\modules directory.
+
+The com.oracle.weblogic.jpa21support_1.0.0.0_2-1.jar file that contains the files for enabling JPA 2.1 support in WebLogic Server. This file is installed in the WL_HOME\modules directory.
+
+You can install the patch manually by putting the files at the start of the WebLogic classpath. For example, you can use either of the following methods:
+
+Define a PRE_CLASSPATH environment variable before starting WebLogic Server.
+
+For example, in a Windows console window, run the following script before running startWebLogic.cmd:
+
+@echo off
+if ".%1" == "." goto TellSyntax
+set
+PRE_CLASSPATH=%MW_HOME%\oracle_common\modules\javax.persistence_2.1.jar;%MW_HOME%\wlserver\modules\com.oracle.weblogic.jpa21support_1.0.0.0_2-1.jar
+goto End
+:TellSyntax
+echo setJPA21SupportPatch %MW_HOME%\wlserver\modules
+:End
+echo PRE_CLASSPATH=%PRE_CLASSPATH%
+ 
+A similar script can be written for Linux, UNIX, or Macintosh.
+
+Note:
+
+Before running this script, run the setDomainEnv script, located in the DOMAIN_HOME\bin directory, to make sure that MW_HOME is properly set.
+Modify the commEnv.cmd or commEnv.sh script in the WL_HOME\common\bin directory and add the PRE_CLASSPATH at the beginning of the script, setting it to the paths of the JPA 2.1 JAR file and the JPA 2.1 patch.
