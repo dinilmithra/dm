@@ -1,3 +1,7 @@
 
 
 -J-Dide.user.dir=C:\LACA\Workspace\ADF\12.2.1.2.0\system
+
+
+%MW_HOME%\Oracle_Home\jdeveloper\jdev\bin\jdev.conf
+AddVMOption -DMainWindow.MemoryMonitorOn=true
