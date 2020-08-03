@@ -1,0 +1,4 @@
+
+Comment below line from ORACLE_HOME/wlserver/common/derby/derbyServer.policy
+
+permission java.net.SocketPermission "*", "connect,resolve";
