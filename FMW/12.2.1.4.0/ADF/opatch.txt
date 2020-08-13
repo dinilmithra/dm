@@ -1,0 +1,23 @@
+
+set ORACLE_HOME=C:\Dinil\Workspace\Install\Oracle\12.2.1.4.0\JDeveloper\Middleware\Oracle_Home
+set JAVA_HOME=%ORACLE_HOME%\oracle_common\jdk
+set PATH=%JAVA_HOME%\bin;%PATH%
+
+set 7ZIP_HOME=C:\Program Files\7-Zip
+set PATH=%7ZIP_HOME%;%PATH%
+
+cd %ORACLE_HOME%/OPatch
+opatch version
+opatch lsinventory -jre %ORACLE_HOME%/oracle_common/jdk/jre
+
+set PATCH_TOP=C:\Dinil\Softwares\Oracle\12.2.1.4.0\JDeveloper\ADF_Patches\PATCH_TOP
+
+7z x  %PATCH_TOP%/p31078285_122140_Generic.zip -o%PATCH_TOP%
+opatch apply  %PATCH_TOP%/31078285
+
+
+7z x  %PATCH_TOP%/p30833873_122140_Generic.zip -o%PATCH_TOP%
+opatch apply  %PATCH_TOP%/30833873
+
+7z x  %PATCH_TOP%/p31488215_122140_Generic.zip -o%PATCH_TOP%
+opatch apply  %PATCH_TOP%/31488215
