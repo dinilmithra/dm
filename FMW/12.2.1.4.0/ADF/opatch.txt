@@ -14,3 +14,6 @@ set PATCH_TOP=C:\Dinil\Softwares\Oracle\12.2.1.4.0\JDeveloper\ADF_Patches\PATCH_
 
 7z x  %PATCH_TOP%/p31488215_122140_Generic.zip -o%PATCH_TOP%
 opatch apply  %PATCH_TOP%/31488215
+
+7z x  %PATCH_TOP%/p30850214_20220421_Generic.zip -o%PATCH_TOP%
+opatch apply  %PATCH_TOP%/30850214
