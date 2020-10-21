@@ -5,3 +5,4 @@
 
 %MW_HOME%\Oracle_Home\jdeveloper\jdev\bin\jdev.conf
 AddVMOption -DMainWindow.MemoryMonitorOn=true
+AddVMOption -Djcncmd=/refresh/home/downloads/jad/jad -b -ff -nl -p -pi99999 -space -t2
