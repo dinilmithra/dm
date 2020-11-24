@@ -1,6 +1,7 @@
 
 
 -J-Dide.user.dir=C:\LACA\Workspace\ADF\12.2.1.2.0\system
+jdev  -J-Djavatools.trace=audit-javac -debugmode
 
 
 %MW_HOME%\Oracle_Home\jdeveloper\jdev\bin\jdev.conf
