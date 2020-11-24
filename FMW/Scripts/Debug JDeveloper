@@ -1,0 +1,25 @@
+
+
+Run JDeveloper with the following command line parameters:
+
+     > jdev  -J-Djavatools.trace=audit-javac -debugmode
+
+     Then do the ArrayList import test. After doing the test, please provide the output from
+
+     the dos prompt where you started JDevloper. There should be several log messages
+
+     that look as follows:
+
+         ____LOG audit-javac 3: 68.613,761 [status-0] Starting Javac Compile:
+
+         /D:/Oracle/jdev/tests/bug28176882/idm-telephonedir-application-trunk-2018-05-14
+
+         -3/idm-telephonedir-application-trunk-2018-05-14-3/ViewController/src/za/ac/up/u
+
+         ptelephone/view/MainClass.java
+
+         ____LOG audit-javac 4: 69.722,718 [status-0] Found 0 diagnostics
+
+         ____LOG audit-javac 5: 69.722,742 [status-0] Ending Javac Compile: 1109msec
+
+      We are interested in the ones reported during the ArrayList import test.
