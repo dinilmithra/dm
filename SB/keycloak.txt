@@ -1,6 +1,6 @@
 
-C:\FDA\install\oracle\Java\jdk1.8.0_261
+C:\xxx\install\oracle\Java\jdk1.8.0_261
 
-C:\FDA\install\keycloak-12.0.1\bin\standalone.bat
+C:\xxx\install\keycloak-12.0.1\bin\standalone.bat
 
 http://localhost:8080/auth/
